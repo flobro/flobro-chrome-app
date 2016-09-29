@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Options</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body id="OptionsView" style="-webkit-app-region: drag">
+    <div id="settings">
+        <h1><span class="locale" id="appLabelSettings">Settings</span></h1>
+        <div id="settings-loading"><span class="locale" id="appLabelSettingsLoading">Loading settings&hellip;</span></div>
+        <div id="settings-loaded" hidden>
+            <div id="alert" hidden><p class="locale" id="appAlertSomethingWrong">Something went wrong.</p></div><!-- /#alert -->
+            <ul id="settings-fields">
+                <li>
+                    <form id="request-url">
+                        <label>
+                            <span><span class="locale" id="appLabelUrl">URL</span>:</span>
+                            <input type="text" id="input-request-url" placeholder="Hit Enter to save"style="-webkit-app-region: no-drag" />
+                        </label>
+                        <button type="submit" id="save-request-url"><span class="locale" id="appLabelSave">Save</span></button>
+                    </form>
+                </li>
+                <li>
+                    <label style="-webkit-app-region: no-drag"><input type="checkbox" id="improve-by-tracking" /><span><span class="locale" id="appLabelImproveByTracking">Improve app with anonymous data</span></span></label>
+                </li>
+            </ul><!-- /#settingsFields -->
+        </div><!-- /#settings-loaded -->
+    </div>
+    <div id="buttons" class="position" style="-webkit-app-region: no-drag">
+        <div id="background" class="background"></div>
+        <div id="panel-container" class="panel-container">
+            <div class="move-right">
+
+                <button class="window-button" title="Minimize" id="minimize-window-button">
+                    <svg enable-background="new 0 0 36 36" height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
+                        <defs>
+                            <path id="wb-svg-5" d="M 24.5 22.241 L 24.5 25.241 L 12.5 25.241 L 12.5 22.241"/>
+                        </defs>
+                        <use class="wb-svg-shadow" stroke="#000" stroke-opacity=".15" stroke-width="2px" xlink:href="#wb-svg-5"></use>
+                        <use class="wb-svg-fill" fill="#fff" xlink:href="#wb-svg-5"></use>
+                    </svg>
+                </button>
+
+                <button class="window-button" title="Close" id="close-window-button">
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
+                        <defs>
+                            <path id="wb-svg-1" d="M25.95,12.65 L20.65,17.95L25.95,23.25L23.8,25.4L18.5,20.1L13.2,25.4L11.05,23.25L16.35,17.95L11.05,12.65L13.2,10.5L18.5,15.8L23.8,10.5"></path>
+                        </defs>
+                        <use class="wb-svg-shadow" stroke="#000" stroke-opacity=".15" stroke-width="2px" xlink:href="#wb-svg-1"></use>
+                        <use class="wb-svg-fill" fill="#fff" xlink:href="#wb-svg-1"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+<script src="scripts/google-analytics-bundle.js"></script>
+<script src="scripts/options.js"></script>
+</body>
+</html>

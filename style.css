@@ -1,0 +1,10 @@
+/* Remove known blocking elements */
+/* schiphol.nl */
+div#updated-arrow,
+.SchipholGids,
+.flightpanel td.close,
+/* flightradar24.com */
+div#responsiveBottomPanel.desktop,
+.cookielaw-msg {
+    display: none !important;
+}

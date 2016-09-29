@@ -1,0 +1,25 @@
+{
+   "app": {
+      "background": {
+         "scripts": [ "scripts/background.js" ]
+      }
+   },
+
+   "manifest_version": 2,
+   "name": "__MSG_appName__",
+   "short_name": "__MSG_appShortName__",
+   "author": "Martijn Cornips",
+   "version": "0.1.0",
+   "version_name": "0.1.0 beta",
+
+   "default_locale": "nl",
+   "description": "__MSG_appDesc__",
+   "icons": {
+      "128": "assets/icon-128.png",
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png"
+   },
+
+   "minimum_chrome_version": "40",
+   "permissions": [ "webview", "storage", "contextMenus", "notifications", "alwaysOnTopWindows",  "unlimitedStorage", "\u003Call_urls>", "browser", "fullscreen" ]
+}

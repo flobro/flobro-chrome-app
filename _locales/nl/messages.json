@@ -1,0 +1,67 @@
+{
+  "appName": {
+    "message": "Zwevend Browser Venster",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appShortName": {
+    "message": "Zwevend Venster",
+    "description": "The short title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Soms heb je de behoefte aan een zwevend browser venster op je scherm. Met Zwevend Browser Venster kan dat!",
+    "description":"The description of the application, displayed in the web store."
+  },
+
+  "appLabelUrl": {
+    "message": "URL",
+    "description": "The text of label-element of URL field on the options page."
+  },
+  "appLabelSettings": {
+    "message": "Instellingen",
+    "description": "The title of the Settings area on the options page."
+  },
+  "appLabelSettingsLoading": {
+    "message": "Bezig met laden…",
+    "description": "The text of the Settings loading area on the options page."
+  },
+  "appLabelImproveByTracking": {
+    "message": "Verbeter app met anonieme data",
+    "description": "The text of label-element of tracking field on the options page."
+  },
+  "appLabelMinimize": {
+    "message": "Minimaliseren",
+    "description": "The text of tooltop of the minimize button."
+  },
+  "appLabelClose": {
+    "message": "Sluiten",
+    "description": "The text of tooltop of the close button."
+  },
+
+  "appPlaceholderUrl": {
+    "message": "Druk op Enter om op te slaan",
+    "description": "The label of the URL field on the options page."
+  },
+  "appLabelSave": {
+    "message": "Opslaan",
+    "description": "The label of save button on the options page."
+  },
+
+  "appAlertSomethingWrong": {
+    "message": "Er ging iets fout.",
+    "description": "The text shown when something goes wrong."
+  }  ,
+  "appTipSetDifferentUrl": {
+    "message": "Gebruik CTRL + N in te toekomst om een andere URL in te stellen.",
+    "description": "The text shown as tip when a user leaves the options page the first time."
+  },
+
+  "appMiscYouAreAmazing": {
+    "message": "Je bent geweldig! Dankzij jou kan ik de app telkens een beetje beter maken!",
+    "description": "Text shown in console when user enables tracking."
+  },
+  "appMiscConsiderTracking": {
+    "message": "Overweeg het verzamelen van anonieme data in te schakelen. Ik gebruik deze data om de app te verbeteren. Dankzij de data kan ik zien welke fouten verschijnen zonder dat je daar een foutrapport voor hoef te verzenden. De app zal NOOIT persoonlijke data versturen.",
+    "description": "Text shown in console when user disables tracking."
+  }
+
+}
