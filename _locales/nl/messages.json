@@ -16,14 +16,6 @@
     "message": "URL",
     "description": "The text of label-element of URL field on the options page."
   },
-  "appLabelSettings": {
-    "message": "Instellingen",
-    "description": "The title of the Settings area on the options page."
-  },
-  "appLabelSettingsLoading": {
-    "message": "Bezig met laden…",
-    "description": "The text of the Settings loading area on the options page."
-  },
   "appLabelImproveByTracking": {
     "message": "Verbeter app met anonieme data",
     "description": "The text of label-element of tracking field on the options page."
@@ -32,13 +24,21 @@
     "message": "Minimaliseren",
     "description": "The text of tooltop of the minimize button."
   },
+  "appLabelBrowser": {
+    "message": "Browser",
+    "description": "The text of tooltop of the browser button."
+  },
+  "appLabelSettings": {
+    "message": "Instellingen",
+    "description": "The text of tooltop of the settings button."
+  },
   "appLabelClose": {
     "message": "Sluiten",
     "description": "The text of tooltop of the close button."
   },
 
   "appPlaceholderUrl": {
-    "message": "Druk op Enter om op te slaan",
+    "message": "Vul de volledige URL in",
     "description": "The label of the URL field on the options page."
   },
   "appLabelSave": {
@@ -54,6 +54,57 @@
     "message": "Gebruik CTRL + N in te toekomst om een andere URL in te stellen.",
     "description": "The text shown as tip when a user leaves the options page the first time."
   },
+
+
+  "appTxtSettings": {
+    "message": "Instellingen",
+    "description": "The title of the Settings area on the options page."
+  },
+  "appTxtKeyboardShortcuts": {
+    "message": "Sneltoetsen",
+    "description": "The title of the Keyboard shortcuts area on the options page."
+  },
+  "appTxtKeyboardShortcutsFromEverywhere": {
+    "message": "Vanaf elk venster:",
+    "description": "The title of the Keyboard shortcuts area 'for everywhere' on the options page."
+  },
+  "appTxtSwitchBetweenWebWindowAndThisSettingsWindow": {
+    "message": "Wissel tussen web venster en dit instellingen venster",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtCloseAllWindows": {
+    "message": "Sluit alle vensters",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtOpenThisSettingsWindow": {
+    "message": "Open dit instellingen venster",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtKeyboardShortcutsFromWebWindow": {
+    "message": "Vanaf web venster:",
+    "description": "The title of the Keyboard shortcuts area 'for web window' on the options page."
+  },
+  "appTxtReloadThePage": {
+    "message": "Pagina opnieuw laden",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtFullscreen": {
+    "message": "Volledig scherm",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtCredits": {
+    "message": "Credits",
+    "description": "The title of credits area."
+  },
+  "appTxtVisitProjectOnGithub": {
+    "message": "Bezoek project op Github",
+    "description": "The text for the link to Github in credits area."
+  },
+  "appTxtIssues": {
+    "message": "Problemen",
+    "description": "The text for the link to issues in credits area."
+  },
+
 
   "appMiscYouAreAmazing": {
     "message": "Je bent geweldig! Dankzij jou kan ik de app telkens een beetje beter maken!",

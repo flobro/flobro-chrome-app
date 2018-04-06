@@ -2,57 +2,85 @@
 <html>
 <head>
     <title>Options</title>
+    <link rel="stylesheet" href="styles/flaticon.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/optionsview.css">
 </head>
-<body id="OptionsView" style="-webkit-app-region: drag">
-    <div id="settings">
-        <h1><span class="locale" id="appLabelSettings">Settings</span></h1>
-        <div id="settings-loading"><span class="locale" id="appLabelSettingsLoading">Loading settings&hellip;</span></div>
-        <div id="settings-loaded" hidden>
-            <div id="alert" hidden><p class="locale" id="appAlertSomethingWrong">Something went wrong.</p></div><!-- /#alert -->
-            <ul id="settings-fields">
-                <li>
-                    <form id="request-url">
-                        <label>
-                            <span><span class="locale" id="appLabelUrl">URL</span>:</span>
-                            <input type="text" id="input-request-url" placeholder="Hit Enter to save"style="-webkit-app-region: no-drag" />
-                        </label>
-                        <button type="submit" id="save-request-url"><span class="locale" id="appLabelSave">Save</span></button>
-                    </form>
-                </li>
-                <li>
-                    <label style="-webkit-app-region: no-drag"><input type="checkbox" id="improve-by-tracking" /><span><span class="locale" id="appLabelImproveByTracking">Improve app with anonymous data</span></span></label>
-                </li>
-            </ul><!-- /#settingsFields -->
-        </div><!-- /#settings-loaded -->
-    </div>
-    <div id="buttons" class="position" style="-webkit-app-region: no-drag">
-        <div id="background" class="background"></div>
-        <div id="panel-container" class="panel-container">
-            <div class="move-right">
+<body id="OptionsView">
 
+    <div id="buttons" class="position">
+        <div id="panel-container" class="panel-container">
+            <span id="document-title">Options</span>
+            <div class="actions">
                 <button class="window-button" title="Minimize" id="minimize-window-button">
-                    <svg enable-background="new 0 0 36 36" height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
-                        <defs>
-                            <path id="wb-svg-5" d="M 24.5 22.241 L 24.5 25.241 L 12.5 25.241 L 12.5 22.241"/>
-                        </defs>
-                        <use class="wb-svg-shadow" stroke="#000" stroke-opacity=".15" stroke-width="2px" xlink:href="#wb-svg-5"></use>
-                        <use class="wb-svg-fill" fill="#fff" xlink:href="#wb-svg-5"></use>
-                    </svg>
+                    <i class="flaticon-line-1"></i>
+                </button>
+
+                <button class="window-button" title="Browser" id="browser-window-button">
+                    <i class="flaticon-mark-1"></i>
                 </button>
 
                 <button class="window-button" title="Close" id="close-window-button">
-                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
-                        <defs>
-                            <path id="wb-svg-1" d="M25.95,12.65 L20.65,17.95L25.95,23.25L23.8,25.4L18.5,20.1L13.2,25.4L11.05,23.25L16.35,17.95L11.05,12.65L13.2,10.5L18.5,15.8L23.8,10.5"></path>
-                        </defs>
-                        <use class="wb-svg-shadow" stroke="#000" stroke-opacity=".15" stroke-width="2px" xlink:href="#wb-svg-1"></use>
-                        <use class="wb-svg-fill" fill="#fff" xlink:href="#wb-svg-1"></use>
-                    </svg>
+                    <i class="flaticon-close-1"></i>
                 </button>
             </div>
         </div>
     </div>
+
+    <div id="settings" class="options-container">
+        <h1><span class="locale" id="appTxtSettings">Settings</span></h1>
+        <div id="alert" hidden>
+            <p class="locale" id="appAlertSomethingWrong">Something went wrong.</p>
+        </div><!-- /#alert -->
+        <ul id="settings-fields">
+            <li>
+                <form id="request-url">
+                    <label>
+                        <span><span class="locale" id="appLabelUrl">URL</span>:</span>
+                        <input type="url" id="input-request-url" placeholder="Enter full URL starting with http(s)://"/>
+                    </label>
+                    <button type="submit" id="save-request-url"><span class="locale" id="appLabelSave">Save</span></button>
+                </form>
+            </li>
+            <li id="improve-by-tracking-opt-in" hidden>
+                <label><input type="checkbox" id="improve-by-tracking" /><span><span class="locale" id="appLabelImproveByTracking">Improve app with anonymous data</span></span></label>
+            </li>
+        </ul><!-- /#settingsFields -->
+    </div><!-- /#settings -->
+
+    <div id="keyboard-shortcuts" class="options-container">
+        <h2><span class="locale" id="appTxtKeyboardShortcuts">Keyboard shortcuts</span></h2>
+        <p><strong class="locale" id="appTxtKeyboardShortcutsFromEverywhere">From everywhere:</strong></p>
+        <ul class="kb-shortcut-legend">
+            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">Esc</span></span> <span class="locale" id="appTxtSwitchBetweenWebWindowAndThisSettingsWindow">Switch between web window and this settings window</span></li>
+            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">Shift</span> + <span class="kb-shortcut">Esc</span></span> <span class="locale" id="appTxtCloseAllWindows">Close all windows</span></li>
+            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">CTRL</span> + <span class="kb-shortcut">N</span></span> <span class="locale" id="appTxtOpenThisSettingsWindow">Open this settings window</span></li>
+        </ul>
+        <p><strong class="locale" id="appTxtKeyboardShortcutsFromWebWindow">From web window:</strong></p>
+        <ul class="kb-shortcut-legend">
+            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">CTRL</span> + <span class="kb-shortcut">R</span></span> <span class="locale" id="appTxtReloadThePage">Reload the page</span></li>
+            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">F5</span></span> <span class="locale" id="appTxtReloadThePage">Reload the page</span></li>
+            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">F11</span></span> <span class="locale" id="appTxtFullscreen">Fullscreen</span></li>
+        </ul>
+    </div><!-- /#keyboard-shortcuts -->
+
+    <div id="credits" class="options-container">
+        <h2><span class="locale" id="appTxtCredits">Credits</span></h2>
+        <p>
+            <strong><span class="locale" id="appName">appName</span></strong><br>
+            <span class="locale" id="appDesc">appDesc</span>
+        </p>
+        <p>
+            <small>
+                <a href="https://github.com/cornips/flobro" target="_blank" class="locale" id="appTxtVisitProjectOnGithub">Visit project on Github</a><br>
+                <a href="https://github.com/cornips/flobro/issues" target="_blank" class="locale" id="appTxtIssues">Issues</a>
+            </small>
+        </p>
+        <p>
+            <small>Icons designed by <a href="https://www.flaticon.com/authors/smashicons" target="_blank">Smashicons</a> from <a href="https://www.flaticon.com/" target="_blank">Flaticon</a></small>
+        </p>
+    </div><!-- /#credits -->
+
 <script src="scripts/google-analytics-bundle.js"></script>
 <script src="scripts/options.js"></script>
 </body>

@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Floating Browser Window</title>
+    <title>appName</title>
+    <link rel="stylesheet" href="styles/flaticon.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body id="WindowView" style="-webkit-app-region: drag">
+<body id="WindowView">
     <webview class="background" id="panel-container" src="about:blank" partition="persist:framelessapps" frameborder="0"></webview>
-    <div id="buttons" class="position" style="-webkit-app-region: no-drag">
-        <div id="background" class="background"></div>
+    <div id="buttons" class="position">
         <div id="panel-container" class="panel-container">
-            <div class="move-right">
-
+            <webview id="document-favicon" src="https://www.google.com/s2/favicons?domain=undefined" data-src="https://www.google.com/s2/favicons?domain=" partition="persist:framelessapps" frameborder="0" allowtransparency></webview><span id="document-title">appName</span>
+            <div class="actions">
                 <button class="window-button" title="Minimize" id="minimize-window-button">
-                    <svg enable-background="new 0 0 36 36" height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
-                        <defs>
-                            <path id="fyt-svg-5" d="M 24.5 22.241 L 24.5 25.241 L 12.5 25.241 L 12.5 22.241"/>
-                        </defs>
-                        <use class="ytp-svg-shadow" stroke="#000" stroke-opacity=".15" stroke-width="2px" xlink:href="#fyt-svg-5"></use>
-                        <use class="ytp-svg-fill" fill="#fff" xlink:href="#fyt-svg-5"></use>
-                    </svg>
+                    <i class="flaticon-line-1"></i>
+                </button>
+
+                <button class="window-button" title="Settings" id="settings-window-button">
+                    <i class="flaticon-cogwheel-1"></i>
                 </button>
 
                 <button class="window-button" title="Close" id="close-window-button">
-                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
-                        <defs>
-                            <path id="fyt-svg-1" d="M25.95,12.65 L20.65,17.95L25.95,23.25L23.8,25.4L18.5,20.1L13.2,25.4L11.05,23.25L16.35,17.95L11.05,12.65L13.2,10.5L18.5,15.8L23.8,10.5"></path>
-                        </defs>
-                        <use class="ytp-svg-shadow" stroke="#000" stroke-opacity=".15" stroke-width="2px" xlink:href="#fyt-svg-1"></use>
-                        <use class="ytp-svg-fill" fill="#fff" xlink:href="#fyt-svg-1"></use>
-                    </svg>
+                    <i class="flaticon-close-1"></i>
                 </button>
             </div>
         </div>

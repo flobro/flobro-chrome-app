@@ -1,22 +1,27 @@
+var service, tracker, alertEl, bounds={};
+bounds.w=650;bounds.h=490;
+
 var webview = document.getElementById('panel-container');
-var bullet = document.getElementById('drag');
+var window_title = document.getElementById('document-title');
+var favicon_image = document.getElementById('document-favicon');
 var appID = chrome.i18n.getMessage('@@extension_id'); // this app
-var insert_style = '.window-overlay::-wbkit-scrollbar{height:33px;width:33px}.window-overlay::-webkit-scrollbar-thumb{min-height:50px;background:rgba(255,255,255,1);border-radius:17px;border:10px solid transparent;background-clip:padding-box}.window-overlay::-webkit-scrollbar-track-piece{background:rgba(0,0,0,.5);border:10px solid transparent;background-clip:padding-box}.window-overlay::-webkit-scrollbar-track-piece:vertical:start{border-radius:17px 17px 0 0}.window-overlay::-webkit-scrollbar-track-piece:vertical:end{border-radius:0 0 17px 17px}input,button,.button,textarea,select{-webkit-app-region:no-drag !important;}';
 var NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
 var bounds, service, tracker;
 
 document.title = chrome.i18n.getMessage('appName');
+window_title.innerText = chrome.i18n.getMessage('appName');
 
 // Set locale texts
 document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
 // Exception for element who can't use .locale
 document.getElementById('minimize-window-button').title = chrome.i18n.getMessage('appLabelMinimize');
+document.getElementById('settings-window-button').title = chrome.i18n.getMessage('appLabelSettings');
 document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
 
 // hotkeys
 window.addEventListener('keydown', function(e) {
     // Ctrl+R or F5
-    if (e.ctrlKey && e.keyCode == 82 || e.keyCode == 115) {
+    if (e.ctrlKey && e.keyCode == 82 || e.keyCode == 116) {
         var ReloadApp = analytics.EventBuilder.builder()
             .category('App')
             .action('Reload')
@@ -69,9 +74,7 @@ window.addEventListener('keydown', function(e) {
                 .category('App')
                 .action('Close')
                 .dimension(1, 'Shift Esc');
-            tracker.send(CloseWithShiftEsc).addCallback(function() {
-                chrome.app.window.getAll().forEach(function(w){ w.close(); });
-            }.bind(this));
+            tracker.send(CloseWithShiftEsc);
             // Prevent further execution
             return;
         }
@@ -108,11 +111,7 @@ window.addEventListener('load', function(e) {
 webview.addEventListener('loadcommit', function(e) {
     if (e.isTopLevel) {
         webview.insertCSS({
-            code: insert_style,
-            runAt: 'document_start'
-        });
-        webview.insertCSS({
-            file: 'style.css',
+            file: './styles/inner_webview.css',
             runAt: 'document_start'
         });
         // Set document boundaries
@@ -148,6 +147,7 @@ webview.addEventListener('loadcommit', function(e) {
             function(results){
                 if (results[0]) {
                     document.title = results[0];
+                    window_title.innerText = results[0];
                 } else {
                     if (!titleFirstTime) {
                         var AlertNoTitle = analytics.EventBuilder.builder()
@@ -158,6 +158,17 @@ webview.addEventListener('loadcommit', function(e) {
                         console.log('No document title');
                     } else
                         titleFirstTime = false;
+                }
+            }
+        );
+        webview.executeScript(
+            {
+                code: 'document.URL',
+                runAt: 'document_end'
+            },
+            function(results){
+                if (results[0]) {
+                    favicon_image.src = favicon_image.dataset.src + results[0];
                 }
             }
         );
@@ -180,7 +191,7 @@ window.addEventListener('focus', function(e) {
 
 // allow download
 webview.addEventListener('permissionrequest', function(e) {
-    if (e.permission === 'download') {
+    if (e.permission === 'download' || e.permission === 'fullscreen') {
         e.request.allow();
     }
 });

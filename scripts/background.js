@@ -1,4 +1,4 @@
-var bounds,storageData;
+var storageData;
 
 chrome.storage.sync.get(function(items) {
     if (items)
@@ -10,7 +10,6 @@ function createWindow(param) {
     chrome.app.window.create(param.url, {
         frame: 'none',
         id: param.id,
-        innerBounds: { width: 20, height: 20 },
         resizable: true,
         alwaysOnTop: true
     }, function (appwindow) {
@@ -20,31 +19,27 @@ function createWindow(param) {
             var bodyObj = appwindow.contentWindow.document.querySelector('body'),
                 buttonsObj = appwindow.contentWindow.document.getElementById('buttons'),
                 closeObj = appwindow.contentWindow.document.getElementById('close-window-button'),
+                browserObj = appwindow.contentWindow.document.getElementById('browser-window-button'),
+                settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
                 minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
-                backgroundObj = appwindow.contentWindow.document.getElementById('background'),
                 timeout = null,
                 helpOpened = false;
-
-            // Check for boundary setting and adjust window
-            var checkBoundsTries = 0;
-            var checkBounds = setInterval(function(){
-                if (checkBoundsTries < 500 && chrome.app.window.getAll().length) {
-                    checkBoundsTries++;
-                    bounds = appwindow.contentWindow.bounds;
-                    if (typeof bounds !== 'undefined' && bounds !== null) {
-                        if (bounds.w && bounds.h) {
-                            chrome.runtime.sendMessage({'sender':param.id, 'bounds': bounds});
-                            clearInterval(checkBounds);
-                        }
-                    }
-                } else {
-                    clearInterval(checkBounds);
-                }
-            }, 250);
 
             closeObj.onclick = function () {
                 appwindow.contentWindow.close();
             };
+            if (settingsObj){
+                settingsObj.onclick = function () {
+                    appwindow.contentWindow.close();
+                    createWindow({ 'url': 'options.html', 'id': 'options', 'bounds': { width: 450, height: 515 } });
+                };
+            }
+            if (browserObj){
+                browserObj.onclick = function () {
+                    appwindow.contentWindow.close();
+                    createWindow({ 'url': 'window.html', 'id': 'window' });
+                };
+            }
             minimizeObj.onclick = function () {
                 appwindow.minimize();
             };
@@ -56,7 +51,6 @@ function createWindow(param) {
                 }
             };
 
-            backgroundObj.style.display = 'none';
             buttonsObj.classList.add('fadeout');
 
             bodyObj.onmousemove = function () {
@@ -71,6 +65,7 @@ function createWindow(param) {
                 }, 2000);
             };
 
+
             chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
                 if (request === 'fullscreen') {
                     toggleFullscreen();
@@ -83,6 +78,7 @@ function createWindow(param) {
                 }
             });
 
+
         };
 
 	});
@@ -94,6 +90,13 @@ window.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.keyCode == 78) {
         // Open options
         chrome.runtime.sendMessage({'open': 'options'});
+    }
+    // Shift + Esc
+    if (e.shiftKey && e.keyCode == 27) {
+        // Close all
+        chrome.app.window.getAll().forEach(function(w){ w.close(); });
+        // Prevent further execution
+        return;
     }
 });
 
@@ -149,7 +152,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     }
     if (request.open === 'options') {
         setTimeout(function(){
-            createWindow({ 'url': 'options.html', 'id': 'options' });
+            createWindow({ 'url': 'options.html', 'id': 'options', 'bounds': { width: 450, height: 515 } });
         },250);
     }
     if (request.close === 'options') {

@@ -1,41 +1,24 @@
 var service, tracker, alertEl, bounds={};
-bounds.w=0;bounds.h=0;
+bounds.w=450;bounds.h=515;
+
 var input = document.getElementById('input-request-url');
 var form = document.getElementById('request-url');
+var window_title = document.getElementById('document-title');
 var locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong');
 
 document.title = chrome.i18n.getMessage('appLabelSettings');
+window_title.innerText = chrome.i18n.getMessage('appLabelSettings');
 
 // Set locale texts
 document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
 // Exception for element who can't use .locale
 document.getElementById('minimize-window-button').title = chrome.i18n.getMessage('appLabelMinimize');
+document.getElementById('browser-window-button').title = chrome.i18n.getMessage('appLabelBrowser');
 document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
 document.getElementById('input-request-url').placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
 
 // hotkeys
 window.addEventListener('keydown', function(e) {
-    // F11
-    if (e.keyCode == 122) {
-        if (chrome.app.window.current().isFullscreen()) {
-            var RestoreFullscreen = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Fullscreen')
-                .dimension(1, 'Restore');
-            tracker.send(RestoreFullscreen).addCallback(function() {
-                chrome.app.window.current().restore();
-            }.bind(this));
-        } else {
-            var EnterFullscreen = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Fullscreen')
-                .dimension(2, 'Enter');
-            tracker.send(EnterFullscreen).addCallback(function() {
-                chrome.app.window.current().fullscreen();
-            }.bind(this));
-        }
-    }
-
     // Esc
     if (e.keyCode == 27) {
         // Shift + Esc
@@ -45,9 +28,7 @@ window.addEventListener('keydown', function(e) {
                 .category('App')
                 .action('Close')
                 .dimension(1, 'Shift Esc');
-            tracker.send(CloseWithShiftEsc).addCallback(function() {
-                chrome.app.window.getAll().forEach(function(w){ w.close(); });
-            }.bind(this));
+            tracker.send(CloseWithShiftEsc);
             // Prevent further execution
             return;
         }
@@ -127,8 +108,7 @@ form.addEventListener("submit", function(e){
 // Allow opt-out
 function initSettings(config) {
     // Release loading text
-    document.getElementById('settings-loading').hidden = true;
-    document.getElementById('settings-loaded').hidden = false;
+    document.getElementById('improve-by-tracking-opt-in').hidden = false;
     alert();
 
     var checkboxImproveByTracking = document.getElementById('improve-by-tracking');
