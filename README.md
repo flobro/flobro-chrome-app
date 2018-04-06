@@ -7,4 +7,4 @@ Sometimes it's nice to have a floating browser window on your screen. With **flo
 **flobro** is an application that turns webpages into application windows.
 
 ## Installation
-Go to [flobro.cornips.nl](http://flobro.cornips.nl/) and click the download button.
+Go to [Chrome Web Store](https://chrome.google.com/webstore/detail/zwevend-browser-venster/faaljkdndnfoagcmhedlmbgieoocemch) and install the app.
