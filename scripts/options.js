@@ -1,5 +1,5 @@
 var service, tracker, alertEl, bounds={};
-bounds.w=450;bounds.h=515;
+bounds.w=450;bounds.h=610;
 
 var input = document.getElementById('input-request-url');
 var form = document.getElementById('request-url');
