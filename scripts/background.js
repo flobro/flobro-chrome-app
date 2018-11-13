@@ -22,6 +22,7 @@ function createWindow(param) {
                 browserObj = appwindow.contentWindow.document.getElementById('browser-window-button'),
                 settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
                 minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
+                webview = appwindow.contentWindow.document.getElementById('panel-container'),
                 timeout = null,
                 helpOpened = false;
 
@@ -56,11 +57,15 @@ function createWindow(param) {
             bodyObj.onmousemove = function () {
                 buttonsObj.classList.remove('fadeout');
                 buttonsObj.classList.add('fadein');
+                if (webview)
+                    webview.classList.add('movedown');
                 clearTimeout(timeout);
                 timeout = setTimeout(function () {
                     if (false === helpOpened) {
                         buttonsObj.classList.remove('fadein');
                         buttonsObj.classList.add('fadeout');
+                        if (webview)
+                            webview.classList.remove('movedown');
                     }
                 }, 2000);
             };

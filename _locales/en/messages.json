@@ -1,14 +1,14 @@
 {
   "appName": {
-    "message": "Floating Browser Window",
+    "message": "Flobro",
     "description": "The title of the application, displayed in the web store."
   },
   "appShortName": {
-    "message": "Floating Window",
+    "message": "Flobro",
     "description": "The short title of the application, displayed in the web store."
   },
   "appDesc": {
-    "message": "Sometimes it's nice to have a floating browser window on your screen. With Floating Browser Window you can do this!",
+    "message": "Sometimes it's nice to have a floating browser window on your screen. With Flobro you can do this!",
     "description": "The description of the application, displayed in the web store."
   },
 

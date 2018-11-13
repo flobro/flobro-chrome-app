@@ -1,14 +1,14 @@
 {
   "appName": {
-    "message": "Zwevend Browser Venster",
+    "message": "Flobro",
     "description": "The title of the application, displayed in the web store."
   },
   "appShortName": {
-    "message": "Zwevend Venster",
+    "message": "Flobro",
     "description": "The short title of the application, displayed in the web store."
   },
   "appDesc": {
-    "message": "Soms heb je de behoefte aan een zwevend browser venster op je scherm. Met Zwevend Browser Venster kan dat!",
+    "message": "Soms heb je de behoefte aan een zwevend browser venster op je scherm. Met Flobro kan dat!",
     "description":"The description of the application, displayed in the web store."
   },
 

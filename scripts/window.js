@@ -6,7 +6,6 @@ var window_title = document.getElementById('document-title');
 var favicon_image = document.getElementById('document-favicon');
 var appID = chrome.i18n.getMessage('@@extension_id'); // this app
 var NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
-var bounds, service, tracker;
 
 document.title = chrome.i18n.getMessage('appName');
 window_title.innerText = chrome.i18n.getMessage('appName');
@@ -114,29 +113,6 @@ webview.addEventListener('loadcommit', function(e) {
             file: './styles/inner_webview.css',
             runAt: 'document_start'
         });
-        // Set document boundaries
-        var boundariesFirstTime = true;
-        webview.executeScript(
-            {
-                code: 'var bounds={};bounds.w=0;bounds.h=0;document.querySelectorAll("body > *").forEach(function(node){var cv = node.getBoundingClientRect();if(cv.width>bounds.w)bounds.w = cv.width+1;if(cv.height>bounds.h)bounds.h = cv.height;});if(bounds.w&&bounds.h) bounds',
-                runAt: 'document_end'
-            },
-            function(results){
-                if (results[0]) {
-                    bounds = results[0];
-                } else {
-                    if (!boundariesFirstTime) {
-                        var AlertNoBounds = analytics.EventBuilder.builder()
-                            .category('Errors')
-                            .action('Alert')
-                            .dimension(2, 'No boundaries found');
-                        tracker.send(AlertNoBounds);
-                        console.log('No boundaries found');
-                    } else
-                        boundariesFirstTime = false;
-                }
-            }
-        );
         // Set app title to document title
         var titleFirstTime = true;
         webview.executeScript(
@@ -155,7 +131,6 @@ webview.addEventListener('loadcommit', function(e) {
                             .action('Alert')
                             .dimension(3, 'No document title');
                         tracker.send(AlertNoTitle);
-                        console.log('No document title');
                     } else
                         titleFirstTime = false;
                 }
