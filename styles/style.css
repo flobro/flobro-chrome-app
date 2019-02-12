@@ -116,7 +116,7 @@ a {
         top: 0;
         right: 0;
         width: calc(100vw - 16px);
-        background: rgba(0,0,0,.3);
+        background: rgba(0,0,0,.8);
         border-radius: 0 0 5px 5px;
         -webkit-app-region: drag;
     }
@@ -124,6 +124,7 @@ a {
     #document-title {
         line-height: 22px;
         font-size: 10pt;
+        color: white;
     }
     #document-favicon {
         display: inline-block;
@@ -140,6 +141,7 @@ a {
 
     .actions .window-button {
         float: left;
+        color: white;
     }
 
     .window-button {
