@@ -50,22 +50,48 @@ a {
         right: 0;
         pointer-events: none;
         z-index: 99999999;
-        opacity: 1;
-        transition: opacity .2s ease-out, top .2s ease-out;
     }
 
     .position.fadein {
-        opacity: 1;
-        top: 0;
+        -webkit-animation: fadeInFromNone 0.2s ease-out;
     }
 
     .position.fadeout {
-        opacity: 0;
-        top: -38px;
+        -webkit-animation: fadeOutToNone 0.2s ease-out;
+    }
+
+    @-webkit-keyframes fadeOutToNone {
+        0% {
+            top: 0px;
+        }
+
+        99% {
+            top: -38px;
+        }
+
+        100% {
+            top: -38px;
+            display: none;
+        }
+    }
+
+    @-webkit-keyframes fadeInFromNone {
+        0% {
+            display: block;
+            top: -38px;
+        }
+
+        1% {
+            top: -38px;
+        }
+
+        100% {
+            top: 0px;
+        }
     }
 
     webview {
-        transition: margin-top .1s cubic-bezier(0.4,0.0,1,1);
+        -webkit-transition: margin-top .1s cubic-bezier(0.4,0.0,1,1);
     }
     webview.movedown {
         margin-top: 38px;
@@ -88,13 +114,14 @@ a {
         top: 0;
         right: 0;
         width: calc(100vw - 16px);
-        background: #b2b2b2;
+        background: #636363;
         -webkit-app-region: drag;
     }
 
     #document-title {
         line-height: 22px;
         font-size: 10pt;
+        color: white;
     }
     #document-favicon {
         display: inline-block;
@@ -111,6 +138,7 @@ a {
 
     .actions .window-button {
         float: left;
+        color: white;
     }
 
     .window-button {
