@@ -9,8 +9,8 @@
    "name": "__MSG_appName__",
    "short_name": "__MSG_appShortName__",
    "author": "Martijn Cornips",
-   "version": "0.1.2",
-   "version_name": "0.1.2 beta",
+   "version": "0.2.0",
+   "version_name": "0.2.0",
 
    "default_locale": "nl",
    "description": "__MSG_appDesc__",

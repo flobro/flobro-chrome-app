@@ -17,6 +17,9 @@ document.getElementById('browser-window-button').title = chrome.i18n.getMessage(
 document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
 document.getElementById('input-request-url').placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
 
+// add version number
+document.getElementById('version-number').innerText = chrome.runtime.getManifest().version;
+
 // hotkeys
 window.addEventListener('keydown', function(e) {
     // Esc

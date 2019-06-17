@@ -52,22 +52,25 @@ function createWindow(param) {
                 }
             };
 
-            buttonsObj.classList.add('fadeout');
 
-            bodyObj.onmousemove = function () {
+            buttonsObj.classList.add('fadeout');
+            bodyObj.onmouseenter = function () {
+                if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
+
                 buttonsObj.classList.remove('fadeout');
                 buttonsObj.classList.add('fadein');
                 if (webview)
                     webview.classList.add('movedown');
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    if (false === helpOpened) {
+            };
+            bodyObj.onmouseleave = function () {
+                if (false === helpOpened) {
+                    window.removeButtonsTimer = setTimeout(() => {
                         buttonsObj.classList.remove('fadein');
                         buttonsObj.classList.add('fadeout');
                         if (webview)
                             webview.classList.remove('movedown');
-                    }
-                }, 2000);
+                    }, 300)
+                }
             };
 
 

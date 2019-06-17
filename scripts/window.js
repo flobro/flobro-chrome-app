@@ -60,23 +60,11 @@ window.addEventListener('keydown', function(e) {
         .dimension(2, 'Ctrl N');
         tracker.send(SwitchWithCtrlN).addCallback(function() {
             chrome.runtime.sendMessage({'open': 'options'});
-            chrome.app.window.get('options').drawAttention();
         }.bind(this));
     }
 
     // Esc
     if (e.keyCode == 27) {
-        // Shift + Esc
-        if (e.shiftKey) {
-            // Close all
-            var CloseWithShiftEsc = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Close')
-                .dimension(1, 'Shift Esc');
-            tracker.send(CloseWithShiftEsc);
-            // Prevent further execution
-            return;
-        }
         // Launch main window
         var SwitchWithEsc = analytics.EventBuilder.builder()
                 .category('App')

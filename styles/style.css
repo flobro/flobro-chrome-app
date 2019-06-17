@@ -50,48 +50,22 @@ a {
         right: 0;
         pointer-events: none;
         z-index: 99999999;
+        opacity: 1;
+        transition: opacity .2s ease-out, top .2s ease-out;
     }
 
     .position.fadein {
-        -webkit-animation: fadeInFromNone 0.2s ease-out;
+        opacity: 1;
+        top: 0;
     }
 
     .position.fadeout {
-        -webkit-animation: fadeOutToNone 0.2s ease-out;
-    }
-
-    @-webkit-keyframes fadeOutToNone {
-        0% {
-            top: 0px;
-        }
-
-        99% {
-            top: -38px;
-        }
-
-        100% {
-            top: -38px;
-            display: none;
-        }
-    }
-
-    @-webkit-keyframes fadeInFromNone {
-        0% {
-            display: block;
-            top: -38px;
-        }
-
-        1% {
-            top: -38px;
-        }
-
-        100% {
-            top: 0px;
-        }
+        opacity: 0;
+        top: -38px;
     }
 
     webview {
-        -webkit-transition: margin-top .1s cubic-bezier(0.4,0.0,1,1);
+        transition: margin-top .1s cubic-bezier(0.4,0.0,1,1);
     }
     webview.movedown {
         margin-top: 38px;
