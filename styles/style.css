@@ -121,6 +121,7 @@ a {
     #document-title {
         line-height: 22px;
         font-size: 10pt;
+        color: white;
     }
     #document-favicon {
         display: inline-block;
@@ -137,6 +138,7 @@ a {
 
     .actions .window-button {
         float: left;
+        color: white;
     }
 
     .window-button {
