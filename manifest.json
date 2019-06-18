@@ -12,7 +12,7 @@
    "version": "0.2.0",
    "version_name": "0.2.0",
 
-   "default_locale": "nl",
+   "default_locale": "en",
    "description": "__MSG_appDesc__",
    "icons": {
       "16": "assets/icon-16.png",
@@ -24,3 +24,4 @@
    "minimum_chrome_version": "40",
    "permissions": [ "webview", "storage", "contextMenus", "notifications", "alwaysOnTopWindows",  "unlimitedStorage", "\u003Call_urls>", "browser", "fullscreen" ]
 }
+

@@ -188,6 +188,12 @@ window.addEventListener('load', function() {
                 .action('WindowView')
                 .dimension(2, 'Dutch');
             break;
+        case 'de':
+            InitLanguage = analytics.EventBuilder.builder()
+                .category('Language')
+                .action('WindowView')
+                .dimension(2, 'German');
+            break;
         default:
             InitLanguage = analytics.EventBuilder.builder()
                 .category('Language')
