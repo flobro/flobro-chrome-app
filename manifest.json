@@ -12,7 +12,7 @@
    "version": "0.1.2",
    "version_name": "0.1.2 beta",
 
-   "default_locale": "nl",
+   "default_locale": "en",
    "description": "__MSG_appDesc__",
    "icons": {
       "16": "assets/icon-16.png",
