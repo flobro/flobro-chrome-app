@@ -54,7 +54,8 @@ function createWindow(param) {
 
 
             buttonsObj.classList.add('fadeout');
-            bodyObj.onmouseenter = function () {
+            webview.onmouseenter = function () {
+                console.log('onmouseenter');
                 if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
 
                 buttonsObj.classList.remove('fadeout');
@@ -62,7 +63,8 @@ function createWindow(param) {
                 if (webview)
                     webview.classList.add('movedown');
             };
-            bodyObj.onmouseleave = function () {
+            webview.onmouseleave = function () {
+                console.log('onmouseleave');
                 if (false === helpOpened) {
                     window.removeButtonsTimer = setTimeout(() => {
                         buttonsObj.classList.remove('fadein');
@@ -87,7 +89,7 @@ function createWindow(param) {
             });
 
 
-        };
+        }
 
 	});
 }
@@ -98,13 +100,6 @@ window.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.keyCode == 78) {
         // Open options
         chrome.runtime.sendMessage({'open': 'options'});
-    }
-    // Shift + Esc
-    if (e.shiftKey && e.keyCode == 27) {
-        // Close all
-        chrome.app.window.getAll().forEach(function(w){ w.close(); });
-        // Prevent further execution
-        return;
     }
 });
 
@@ -160,7 +155,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     }
     if (request.open === 'options') {
         setTimeout(function(){
-            createWindow({ 'url': 'options.html', 'id': 'options', 'bounds': { width: 450, height: 515 } });
+            createWindow({ 'url': 'options.html', 'id': 'options', 'bounds': { width: 450, height: 515 }, innerBounds: { minWidth: 360 } });
         },250);
     }
     if (request.close === 'options') {

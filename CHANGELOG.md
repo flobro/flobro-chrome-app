@@ -7,16 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Changed name integrally to Flobro for better recognition
+- Reordered the settings window for better UX
 
 ### Added
-- Auto hide title bar
+- Added auto hide title bar
+- Added URL validation
 
 ### Fixed
 - Fixed weird behaviour of title bar, fixing issues #10, #11 and #19
 - Fixed default locale (now English), fixing issue #24
 
 ### Removed
-- Removed keyboard shortcut Shift + Esc to close all windows
+- Removed keyboard shortcuts due to low usage
 
 
 

@@ -5,12 +5,13 @@
     <link rel="stylesheet" href="styles/flaticon.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/optionsview.css">
+    <link rel="stylesheet" href="styles/buttons.css">
 </head>
 <body id="OptionsView">
 
     <div id="buttons" class="position">
         <div id="panel-container" class="panel-container">
-            <span id="document-title">Options</span>
+            <span id="document-title"><span id="appTxtSettings" class="locale">Settings</span></span>
             <div class="actions">
                 <button class="window-button" title="Minimize" id="minimize-window-button">
                     <i class="flaticon-line-1"></i>
@@ -28,54 +29,48 @@
     </div>
 
     <div id="settings" class="options-container">
-        <h1><span class="locale" id="appTxtSettings">Settings</span></h1>
         <div id="alert" hidden>
             <p class="locale" id="appAlertSomethingWrong">Something went wrong.</p>
         </div><!-- /#alert -->
+
+        <form id="request-url-form">
+            <label>
+                <span><span class="locale" id="appLabelUrl">URL</span>:</span>
+                <input type="url" id="input-request-url" placeholder="Enter full URL starting with http(s)://"/>
+            </label>
+            <small class="notice" id="url-help-text"></small>
+            <button type="submit" class="button lg">
+                <span class="locale" id="appLabelSave">Save</span>
+            </button><!-- /.button -->
+
+        </form>
+
+        <h2><span class="locale" id="appTxtOptions">Options</span></h2>
+
         <ul id="settings-fields">
-            <li>
-                <form id="request-url">
-                    <label>
-                        <span><span class="locale" id="appLabelUrl">URL</span>:</span>
-                        <input type="url" id="input-request-url" placeholder="Enter full URL starting with http(s)://"/>
-                    </label>
-                    <button type="submit" id="save-request-url"><span class="locale" id="appLabelSave">Save</span></button>
-                </form>
-            </li>
             <li id="improve-by-tracking-opt-in" hidden>
                 <label><input type="checkbox" id="improve-by-tracking" /><span><span class="locale" id="appLabelImproveByTracking">Improve app with anonymous data</span></span></label>
+                <small class="notice" id="tracking-help-text"></small>
             </li>
         </ul><!-- /#settingsFields -->
     </div><!-- /#settings -->
 
-    <div id="keyboard-shortcuts" class="options-container">
-        <h2><span class="locale" id="appTxtKeyboardShortcuts">Keyboard shortcuts</span></h2>
-        <p><strong class="locale" id="appTxtKeyboardShortcutsFromEverywhere">From everywhere:</strong></p>
-        <ul class="kb-shortcut-legend">
-            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">Esc</span></span> <span class="locale" id="appTxtSwitchBetweenWebWindowAndThisSettingsWindow">Switch between web window and this settings window</span></li>
-            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">Shift</span> + <span class="kb-shortcut">Esc</span></span> <span class="locale" id="appTxtCloseAllWindows">Close all windows</span></li>
-            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">CTRL</span> + <span class="kb-shortcut">N</span></span> <span class="locale" id="appTxtOpenThisSettingsWindow">Open this settings window</span></li>
-        </ul>
-        <p><strong class="locale" id="appTxtKeyboardShortcutsFromWebWindow">From web window:</strong></p>
-        <ul class="kb-shortcut-legend">
-            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">CTRL</span> + <span class="kb-shortcut">R</span></span> <span class="locale" id="appTxtReloadThePage">Reload the page</span></li>
-            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">F5</span></span> <span class="locale" id="appTxtReloadThePage">Reload the page</span></li>
-            <li><span class="kb-shortcut-keys"><span class="kb-shortcut">F11</span></span> <span class="locale" id="appTxtFullscreen">Fullscreen</span></li>
-        </ul>
-    </div><!-- /#keyboard-shortcuts -->
-
     <div id="credits" class="options-container">
         <h2><span class="locale" id="appTxtCredits">Credits</span></h2>
         <p>
-            <strong><span class="locale" id="appName">appName</span></strong><br>
+            <strong><span class="locale" id="appName">Flobro</span></strong><br>
             <span class="version">Versie <span id="version-number"></span></span><br>
-            <small>
-                <a href="https://github.com/cornips/flobro/issues" target="_blank" class="locale" id="appTxtIssues">Report issue</a>&nbsp; -&nbsp;
-                <a href="https://github.com/cornips/flobro" target="_blank" class="locale" id="appTxtVisitProjectOnGithub">Visit project on Github</a>
-            </small>
+            <div class="button lg">
+                <a href="https://github.com/cornips/flobro/issues" target="_blank" aria-label="Project issues on GitHub"><svg version="1.1" width="14" height="16" viewBox="0 0 14 16" class="octicon octicon-issue-opened" aria-hidden="true"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg> <span class="locale" id="appTxtIssues">Report an issue</span></a>
+            </div><!-- /.button -->
+            &nbsp;&nbsp;
+            <div class="button lg">
+                <a href="https://flobro.cornips.nl/?utm_source=app&utm_medium=link&utm_campaign=credits" target="_blank" aria-label="Visit project website"> <span class="locale" id="appTxtVisitProjectWebsite">Visit project website</span></a>
+            </div><!-- /.button -->
+
         </p>
         <p>
-            <small>Icons designed by <a href="https://www.flaticon.com/authors/smashicons" target="_blank">Smashicons</a> from <a href="https://www.flaticon.com/" target="_blank">Flaticon</a></small>
+            <small><span class="locale" id="appTxtIconsDesignedBy">Icons designed by</span> <a href="https://smashicons.com/?utm_source=flobro&utm_medium=attribution&utm_campaign=credits" target="_blank">Smashicons</a> <span class="locale" id="appTxtFrom">from</span> <a href="https://www.flaticon.com/?utm_source=flobro&utm_medium=attribution&utm_campaign=credits" target="_blank">Flaticon</a></small>
         </p>
     </div><!-- /#credits -->
 

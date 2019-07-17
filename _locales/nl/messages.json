@@ -12,6 +12,7 @@
     "description":"The description of the application, displayed in the web store."
   },
 
+
   "appLabelUrl": {
     "message": "URL",
     "description": "The text of label-element of URL field on the options page."
@@ -38,7 +39,7 @@
   },
 
   "appPlaceholderUrl": {
-    "message": "Vul de volledige URL in",
+    "message": "Vul de volledige URL in startend met http(s)://",
     "description": "The label of the URL field on the options page."
   },
   "appLabelSave": {
@@ -49,16 +50,20 @@
   "appAlertSomethingWrong": {
     "message": "Er ging iets fout.",
     "description": "The text shown when something goes wrong."
-  }  ,
-  "appTipSetDifferentUrl": {
-    "message": "Gebruik CTRL + N in te toekomst om een andere URL in te stellen.",
-    "description": "The text shown as tip when a user leaves the options page the first time."
+  },
+  "appAlertWrongUrl": {
+    "message": "The entered value is not recognized as a valid URL.",
+    "description": "The text shown when a entered URL is not valid."
   },
 
 
   "appTxtSettings": {
     "message": "Instellingen",
-    "description": "The title of the Settings area on the options page."
+    "description": "The title of the options page."
+  },
+  "appTxtOptions": {
+    "message": "Opties",
+    "description": "The title of the options area on the options page."
   },
   "appTxtKeyboardShortcuts": {
     "message": "Sneltoetsen",
@@ -96,13 +101,21 @@
     "message": "Credits",
     "description": "The title of credits area."
   },
-  "appTxtVisitProjectOnGithub": {
-    "message": "Bezoek project op Github",
+  "appTxtVisitProjectWebsite": {
+    "message": "Bezoek project website",
     "description": "The text for the link to Github in credits area."
   },
   "appTxtIssues": {
-    "message": "Problemen",
+    "message": "Meld een probleem",
     "description": "The text for the link to issues in credits area."
+  },
+  "appTxtIconsDesignedBy": {
+    "message": "Iconen ontworpen door",
+    "description": "The text to credit the icon designer."
+  },
+  "appTxtFrom": {
+    "message": "van",
+    "description": "Lowercase word for 'from'."
   },
 
 

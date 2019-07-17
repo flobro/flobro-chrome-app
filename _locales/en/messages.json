@@ -12,6 +12,7 @@
     "description": "The description of the application, displayed in the web store."
   },
 
+
   "appLabelUrl": {
     "message": "URL",
     "description": "The text of label-element of URL field on the options page."
@@ -46,19 +47,24 @@
     "description": "The label of save button on the options page."
   },
 
+
   "appAlertSomethingWrong": {
     "message": "Something went wrong.",
     "description": "The text shown when something goes wrong."
-  }  ,
-  "appTipSetDifferentUrl": {
-    "message": "Hit CTRL + N in the future to set a different URL.",
-    "description": "The text shown as tip when a user leaves the options page the first time."
+  },
+  "appAlertWrongUrl": {
+    "message": "The entered value is not recognized as a valid URL.",
+    "description": "The text shown when a entered URL is not valid."
   },
 
 
   "appTxtSettings": {
     "message": "Settings",
-    "description": "The title of the Settings area on the options page."
+    "description": "The title of the options page."
+  },
+  "appTxtOptions": {
+    "message": "Options",
+    "description": "The title of the options area on the options page."
   },
   "appTxtKeyboardShortcuts": {
     "message": "Keyboard shortcuts",
@@ -96,13 +102,21 @@
     "message": "Credits",
     "description": "The title of credits area."
   },
-  "appTxtVisitProjectOnGithub": {
-    "message": "Visit project on Github",
+  "appTxtVisitProjectWebsite": {
+    "message": "Visit project website",
     "description": "The text for the link to Github in credits area."
   },
   "appTxtIssues": {
-    "message": "Issues",
+    "message": "Report an issues",
     "description": "The text for the link to issues in credits area."
+  },
+  "appTxtIconsDesignedBy": {
+    "message": "Icons designed by",
+    "description": "The text to credit the icon designer."
+  },
+  "appTxtFrom": {
+    "message": "from",
+    "description": "Lowercase word for 'from'."
   },
 
 

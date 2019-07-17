@@ -1,11 +1,11 @@
-var service, tracker, alertEl, bounds={};
+let service, tracker, alertEl, bounds={};
 bounds.w=650;bounds.h=490;
 
-var webview = document.getElementById('panel-container');
-var window_title = document.getElementById('document-title');
-var favicon_image = document.getElementById('document-favicon');
-var appID = chrome.i18n.getMessage('@@extension_id'); // this app
-var NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
+const webview = document.getElementById('panel-container');
+const window_title = document.getElementById('document-title');
+const favicon_image = document.getElementById('document-favicon');
+const appID = chrome.i18n.getMessage('@@extension_id'); // this app
+const NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
 
 document.title = chrome.i18n.getMessage('appName');
 window_title.innerText = chrome.i18n.getMessage('appName');
@@ -16,6 +16,32 @@ document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText 
 document.getElementById('minimize-window-button').title = chrome.i18n.getMessage('appLabelMinimize');
 document.getElementById('settings-window-button').title = chrome.i18n.getMessage('appLabelSettings');
 document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
+
+const bodyObj = document.querySelector('body'),
+    buttonsObj = document.getElementById('buttons');
+
+// window.onmouseenter = function () {
+//     console.log('onmouseenter window');
+//     if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
+
+//     buttonsObj.classList.remove('fadeout');
+//     buttonsObj.classList.add('fadein');
+//     if (webview)
+//         webview.classList.add('movedown');
+// };
+// webview.onmouseleave = function () {
+//     console.log('onmouseleave webview');
+//     window.removeButtonsTimer = setTimeout(() => {
+//         buttonsObj.classList.remove('fadein');
+//         buttonsObj.classList.add('fadeout');
+//         if (webview)
+//             webview.classList.remove('movedown');
+//     }, 300)
+// };
+
+window.addEventListener('mousemove', function (event) {
+    console.log(event.pageX, event.pageY, event.target.id);
+}.bind(this));
 
 // hotkeys
 window.addEventListener('keydown', function(e) {
