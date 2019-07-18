@@ -10,5 +10,10 @@
 	<lastmod>2016-09-28T02:01:34+00:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>1</priority>
+	<xhtml:link
+		rel="alternate"
+		hreflang="nl"
+		href="https://flobro.cornips.nl/index_nl.html"
+		/>
 </url>
 </urlset>
