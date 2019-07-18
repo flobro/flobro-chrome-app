@@ -1,10 +1,4 @@
-# flobro
-Floating Browser Window
+# Flobro, floating browser window
 
-![flobro, insert a URL and view the page in a floating window](http://fbw.cornips.nl/assets/img/promo-en-1400x560.png)
-
-Sometimes it's nice to have a floating browser window on your screen. With **flobro** you can do this!  
-**flobro** is an application that turns webpages into application windows.
-
-## Installation
-Go to [fbw.cornips.nl](http://fbw.cornips.nl/) and click the download button.
+This branch contains all the media used in app stores, websites, press releases etc.
+Feel free to use any image or video from this branch for any purpose.
