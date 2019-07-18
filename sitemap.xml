@@ -6,19 +6,9 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-	<loc>https://fbw.cornips.nl/</loc>
+	<loc>https://flobro.cornips.nl/</loc>
 	<lastmod>2016-09-28T02:01:34+00:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>1</priority>
-	<xhtml:link
-		 rel="alternate"
-		 hreflang="nl"
-		 href="https://fbw.cornips.nl/nl"
-		 />
-	<xhtml:link
-		 rel="alternate"
-		 hreflang="en"
-		 href="https://fbw.cornips.nl/en"
-		 />
 </url>
 </urlset>
