@@ -28,6 +28,9 @@ textarea {
     box-sizing: border-box;
     resize: none;
 }
+input {
+    box-sizing: border-box;
+}
 
 div[hidden],
 span[hidden],
@@ -41,6 +44,21 @@ a {
     border-bottom: 1px solid rgba(36, 139, 210,.5);
 }
 
+webview {
+    transition: margin-top .1s cubic-bezier(0.4,0.0,1,1);
+}
+webview.movedown {
+    margin-top: 38px;
+}
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+}
+
 
 /* BEGIN WINDOW ACTION BUTTONS */
     .position {
@@ -49,81 +67,29 @@ a {
         right: 0;
         pointer-events: none;
         z-index: 99999999;
+        opacity: 1;
+        transition: opacity .2s ease-out, top .2s ease-out;
+        padding: 8px;
+        height: 22px;
+        width: calc(100vw - 16px);
+        background: #636363;
+        -webkit-app-region: drag;
     }
 
     .position.fadein {
-        display: block;
-        -webkit-animation: fadeInFromNone 0.2s ease-out;
+        opacity: 1;
+        top: 0;
     }
 
     .position.fadeout {
-        display: block;
         opacity: 0;
-        -webkit-animation: fadeOutToNone 0.2s ease-out;
-    }
-
-    @-webkit-keyframes fadeOutToNone {
-        0% {
-            display: block;
-            opacity: 1;
-        }
-
-        99% {
-            display: block;
-            opacity: 0;
-        }
-
-        100% {
-            display: none;
-            opacity: 0;
-        }
-    }
-
-    @-webkit-keyframes fadeInFromNone {
-        0% {
-            display: none;
-            opacity: 0;
-        }
-
-        1% {
-            display: block;
-            opacity: 0;
-        }
-
-        100% {
-            display: block;
-            opacity: 1;
-        }
-    }
-
-    .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: all;
-    }
-
-    .position,
-    .panel-container {
-        padding: 8px;
-        height: 22px;
-    }
-
-    .panel-container {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: calc(100vw - 16px);
-        background: rgba(0,0,0,.3);
-        border-radius: 0 0 5px 5px;
-        -webkit-app-region: drag;
+        top: -38px;
     }
 
     #document-title {
         line-height: 22px;
         font-size: 10pt;
+        color: white;
     }
     #document-favicon {
         display: inline-block;
@@ -140,6 +106,7 @@ a {
 
     .actions .window-button {
         float: left;
+        color: white;
     }
 
     .window-button {

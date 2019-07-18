@@ -1,0 +1,127 @@
+{
+  "appName": {
+    "message": "Schwebendes Browser Fenster",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appShortName": {
+    "message": "Schwebendes Fenster",
+    "description": "The short title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Manchmal ist es schön ein schwebendes browser Fenster offen zu haben. Mit dem schwebenden Browser Fenster ist das möglich!",
+    "description": "The description of the application, displayed in the web store."
+  },
+
+
+  "appLabelUrl": {
+    "message": "URL",
+    "description": "The text of label-element of URL field on the options page."
+  },
+  "appLabelImproveByTracking": {
+    "message": "App verbessern mit anonymen Nutzungsdaten",
+    "description": "The text of label-element of tracking field on the options page."
+  },
+  "appLabelMinimize": {
+    "message": "Minimieren",
+    "description": "The text of tooltop of the minimize button."
+  },
+  "appLabelBrowser": {
+    "message": "Browser",
+    "description": "The text of tooltop of the browser button."
+  },
+  "appLabelSettings": {
+    "message": "Einstellungen",
+    "description": "The text of tooltop of the settings button."
+  },
+  "appLabelClose": {
+    "message": "Schließen",
+    "description": "The text of tooltop of the close button."
+  },
+
+  "appPlaceholderUrl": {
+    "message": "Vollständige URL eingeben beginnend mit http(s)://",
+    "description": "The label of the URL field on the options page."
+  },
+  "appLabelSave": {
+    "message": "Speichern",
+    "description": "The label of save button on the options page."
+  },
+
+  "appAlertSomethingWrong": {
+    "message": "Etwas ist schief gelaufen.",
+    "description": "The text shown when something goes wrong."
+  },
+
+
+  "appTxtSettings": {
+    "message": "Einstellungen",
+    "description": "The title of the options page."
+  },
+  "appTxtOptions": {
+    "message": "Optionen",
+    "description": "The title of the options area on the options page."
+  },
+  "appTxtKeyboardShortcuts": {
+    "message": "Tastenkombinationen",
+    "description": "The title of the Keyboard shortcuts area on the options page."
+  },
+  "appTxtKeyboardShortcutsFromEverywhere": {
+    "message": "Global gültig:",
+    "description": "The title of the Keyboard shortcuts area 'for everywhere' on the options page."
+  },
+  "appTxtSwitchBetweenWebWindowAndThisSettingsWindow": {
+    "message": "Zwischen Web Ansicht und diesen Einstellungen wechseln",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtCloseAllWindows": {
+    "message": "Alle Fenster schließen",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtOpenThisSettingsWindow": {
+    "message": "Diese Einstellungen öffnen",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtKeyboardShortcutsFromWebWindow": {
+    "message": "Von der Web Ansicht:",
+    "description": "The title of the Keyboard shortcuts area 'for web window' on the options page."
+  },
+  "appTxtReloadThePage": {
+    "message": "Seite neu laden",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtFullscreen": {
+    "message": "Vollbildansicht",
+    "description": "The describing text of specific keyboard shortcut."
+  },
+  "appTxtCredits": {
+    "message": "Danksagungen",
+    "description": "The title of credits area."
+  },
+  "appTxtVisitProjectWebsite": {
+    "message": "Projekt-Website Besuchen",
+    "description": "The text for the link to Github in credits area."
+  },
+  "appTxtIssues": {
+    "message": "Ein Problem melden",
+    "description": "The text for the link to issues in credits area."
+  },
+  "appTxtIconsDesignedBy": {
+    "message": "Ikonen entworfen von",
+    "description": "The text to credit the icon designer."
+  },
+  "appTxtFrom": {
+    "message": "von",
+    "description": "Lowercase word for 'from'."
+  },
+
+
+  "appMiscYouAreAmazing": {
+    "message": "Du bist klasse! Dank dir wird die App jedes mal ein bisschen besser!",
+    "description": "Text shown in console when user enables tracking."
+  },
+  "appMiscConsiderTracking": {
+    "message": "Überlege Tracking einzuschalten. Ich nutze es um die App zu verbessern. Dank Tracking kann ich sehen welche Fehler auftreten, ohne dass du sie übermitteln musst. Die App wird NIEMALS persönliche Informationen sammeln.",
+    "description": "Text shown in console when user disables tracking."
+  }
+
+}

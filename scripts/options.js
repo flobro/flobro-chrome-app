@@ -1,10 +1,13 @@
-var service, tracker, alertEl, bounds={};
-bounds.w=450;bounds.h=610;
+let service, tracker, alertEl;
 
-var input = document.getElementById('input-request-url');
-var form = document.getElementById('request-url');
-var window_title = document.getElementById('document-title');
-var locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong');
+const bounds = {w: 450, h: 610}
+const formUrl = document.getElementById('request-url-form');
+const inputUrl = document.getElementById('input-request-url');
+const buttonUrlSave = document.getElementById('request-url-form').getElementsByTagName('button')[0];
+const txtUrlHelpText = document.getElementById('url-help-text');
+const window_title = document.getElementById('appTxtSettings');
+const locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong');
+const validUrlCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&\'()*+,;=';
 
 document.title = chrome.i18n.getMessage('appLabelSettings');
 window_title.innerText = chrome.i18n.getMessage('appLabelSettings');
@@ -15,34 +18,10 @@ document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText 
 document.getElementById('minimize-window-button').title = chrome.i18n.getMessage('appLabelMinimize');
 document.getElementById('browser-window-button').title = chrome.i18n.getMessage('appLabelBrowser');
 document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
-document.getElementById('input-request-url').placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
+inputUrl.placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
 
-// hotkeys
-window.addEventListener('keydown', function(e) {
-    // Esc
-    if (e.keyCode == 27) {
-        // Shift + Esc
-        if (e.shiftKey) {
-            // Close all
-            var CloseWithShiftEsc = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Close')
-                .dimension(1, 'Shift Esc');
-            tracker.send(CloseWithShiftEsc);
-            // Prevent further execution
-            return;
-        }
-        // Launch main window
-        var SwitchWithEsc = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Switch')
-                .dimension(1, 'Esc');
-        tracker.send(SwitchWithEsc).addCallback(function() {
-            chrome.runtime.sendMessage({'open': 'window'});
-        }.bind(this));
-    }
-});
-
+// add version number
+document.getElementById('version-number').innerText = chrome.runtime.getManifest().version;
 
 alertEl = document.getElementById('alert');
 window.alert = function(message, className) {
@@ -71,18 +50,65 @@ window.alert = function(message, className) {
 window.addEventListener('load', function(e) {
     chrome.storage.sync.get(function(items) {
         if (items.url !== undefined && items.url !== '')
-            input.value = items.url;
+            inputUrl.value = items.url;
     });
 });
 
 // redirect focus
-window.addEventListener('focus', function(e) {
-    input.focus();
+inputUrl.addEventListener('focus', function(e) {
+    this.select();
 });
 
-form.addEventListener("submit", function(e){
+// Validate URL
+function validURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+}
+function validateEnteredUrl(elm, event) {
+    const eventCheck = (event == 'keyup' && !Boolean(txtUrlHelpText.innerText))
+    if (!validURL(elm.value)) {
+        if (!eventCheck) {
+            txtUrlHelpText.innerText = chrome.i18n.getMessage('appAlertWrongUrl');
+            txtUrlHelpText.style.backgroundColor = "#fff3c6";
+            buttonUrlSave.disabled = true;
+            Boolean(elm.value) && elm.focus();
+        }
+    } else {
+        txtUrlHelpText.innerText = '';
+        txtUrlHelpText.style.backgroundColor = null;
+        buttonUrlSave.disabled = false;
+    }
+    return buttonUrlSave.disabled;
+}
+inputUrl.addEventListener('blur', function(e) {
+    this.value = autofixUrl(this.value);
+    return validateEnteredUrl(this);
+});
+inputUrl.addEventListener('keyup', function(e) {
+    return validateEnteredUrl(this, 'keyup');
+});
+// Try to auto fix url
+function autofixUrl(str) {
+    const splitted = str.split('//');
+    if (splitted.length != 2) {
+        str = 'https://' + str;
+    }
+    return str;
+}
+inputUrl.addEventListener('keypress', function(e) {
+    // Block invalid characters
+    if (validUrlCharacters.indexOf(String.fromCharCode(e.which)) < 0)
+        e.preventDefault();
+});
+
+formUrl.addEventListener("submit", function(e){
     e.preventDefault();
-    var newUrl = input.value;
+    var newUrl = inputUrl.value;
     tracker.sendEvent('Browser', 'Set URL', newUrl);
     chrome.storage.sync.set({ url: newUrl });
     chrome.storage.sync.get(function(items) {
@@ -95,12 +121,9 @@ form.addEventListener("submit", function(e){
             alert(locale_appAlertSomethingWrong);
         }
         else {
-            alert( chrome.i18n.getMessage('appTipSetDifferentUrl'), 'tip');
-            setTimeout(function(){
-                chrome.runtime.sendMessage({'open': 'window'},function(){
-                    chrome.runtime.sendMessage({'close': 'options'});
-                });
-            },1500);
+            chrome.runtime.sendMessage({'open': 'window'},function(){
+                chrome.runtime.sendMessage({'close': 'options'});
+            });
         }
     });
 });
@@ -109,9 +132,9 @@ form.addEventListener("submit", function(e){
 function initSettings(config) {
     // Release loading text
     document.getElementById('improve-by-tracking-opt-in').hidden = false;
-    alert();
 
     var checkboxImproveByTracking = document.getElementById('improve-by-tracking');
+    var txtTrackingHelpText = document.getElementById('tracking-help-text');
     checkboxImproveByTracking.checked = config.isTrackingPermitted();
     checkboxImproveByTracking.onchange = function() {
         var SetTracking;
@@ -122,6 +145,8 @@ function initSettings(config) {
                     .action('Switch Tracking')
                     .dimension(1, 'on');
                 console.info('%c' + chrome.i18n.getMessage('appMiscYouAreAmazing'), 'font-size:20px;background-color:#d6ff97');
+                txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscYouAreAmazing');
+                txtTrackingHelpText.style.backgroundColor = "#d6ff97";
                 break;
             default:
                 SetTracking = analytics.EventBuilder.builder()
@@ -129,6 +154,8 @@ function initSettings(config) {
                     .action('Switch Tracking')
                     .dimension(2, 'off');
                 console.warn('%c' + chrome.i18n.getMessage('appMiscConsiderTracking'), 'font-size:20px;background-color:#fff3c6');
+                txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscConsiderTracking');
+                txtTrackingHelpText.style.backgroundColor = "#fff3c6";
         }
         tracker.send(SetTracking);
         config.setTrackingPermitted(checkboxImproveByTracking.checked);
