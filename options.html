@@ -18,7 +18,7 @@
                 </button>
 
                 <button class="window-button" title="Browser" id="browser-window-button">
-                    <i class="flaticon-mark-1"></i>
+                    <i class="flaticon-internet-1"></i>
                 </button>
 
                 <button class="window-button" title="Close" id="close-window-button">
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div id="settings" class="options-container">
+    <div id="options" class="options-container">
         <div id="alert" hidden>
             <p class="locale" id="appAlertSomethingWrong">Something went wrong.</p>
         </div><!-- /#alert -->
@@ -47,13 +47,17 @@
 
         <h2><span class="locale" id="appTxtOptions">Options</span></h2>
 
-        <ul id="settings-fields">
+        <ul id="options-list">
             <li id="improve-by-tracking-opt-in" hidden>
-                <label><input type="checkbox" id="improve-by-tracking" /><span><span class="locale" id="appLabelImproveByTracking">Improve app with anonymous data</span></span></label>
+                <label>
+                    <input type="checkbox" id="improve-by-tracking" class="toggleBox" />
+                    <span class="toggle"><span></span></span>
+                    <span class="locale" id="appLabelImproveByTracking">Improve app with anonymous data</span>
+                </label>
                 <small class="notice" id="tracking-help-text"></small>
             </li>
-        </ul><!-- /#settingsFields -->
-    </div><!-- /#settings -->
+        </ul><!-- /#options-list -->
+    </div><!-- /.options-container -->
 
     <div id="credits" class="options-container">
         <h2><span class="locale" id="appTxtCredits">Credits</span></h2>

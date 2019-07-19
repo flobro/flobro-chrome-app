@@ -5,17 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.2.0] - 2019-07-19
 ### Changed
 - Changed name integrally to Flobro for better recognition
 - Reordered the settings window for better UX
+- Browser window stays open when settings window is opened
 
 ### Added
 - Added auto hide title bar
 - Added URL validation
 
 ### Fixed
-- Fixed weird behaviour of title bar, fixing issues #10, #11 and #19
-- Fixed default locale (now English), fixing issue #24
+- Fixed weird behaviour of title bar
+- Fixed default locale (now English)
 
 ### Removed
 - Removed keyboard shortcuts due to low usage
@@ -29,8 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Added bar to move window with favicon and document title
-- Added button to open settings/web window, closing issue #1 and #9
-- Added keyboard shortcuts legend, closing issue #4
+- Added button to open settings/web window
+- Added keyboard shortcuts legend
 - Added credits
 
 ### Fixed
@@ -53,6 +56,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/cornips/flobro/compare/0.1.2...HEAD
+[Unreleased]: https://github.com/cornips/flobro/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/cornips/flobro/compare/0.1.2...0.2.0
 [0.1.2]: https://github.com/cornips/flobro/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/cornips/flobro/compare/0.1.0...0.1.1

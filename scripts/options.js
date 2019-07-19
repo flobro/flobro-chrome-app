@@ -153,7 +153,7 @@ function initSettings(config) {
                     .category('App')
                     .action('Switch Tracking')
                     .dimension(2, 'off');
-                console.warn('%c' + chrome.i18n.getMessage('appMiscConsiderTracking'), 'font-size:20px;background-color:#fff3c6');
+                console.info('%c' + chrome.i18n.getMessage('appMiscConsiderTracking'), 'font-size:20px;background-color:#fff3c6');
                 txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscConsiderTracking');
                 txtTrackingHelpText.style.backgroundColor = "#fff3c6";
         }

@@ -7,6 +7,7 @@
   font-family: "Flaticon";
   src: url("../assets/iconset/Flaticon.eot");
   src: url("../assets/iconset/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../assets/iconset/Flaticon.woff2") format("woff2"),
        url("../assets/iconset/Flaticon.woff") format("woff"),
        url("../assets/iconset/Flaticon.ttf") format("truetype"),
        url("../assets/iconset/Flaticon.svg#Flaticon") format("svg");
@@ -24,18 +25,20 @@
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
   font-family: Flaticon;
-        font-size: 20px;
-font-style: normal;
-margin-left: 20px;
+  font-size: 18px;
+  font-style: normal;
+  margin-left: 20px;
 }
 
-.flaticon-line-1:before { content: "\f100"; }
-.flaticon-signs-1:before { content: "\f101"; }
-.flaticon-mark-1:before { content: "\f102"; }
-.flaticon-cogwheel-1:before { content: "\f103"; }
-.flaticon-close-1:before { content: "\f104"; }
-.flaticon-mark:before { content: "\f105"; }
-.flaticon-signs:before { content: "\f106"; }
-.flaticon-line:before { content: "\f107"; }
-.flaticon-close:before { content: "\f108"; }
-.flaticon-cogwheel:before { content: "\f109"; }
+.flaticon-cogwheel:before { content: "\f100"; }
+.flaticon-close:before { content: "\f101"; }
+.flaticon-line:before { content: "\f102"; }
+.flaticon-signs:before { content: "\f103"; }
+.flaticon-mark:before { content: "\f104"; }
+.flaticon-close-1:before { content: "\f105"; }
+.flaticon-cogwheel-1:before { content: "\f106"; }
+.flaticon-mark-1:before { content: "\f107"; }
+.flaticon-signs-1:before { content: "\f108"; }
+.flaticon-line-1:before { content: "\f109"; }
+.flaticon-internet:before { content: "\f10a"; }
+.flaticon-internet-1:before { content: "\f10b"; }
