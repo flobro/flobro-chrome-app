@@ -22,6 +22,6 @@
    },
 
    "minimum_chrome_version": "40",
-   "permissions": [ "webview", "storage", "contextMenus", "notifications", "alwaysOnTopWindows",  "unlimitedStorage", "\u003Call_urls>", "browser", "fullscreen" ]
+   "permissions": [ "webview", "storage", "contextMenus", "notifications", "alwaysOnTopWindows",  "unlimitedStorage", "\u003Call_urls>", "browser", "fullscreen", "audioCapture", "videoCapture" ]
 }
 
