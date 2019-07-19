@@ -20,88 +20,6 @@ document.getElementById('close-window-button').title = chrome.i18n.getMessage('a
 const bodyObj = document.querySelector('body'),
     buttonsObj = document.getElementById('buttons');
 
-// window.onmouseenter = function () {
-//     console.log('onmouseenter window');
-//     if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
-
-//     buttonsObj.classList.remove('fadeout');
-//     buttonsObj.classList.add('fadein');
-//     if (webview)
-//         webview.classList.add('movedown');
-// };
-// webview.onmouseleave = function () {
-//     console.log('onmouseleave webview');
-//     window.removeButtonsTimer = setTimeout(() => {
-//         buttonsObj.classList.remove('fadein');
-//         buttonsObj.classList.add('fadeout');
-//         if (webview)
-//             webview.classList.remove('movedown');
-//     }, 300)
-// };
-
-window.addEventListener('mousemove', function (event) {
-    console.log(event.pageX, event.pageY, event.target.id);
-}.bind(this));
-
-// hotkeys
-window.addEventListener('keydown', function(e) {
-    // Ctrl+R or F5
-    if (e.ctrlKey && e.keyCode == 82 || e.keyCode == 116) {
-        var ReloadApp = analytics.EventBuilder.builder()
-            .category('App')
-            .action('Reload')
-            .dimension(1, 'Ctrl R or F5');
-        tracker.send(ReloadApp).addCallback(function() {
-            webview.reload();
-        }.bind(this));
-    }
-
-    // F11
-    if (e.keyCode == 122) {
-        if (chrome.app.window.current().isFullscreen()) {
-            var RestoreFullscreen = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Fullscreen')
-                .dimension(1, 'Restore');
-            tracker.send(RestoreFullscreen).addCallback(function() {
-                chrome.app.window.current().restore();
-            }.bind(this));
-        } else {
-            var EnterFullscreen = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Fullscreen')
-                .dimension(2, 'Enter');
-            tracker.send(EnterFullscreen).addCallback(function() {
-                chrome.app.window.current().fullscreen();
-            }.bind(this));
-        }
-    }
-
-    // Ctrl + N
-    if (e.ctrlKey && e.keyCode == 78) {
-        // Open options
-        var SwitchWithCtrlN = analytics.EventBuilder.builder()
-        .category('App')
-        .action('Switch')
-        .dimension(2, 'Ctrl N');
-        tracker.send(SwitchWithCtrlN).addCallback(function() {
-            chrome.runtime.sendMessage({'open': 'options'});
-        }.bind(this));
-    }
-
-    // Esc
-    if (e.keyCode == 27) {
-        // Launch main window
-        var SwitchWithEsc = analytics.EventBuilder.builder()
-                .category('App')
-                .action('Switch')
-                .dimension(1, 'Esc');
-        tracker.send(SwitchWithEsc).addCallback(function() {
-            chrome.runtime.sendMessage({'open': 'options'});
-        }.bind(this));
-    }
-});
-
 // Get URL
 window.addEventListener('load', function(e) {
     chrome.storage.sync.get(function(items) {
@@ -178,7 +96,7 @@ window.addEventListener('focus', function(e) {
     webview.focus();
 });
 
-// allow download
+// allow download and fullscreen
 webview.addEventListener('permissionrequest', function(e) {
     if (e.permission === 'download' || e.permission === 'fullscreen') {
         e.request.allow();

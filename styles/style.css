@@ -44,11 +44,16 @@ a {
     border-bottom: 1px solid rgba(36, 139, 210,.5);
 }
 
-webview {
-    transition: margin-top .1s cubic-bezier(0.4,0.0,1,1);
+#WindowView {
+    background: #636363;
 }
-webview.movedown {
-    margin-top: 38px;
+
+.webview.background {
+    top: 1px;
+    transition: top .1s cubic-bezier(0.4,0.0,1,1);
+}
+.webview.movedown {
+    top: 38px;
 }
 .background {
     position: absolute;
@@ -65,20 +70,18 @@ webview.movedown {
         position: absolute;
         top: 0;
         right: 0;
-        pointer-events: none;
+        /*pointer-events: none;*/
         z-index: 99999999;
         opacity: 1;
         transition: opacity .2s ease-out, top .2s ease-out;
-        padding: 8px;
+        padding: 8px 10px;
         height: 22px;
-        width: calc(100vw - 16px);
+        width: calc(100vw - 20px);
         background: #636363;
-        -webkit-app-region: drag;
     }
 
     .position.fadein {
         opacity: 1;
-        top: 0;
     }
 
     .position.fadeout {
@@ -87,17 +90,25 @@ webview.movedown {
     }
 
     #document-title {
-        line-height: 22px;
+        -webkit-app-region: drag;
+        line-height: 23px;
         font-size: 10pt;
         color: white;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: calc(100% - 110px);
+        float: left;
     }
     #document-favicon {
+        -webkit-app-region: drag;
         display: inline-block;
         width: 16px;
         height: 16px;
         margin: 0 5px 0 auto;
         position: relative;
         top: 3px;
+        float: left;
     }
 
     .actions {
@@ -121,8 +132,8 @@ webview.movedown {
         overflow: hidden;
         height: 100%;
         cursor: pointer;
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         pointer-events: all;
         float: left;
         -webkit-app-region: no-drag;
