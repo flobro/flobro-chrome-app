@@ -1,5 +1,8 @@
 let storageData;
 
+const settingsBoundaries = { width: 450, height: 540, minWidth: 360, minHeight: 540 };
+const browserBoundaries = { width: 500, height: 340, minWidth: 130, minHeight: 38 };
+
 chrome.storage.sync.get(function(items) {
     if (items)
         storageData = items;
@@ -8,23 +11,22 @@ chrome.storage.sync.get(function(items) {
 function createWindow(param) {
     param.id = (typeof param.id !== 'undefined' ? param.id : 'window');
     param.frame = (typeof param.frame !== 'undefined' ? param.frame : 'none');
-    param.innerBounds = (typeof param.innerBounds !== 'undefined' ? param.innerBounds : {});
+    param.outerBounds = (typeof param.outerBounds !== 'undefined' ? param.outerBounds : { width: 500, height: 340, minWidth: 130, minHeight: 38 });
     chrome.app.window.create(param.url, {
         frame: param.frame,
         id: param.id,
         resizable: true,
         alwaysOnTop: true,
-        innerBounds: param.innerBounds,
+        outerBounds: param.outerBounds,
     }, function (appwindow) {
 
         appwindow.contentWindow.onload = function () {
 
             const bodyObj = appwindow.contentWindow.document.querySelector('body'),
                 buttonsObj = appwindow.contentWindow.document.getElementById('buttons'),
-                closeObj = appwindow.contentWindow.document.getElementById('close-window-button'),
-                browserObj = appwindow.contentWindow.document.getElementById('browser-window-button'),
-                settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
                 minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
+                closeObj = appwindow.contentWindow.document.getElementById('close-window-button'),
+                settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
                 webview = appwindow.contentWindow.document.getElementById('panel-container'),
                 timeout = null,
                 helpOpened = false;
@@ -34,14 +36,7 @@ function createWindow(param) {
             };
             if (settingsObj){
                 settingsObj.onclick = function () {
-                    // appwindow.contentWindow.close();
-                    createWindow({ url: 'options.html', id: 'options', innerBounds: { width: 450, height: 540, minWidth: 360, minHeight: 540 } });
-                };
-            }
-            if (browserObj){
-                browserObj.onclick = function () {
-                    createWindow({ url: 'window.html', id: 'window' });
-                    appwindow.contentWindow.close();
+                    appwindow.contentWindow.chrome.runtime.sendMessage({'open': 'options'});
                 };
             }
             minimizeObj.onclick = function () {
@@ -54,7 +49,6 @@ function createWindow(param) {
                     appwindow.fullscreen();
                 }
             };
-
 
             // Move title bar in and out
             buttonsObj.classList.add('fadeout');
@@ -80,18 +74,6 @@ function createWindow(param) {
                 }
             }
 
-            chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
-                if (request === 'fullscreen') {
-                    toggleFullscreen();
-                }
-                if (typeof request.bounds !== 'undefined' && request.bounds !== null) {
-                    if (request.bounds.w && request.bounds.h) {
-                        const appwindow = (typeof request.sender !== 'undefined' ? chrome.app.window.get(request.sender) : chrome.app.window.getAll()[0]);
-                        appwindow.resizeTo(request.bounds.w,request.bounds.h);
-                    }
-                }
-            });
-
         }
 
 	});
@@ -111,25 +93,20 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender) {
         createWindow(request);
     } else {
         const appwindow = chrome.app.window.getAll()[0];
-
         appwindow.close();
-
-        setTimeout(function () {
-            createWindow(request);
-        }, 250);
-
+        createWindow(request);
     }
 });
 
-// Launch options
+// Open appropriate window on app launch
 chrome.app.runtime.onLaunched.addListener(function () {
-    let launchOpen = { url: 'options.html', id: 'options', innerBounds: { width: 450, height: 540, minWidth: 360, minHeight: 540 } };
+    let launchOpen = { url: 'options.html', id: 'options', outerBounds: settingsBoundaries };
     if (storageData && storageData.url !== 'undefined' && storageData.url !== '')
-        launchOpen = { url: 'window.html', id: 'window'};
+        launchOpen = { url: 'window.html', id: 'window', outerBounds: browserBoundaries };
     createWindow(launchOpen);
 });
 
-// Launch app
+// Message listener
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     // Reopen window if already opened
     if (typeof request.open !== 'undefined') {
@@ -142,14 +119,10 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
         }
     }
     if (request.open === 'window') {
-        setTimeout(function(){
-            createWindow({ url: 'window.html', id: 'window' });
-        },250);
+        createWindow({ url: 'window.html', id: 'window', outerBounds: browserBoundaries });
     }
     if (request.open === 'options') {
-        setTimeout(function(){
-            createWindow({ url: 'options.html', id: 'options', innerBounds: { width: 450, height: 540, minWidth: 360, minHeight: 540 } });
-        },250);
+        createWindow({ url: 'options.html', id: 'options', outerBounds: settingsBoundaries });
     }
     if (request.close === 'options') {
         chrome.app.window.get('options').close();

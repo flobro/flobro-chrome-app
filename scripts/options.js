@@ -1,27 +1,28 @@
 let service, tracker, alertEl;
 
-const bounds = {w: 450, h: 610}
-const formUrl = document.getElementById('request-url-form');
-const inputUrl = document.getElementById('input-request-url');
-const buttonUrlSave = document.getElementById('request-url-form').getElementsByTagName('button')[0];
-const txtUrlHelpText = document.getElementById('url-help-text');
-const window_title = document.getElementById('appTxtSettings');
-const locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong');
-const validUrlCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&\'()*+,;=';
-
-document.title = chrome.i18n.getMessage('appLabelSettings');
-window_title.innerText = chrome.i18n.getMessage('appLabelSettings');
+const formUrl = document.getElementById('request-url-form'),
+    inputUrl = document.getElementById('input-request-url'),
+    buttonUrlSave = document.getElementById('request-url-form').getElementsByTagName('button')[0],
+    txtUrlHelpText = document.getElementById('url-help-text'),
+    window_title = document.getElementById('appTxtSettings'),
+    localeObjects = document.querySelectorAll('.locale'),
+    minimizeObj = document.getElementById('minimize-window-button'),
+    closeObj = document.getElementById('close-window-button'),
+    versionNumber = document.getElementById('version-number'),
+    locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong'),
+    validUrlCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&\'()*+,;=';
 
 // Set locale texts
-document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
+localeObjects.forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
 // Exception for element who can't use .locale
-document.getElementById('minimize-window-button').title = chrome.i18n.getMessage('appLabelMinimize');
-document.getElementById('browser-window-button').title = chrome.i18n.getMessage('appLabelBrowser');
-document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
-inputUrl.placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
+document.title = chrome.i18n.getMessage('appLabelSettings');
+window_title.innerText = chrome.i18n.getMessage('appLabelSettings');
+if (minimizeObj) minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
+if (closeObj) closeObj.title = chrome.i18n.getMessage('appLabelClose');
+if (inputUrl) inputUrl.placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
 
 // add version number
-document.getElementById('version-number').innerText = chrome.runtime.getManifest().version;
+versionNumber.innerText = chrome.runtime.getManifest().version;
 
 alertEl = document.getElementById('alert');
 window.alert = function(message, className) {
@@ -34,15 +35,6 @@ window.alert = function(message, className) {
         alertEl.className = (typeof className!=='undefined' && className!=='' ? className : '');
         alertEl.hidden = false;
     }
-    // Set bounds
-    document.querySelectorAll("body > *").forEach(function(node){
-        var cv = node.getBoundingClientRect();
-        if(cv.width > bounds.w)
-            bounds.w = cv.width+1;
-        if(cv.height > bounds.h)
-            bounds.h = cv.height;
-    });
-    chrome.runtime.sendMessage({'sender': 'options', 'bounds': bounds});
     return;
 }
 
@@ -121,9 +113,8 @@ formUrl.addEventListener("submit", function(e){
             alert(locale_appAlertSomethingWrong);
         }
         else {
-            chrome.runtime.sendMessage({'open': 'window'},function(){
-                chrome.runtime.sendMessage({'close': 'options'});
-            });
+            chrome.runtime.sendMessage({'open': 'window'});
+            chrome.runtime.sendMessage({'close': 'options'});
         }
     });
 });
