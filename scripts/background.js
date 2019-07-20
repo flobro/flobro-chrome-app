@@ -1,11 +1,16 @@
 let storageData;
 
-const settingsBoundaries = { width: 450, height: 540, minWidth: 360, minHeight: 540 };
+const settingsBoundaries = { width: 450, height: 560, minWidth: 360, minHeight: 560 };
 const browserBoundaries = { width: 500, height: 340, minWidth: 130, minHeight: 38 };
 
 chrome.storage.sync.get(function(items) {
     if (items)
         storageData = items;
+});
+chrome.storage.sync.onChanged.addListener(function(items) {
+    if (items)
+        Object.entries(items).forEach(function(key, value) {
+            storageData[key[0]] = key[1].newValue; });
 });
 
 function createWindow(param) {
@@ -52,6 +57,7 @@ function createWindow(param) {
 
             // Move title bar in and out
             buttonsObj.classList.add('fadeout');
+            if (!storageData.dontresize && webview) webview.classList.add('resize');
             buttonsObj.onmousemove = function () {
                 if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
             }

@@ -108,6 +108,11 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     if (sender.id == appID) {
         webview.src = request;
     }
+    if (typeof request.dontresize !== 'undefined') {
+        if (request.dontresize) webview.classList.remove('resize');
+        else webview.classList.add('resize');
+    }
+
 });
 
 // Learn and improve from app usage

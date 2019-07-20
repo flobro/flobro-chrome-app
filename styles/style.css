@@ -52,8 +52,9 @@ a {
     top: 1px;
     transition: top .1s cubic-bezier(0.4,0.0,1,1);
 }
-.webview.movedown {
+.webview.resize.movedown {
     top: 38px;
+    height: calc(100% - 38px);
 }
 .background {
     position: absolute;

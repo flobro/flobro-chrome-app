@@ -1,10 +1,13 @@
 let service, tracker, alertEl;
 
-const formUrl = document.getElementById('request-url-form'),
+const window_title = document.getElementById('appTxtSettings'),
+    formUrl = document.getElementById('request-url-form'),
     inputUrl = document.getElementById('input-request-url'),
     buttonUrlSave = document.getElementById('request-url-form').getElementsByTagName('button')[0],
     txtUrlHelpText = document.getElementById('url-help-text'),
-    window_title = document.getElementById('appTxtSettings'),
+    checkboxImproveByTracking = document.getElementById('improve-by-tracking'),
+    txtTrackingHelpText = document.getElementById('tracking-help-text'),
+    resizeOption = document.getElementById('resize-option'),
     localeObjects = document.querySelectorAll('.locale'),
     minimizeObj = document.getElementById('minimize-window-button'),
     closeObj = document.getElementById('close-window-button'),
@@ -39,11 +42,13 @@ window.alert = function(message, className) {
 }
 
 // Fill default data
-window.addEventListener('load', function(e) {
-    chrome.storage.sync.get(function(items) {
-        if (items.url !== undefined && items.url !== '')
-            inputUrl.value = items.url;
-    });
+chrome.storage.sync.get(function(items) {
+    if (items.url !== undefined && items.url !== '')
+        inputUrl.value = items.url;
+    if (items.dontresize !== undefined)
+        resizeOption.checked = !items.dontresize;
+    else
+        resizeOption.checked = true;
 });
 
 // redirect focus
@@ -119,36 +124,52 @@ formUrl.addEventListener("submit", function(e){
     });
 });
 
+resizeOption.onchange = function() {
+    let trackOptionSet, option;
+    if(resizeOption.checked) {
+        trackOptionSet = analytics.EventBuilder.builder()
+            .category('App')
+            .action('Switch resize webview')
+            .dimension(1, 'on');
+        option = false;
+    } else {
+        trackOptionSet = analytics.EventBuilder.builder()
+            .category('App')
+            .action('Switch resize webview')
+            .dimension(2, 'off');
+        option = true;
+    }
+    tracker.send(trackOptionSet);
+    chrome.storage.sync.set({ dontresize: option });
+    chrome.runtime.sendMessage({'dontresize': option});
+};
+
 // Allow opt-out
-function initSettings(config) {
+function initTrackingSettings(config) {
     // Release loading text
     document.getElementById('improve-by-tracking-opt-in').hidden = false;
 
-    var checkboxImproveByTracking = document.getElementById('improve-by-tracking');
-    var txtTrackingHelpText = document.getElementById('tracking-help-text');
     checkboxImproveByTracking.checked = config.isTrackingPermitted();
     checkboxImproveByTracking.onchange = function() {
-        var SetTracking;
-        switch(checkboxImproveByTracking.checked) {
-            case true:
-                SetTracking = analytics.EventBuilder.builder()
-                    .category('App')
-                    .action('Switch Tracking')
-                    .dimension(1, 'on');
-                console.info('%c' + chrome.i18n.getMessage('appMiscYouAreAmazing'), 'font-size:20px;background-color:#d6ff97');
-                txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscYouAreAmazing');
-                txtTrackingHelpText.style.backgroundColor = "#d6ff97";
-                break;
-            default:
-                SetTracking = analytics.EventBuilder.builder()
-                    .category('App')
-                    .action('Switch Tracking')
-                    .dimension(2, 'off');
-                console.info('%c' + chrome.i18n.getMessage('appMiscConsiderTracking'), 'font-size:20px;background-color:#fff3c6');
-                txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscConsiderTracking');
-                txtTrackingHelpText.style.backgroundColor = "#fff3c6";
+        let trackOptionSet;
+        if (checkboxImproveByTracking.checked) {
+            trackOptionSet = analytics.EventBuilder.builder()
+                .category('App')
+                .action('Switch Tracking')
+                .dimension(1, 'on');
+            console.info('%c' + chrome.i18n.getMessage('appMiscYouAreAmazing'), 'font-size:20px;background-color:#d6ff97');
+            txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscYouAreAmazing');
+            txtTrackingHelpText.style.backgroundColor = "#d6ff97";
+        } else {
+            trackOptionSet = analytics.EventBuilder.builder()
+                .category('App')
+                .action('Switch Tracking')
+                .dimension(2, 'off');
+            console.info('%c' + chrome.i18n.getMessage('appMiscConsiderTracking'), 'font-size:20px;background-color:#fff3c6');
+            txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscConsiderTracking');
+            txtTrackingHelpText.style.backgroundColor = "#fff3c6";
         }
-        tracker.send(SetTracking);
+        tracker.send(trackOptionSet);
         config.setTrackingPermitted(checkboxImproveByTracking.checked);
     };
 }
@@ -157,7 +178,7 @@ function initSettings(config) {
 window.addEventListener('load', function() {
     // Initialize the Analytics service object with the name of your app.
     service = analytics.getService('cornips_fbw');
-    service.getConfig().addCallback(initSettings);
+    service.getConfig().addCallback(initTrackingSettings);
 
     // Get a Tracker using your Google Analytics app Tracking ID.
     tracker = service.getTracker('UA-84858849-3');
