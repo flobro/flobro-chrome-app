@@ -65,94 +65,102 @@ a {
 }
 
 
-/* BEGIN WINDOW ACTION BUTTONS */
-    .position {
-        position: absolute;
-        top: 0;
-        right: 0;
-        /*pointer-events: none;*/
-        z-index: 99999999;
-        opacity: 1;
-        transition: opacity .2s ease-out, top .2s ease-out;
-        padding: 8px 10px;
-        height: 22px;
-        width: calc(100vw - 20px);
-        background: #636363;
-    }
+/* BEGIN TITLE BAR */
+.position {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99999999;
+    opacity: 1;
+    transition: opacity .2s ease-out, top .2s ease-out;
+    padding: 8px 10px;
+    height: 22px;
+    width: calc(100vw - 20px);
+    background: #636363;
+}
 
-    .position.fadein {
-        opacity: 1;
-    }
+.position.fadein {
+    opacity: 1;
+}
 
-    .position.fadeout {
-        opacity: 0;
-        top: -38px;
-    }
+.position.fadeout {
+    opacity: 0;
+    top: -38px;
+}
 
-    #document-title {
-        -webkit-app-region: drag;
-        line-height: 23px;
-        font-size: 10pt;
-        color: white;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        max-width: calc(100% - 110px);
-        float: left;
-    }
-    #document-favicon {
-        -webkit-app-region: drag;
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        margin: 0 5px 0 auto;
-        position: relative;
-        top: 3px;
-        float: left;
-    }
+.drag-handle {
+    -webkit-app-region: drag;
+    position: absolute;
+    width: calc(100% - 100px);
+    height: 100%;
+    left: 0;
+    top: 0;
+}
 
-    .actions {
-        float: right;
-    }
+#document-title {
+    pointer-events: none;
+    line-height: 23px;
+    font-size: 10pt;
+    color: white;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100% - 110px);
+    float: left;
+}
+#document-favicon {
+    pointer-events: none;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 5px 0 auto;
+    position: relative;
+    top: 3px;
+    float: left;
+}
 
-    .actions .window-button {
-        float: left;
-        color: white;
-    }
+.actions {
+    float: right;
+}
 
-    .window-button {
-        border: none;
-        background-color: transparent;
-        padding: 0;
-        font-size: 100%;
-        outline: 0;
-        opacity: .9;
-        display: inline-block;
-        -webkit-transition: opacity .1s cubic-bezier(0.4,0.0,1,1);
-        overflow: hidden;
-        height: 100%;
-        cursor: pointer;
-        width: 20px;
-        height: 20px;
-        pointer-events: all;
-        float: left;
-        -webkit-app-region: no-drag;
-    }
+.actions .window-button {
+    float: left;
+    color: white;
+}
 
-    .window-button:nth-child(1n+2) {
-        margin-left: 12px;
-    }
+.window-button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-size: 100%;
+    outline: 0;
+    opacity: .9;
+    display: inline-block;
+    -webkit-transition: opacity .1s cubic-bezier(0.4,0.0,1,1);
+    overflow: hidden;
+    height: 100%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    pointer-events: all;
+    float: left;
+    -webkit-app-region: no-drag;
+}
 
-    .window-button:hover {
-        opacity: 1;
-        -moz-transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
-        -webkit-transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
-        transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
-    }
+.window-button:nth-child(1n+2) {
+    margin-left: 12px;
+}
 
-    #minimize-window-button .flaticon-line-1 {
-        margin-top: 6px;
-        display: inline-block;
-        height: 17px;
-    }
-/* END WINDOW ACTION BUTTONS */
+.window-button:hover {
+    opacity: 1;
+    -moz-transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+    -webkit-transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+    transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+#minimize-window-button .flaticon-line-1 {
+    margin-top: 6px;
+    display: inline-block;
+    height: 17px;
+}
+/* END TITLE BAR */
