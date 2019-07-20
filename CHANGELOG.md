@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.1] - 2019-07-20
+#### Changed
+- Changed drag handle back to whole title bar due to bad UX
+
+### Added
+- Added support for mic and webcam use
+- Added minimum window dimensions
+
+### Fixed
+- Fixed a bug with windows opening at 0x0 pixels
+- Fixed a bug with ENTER key not working when saving the URL
+
+### Removed
+- Removed icon in settings window to switch to the browser since the browser is now always visible
+
 ## [0.2.0] - 2019-07-19
 ### Changed
 - Changed name integrally to Flobro for better recognition
@@ -56,7 +71,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/cornips/flobro/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/cornips/flobro/compare/0.2.1...HEAD
+[0.2.1]: https://github.com/cornips/flobro/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/cornips/flobro/compare/0.1.2...0.2.0
 [0.1.2]: https://github.com/cornips/flobro/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/cornips/flobro/compare/0.1.0...0.1.1
