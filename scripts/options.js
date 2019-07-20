@@ -102,7 +102,7 @@ function autofixUrl(str) {
 }
 inputUrl.addEventListener('keypress', function(e) {
     // Block invalid characters
-    if (validUrlCharacters.indexOf(String.fromCharCode(e.which)) < 0)
+    if (e.key != "Enter" && validUrlCharacters.indexOf(String.fromCharCode(e.which)) < 0)
         e.preventDefault();
 });
 
