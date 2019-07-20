@@ -1,24 +1,24 @@
-let service, tracker, alertEl, bounds={};
-bounds.w=650;bounds.h=490;
+let service, tracker;
 
-const webview = document.getElementById('panel-container');
-const window_title = document.getElementById('document-title');
-const favicon_image = document.getElementById('document-favicon');
-const appID = chrome.i18n.getMessage('@@extension_id'); // this app
-const NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
-
-document.title = chrome.i18n.getMessage('appName');
-window_title.innerText = chrome.i18n.getMessage('appName');
+const webview = document.getElementById('panel-container'),
+    window_title = document.getElementById('document-title'),
+    favicon_image = document.getElementById('document-favicon'),
+    minimizeObj = document.getElementById('minimize-window-button'),
+    settingsObj = document.getElementById('settings-window-button'),
+    closeObj = document.getElementById('close-window-button'),
+    bodyObj = document.querySelector('body'),
+    buttonsObj = document.getElementById('buttons'),
+    appID = chrome.i18n.getMessage('@@extension_id'), // this app
+    NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
 
 // Set locale texts
 document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
 // Exception for element who can't use .locale
-document.getElementById('minimize-window-button').title = chrome.i18n.getMessage('appLabelMinimize');
-document.getElementById('settings-window-button').title = chrome.i18n.getMessage('appLabelSettings');
-document.getElementById('close-window-button').title = chrome.i18n.getMessage('appLabelClose');
-
-const bodyObj = document.querySelector('body'),
-    buttonsObj = document.getElementById('buttons');
+document.title = chrome.i18n.getMessage('appName');
+window_title.innerText = chrome.i18n.getMessage('appName');
+minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
+settingsObj.title = chrome.i18n.getMessage('appLabelSettings');
+closeObj.title = chrome.i18n.getMessage('appLabelClose');
 
 // Get URL
 window.addEventListener('load', function(e) {

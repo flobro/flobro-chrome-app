@@ -1,10 +1,10 @@
 {
   "appName": {
-    "message": "Schwebendes Browser Fenster",
+    "message": "Flobro, Schwebendes Browser Fenster",
     "description": "The title of the application, displayed in the web store."
   },
   "appShortName": {
-    "message": "Schwebendes Fenster",
+    "message": "Flobro",
     "description": "The short title of the application, displayed in the web store."
   },
   "appDesc": {
@@ -25,10 +25,6 @@
     "message": "Minimieren",
     "description": "The text of tooltop of the minimize button."
   },
-  "appLabelBrowser": {
-    "message": "Browser",
-    "description": "The text of tooltop of the browser button."
-  },
   "appLabelSettings": {
     "message": "Einstellungen",
     "description": "The text of tooltop of the settings button."
@@ -37,15 +33,17 @@
     "message": "Schließen",
     "description": "The text of tooltop of the close button."
   },
-
-  "appPlaceholderUrl": {
-    "message": "Vollständige URL eingeben beginnend mit http(s)://",
-    "description": "The label of the URL field on the options page."
-  },
   "appLabelSave": {
     "message": "Speichern",
     "description": "The label of save button on the options page."
   },
+
+
+  "appPlaceholderUrl": {
+    "message": "Vollständige URL eingeben",
+    "description": "The label of the URL field on the options page."
+  },
+
 
   "appAlertSomethingWrong": {
     "message": "Etwas ist schief gelaufen.",
@@ -60,38 +58,6 @@
   "appTxtOptions": {
     "message": "Optionen",
     "description": "The title of the options area on the options page."
-  },
-  "appTxtKeyboardShortcuts": {
-    "message": "Tastenkombinationen",
-    "description": "The title of the Keyboard shortcuts area on the options page."
-  },
-  "appTxtKeyboardShortcutsFromEverywhere": {
-    "message": "Global gültig:",
-    "description": "The title of the Keyboard shortcuts area 'for everywhere' on the options page."
-  },
-  "appTxtSwitchBetweenWebWindowAndThisSettingsWindow": {
-    "message": "Zwischen Web Ansicht und diesen Einstellungen wechseln",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtCloseAllWindows": {
-    "message": "Alle Fenster schließen",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtOpenThisSettingsWindow": {
-    "message": "Diese Einstellungen öffnen",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtKeyboardShortcutsFromWebWindow": {
-    "message": "Von der Web Ansicht:",
-    "description": "The title of the Keyboard shortcuts area 'for web window' on the options page."
-  },
-  "appTxtReloadThePage": {
-    "message": "Seite neu laden",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtFullscreen": {
-    "message": "Vollbildansicht",
-    "description": "The describing text of specific keyboard shortcut."
   },
   "appTxtCredits": {
     "message": "Danksagungen",

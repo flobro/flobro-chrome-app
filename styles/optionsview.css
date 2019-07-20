@@ -4,9 +4,16 @@ body {
 
 .position {
     /* static window bar */
-    position: static;
+    position: relative;
     opacity: 1 !important;
     -webkit-animation: unset !important;
+}
+.position.fadeout{
+    opacity: 1;
+    top: 0;
+}
+.drag-handle {
+    width: calc(100% - 70px);
 }
 
 #credits {

@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Flobro",
+    "message": "Flobro, floating browser window",
     "description": "The title of the application, displayed in the web store."
   },
   "appShortName": {
@@ -8,26 +8,22 @@
     "description": "The short title of the application, displayed in the web store."
   },
   "appDesc": {
-    "message": "Sometimes it's nice to have a floating browser window on your screen. With Flobro you can do this!",
+    "message": "Do you want to work or game and simultaneously view a video or a webpage, but 'splitting' your screen is no option? Then you need Flobro! With Flobro you can add a browser window to your screen that floats on top, so you can work or game and watch at the same time.\n\nFlobro is disctraction free, so no browser interface bugging on top.",
     "description": "The description of the application, displayed in the web store."
   },
 
 
   "appLabelUrl": {
     "message": "URL",
-    "description": "The text of label-element of URL field on the options page."
+    "description": "The text of label-element of URL field on the settings page."
   },
   "appLabelImproveByTracking": {
     "message": "Improve app with anonymous data",
-    "description": "The text of label-element of tracking field on the options page."
+    "description": "The text of label-element of tracking field on the settings page."
   },
   "appLabelMinimize": {
     "message": "Minimize",
     "description": "The text of tooltop of the minimize button."
-  },
-  "appLabelBrowser": {
-    "message": "Browser",
-    "description": "The text of tooltop of the browser button."
   },
   "appLabelSettings": {
     "message": "Settings",
@@ -37,14 +33,15 @@
     "message": "Close",
     "description": "The text of tooltop of the close button."
   },
+  "appLabelSave": {
+    "message": "Save",
+    "description": "The label of save button on the settings page."
+  },
+
 
   "appPlaceholderUrl": {
     "message": "Enter full URL",
-    "description": "The label of the URL field on the options page."
-  },
-  "appLabelSave": {
-    "message": "Save",
-    "description": "The label of save button on the options page."
+    "description": "The label of the URL field on the settings page."
   },
 
 
@@ -60,43 +57,11 @@
 
   "appTxtSettings": {
     "message": "Settings",
-    "description": "The title of the options page."
+    "description": "The title of the settings page."
   },
   "appTxtOptions": {
     "message": "Options",
-    "description": "The title of the options area on the options page."
-  },
-  "appTxtKeyboardShortcuts": {
-    "message": "Keyboard shortcuts",
-    "description": "The title of the Keyboard shortcuts area on the options page."
-  },
-  "appTxtKeyboardShortcutsFromEverywhere": {
-    "message": "From everywhere:",
-    "description": "The title of the Keyboard shortcuts area 'for everywhere' on the options page."
-  },
-  "appTxtSwitchBetweenWebWindowAndThisSettingsWindow": {
-    "message": "Switch between web window and this settings window",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtCloseAllWindows": {
-    "message": "Close all windows",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtOpenThisSettingsWindow": {
-    "message": "Open this settings window",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtKeyboardShortcutsFromWebWindow": {
-    "message": "From web window:",
-    "description": "The title of the Keyboard shortcuts area 'for web window' on the options page."
-  },
-  "appTxtReloadThePage": {
-    "message": "Reload the page",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtFullscreen": {
-    "message": "Fullscreen",
-    "description": "The describing text of specific keyboard shortcut."
+    "description": "The title of the options area on the settings page."
   },
   "appTxtCredits": {
     "message": "Credits",
