@@ -9,7 +9,7 @@
   },
   "appDesc": {
     "message": "Soms heb je de behoefte aan een zwevend browser venster op je scherm. Met Flobro kan dat!",
-    "description":"The description of the application, displayed in the web store."
+    "description": "The description of the application, displayed in the web store."
   },
 
 
@@ -25,10 +25,6 @@
     "message": "Minimaliseren",
     "description": "The text of tooltop of the minimize button."
   },
-  "appLabelBrowser": {
-    "message": "Browser",
-    "description": "The text of tooltop of the browser button."
-  },
   "appLabelSettings": {
     "message": "Instellingen",
     "description": "The text of tooltop of the settings button."
@@ -37,23 +33,21 @@
     "message": "Sluiten",
     "description": "The text of tooltop of the close button."
   },
-
-  "appPlaceholderUrl": {
-    "message": "Vul de volledige URL in startend met http(s)://",
-    "description": "The label of the URL field on the options page."
-  },
   "appLabelSave": {
     "message": "Opslaan",
     "description": "The label of save button on the options page."
   },
 
+
+  "appPlaceholderUrl": {
+    "message": "Vul de volledige URL in",
+    "description": "The label of the URL field on the options page."
+  },
+
+
   "appAlertSomethingWrong": {
     "message": "Er ging iets fout.",
     "description": "The text shown when something goes wrong."
-  },
-  "appAlertWrongUrl": {
-    "message": "The entered value is not recognized as a valid URL.",
-    "description": "The text shown when a entered URL is not valid."
   },
 
 
@@ -64,38 +58,6 @@
   "appTxtOptions": {
     "message": "Opties",
     "description": "The title of the options area on the options page."
-  },
-  "appTxtKeyboardShortcuts": {
-    "message": "Sneltoetsen",
-    "description": "The title of the Keyboard shortcuts area on the options page."
-  },
-  "appTxtKeyboardShortcutsFromEverywhere": {
-    "message": "Vanaf elk venster:",
-    "description": "The title of the Keyboard shortcuts area 'for everywhere' on the options page."
-  },
-  "appTxtSwitchBetweenWebWindowAndThisSettingsWindow": {
-    "message": "Wissel tussen web venster en dit instellingen venster",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtCloseAllWindows": {
-    "message": "Sluit alle vensters",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtOpenThisSettingsWindow": {
-    "message": "Open dit instellingen venster",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtKeyboardShortcutsFromWebWindow": {
-    "message": "Vanaf web venster:",
-    "description": "The title of the Keyboard shortcuts area 'for web window' on the options page."
-  },
-  "appTxtReloadThePage": {
-    "message": "Pagina opnieuw laden",
-    "description": "The describing text of specific keyboard shortcut."
-  },
-  "appTxtFullscreen": {
-    "message": "Volledig scherm",
-    "description": "The describing text of specific keyboard shortcut."
   },
   "appTxtCredits": {
     "message": "Credits",
