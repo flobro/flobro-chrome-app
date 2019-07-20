@@ -53,7 +53,7 @@ webview.addEventListener('loadcommit', function(e) {
                 runAt: 'document_end'
             },
             function(results){
-                if (results[0]) {
+                if (results && results[0]) {
                     document.title = results[0];
                     window_title.innerText = results[0];
                 } else {
@@ -74,7 +74,7 @@ webview.addEventListener('loadcommit', function(e) {
                 runAt: 'document_end'
             },
             function(results){
-                if (results[0]) {
+                if (results && results[0]) {
                     favicon_image.src = favicon_image.dataset.src + results[0];
                 }
             }
