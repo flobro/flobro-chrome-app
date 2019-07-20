@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Flobro",
+    "message": "Flobro, floating browser window",
     "description": "The title of the application, displayed in the web store."
   },
   "appShortName": {
@@ -8,18 +8,18 @@
     "description": "The short title of the application, displayed in the web store."
   },
   "appDesc": {
-    "message": "Soms heb je de behoefte aan een zwevend browser venster op je scherm. Met Flobro kan dat!",
+    "message": "Wil je werken and tegelijk een video of webpagina bekijken, maar je scherm splitsen is geen optie? Dan is Flobro wat je nodig hebt!",
     "description": "The description of the application, displayed in the web store."
   },
 
 
   "appLabelUrl": {
     "message": "URL",
-    "description": "The text of label-element of URL field on the options page."
+    "description": "The text of label-element of URL field on the settings page."
   },
   "appLabelImproveByTracking": {
     "message": "Verbeter app met anonieme data",
-    "description": "The text of label-element of tracking field on the options page."
+    "description": "The text of the tracking option on the settings page."
   },
   "appLabelMinimize": {
     "message": "Minimaliseren",
@@ -35,13 +35,17 @@
   },
   "appLabelSave": {
     "message": "Opslaan",
-    "description": "The label of save button on the options page."
+    "description": "The label of save button on the settings page."
+  },
+  "appLabelResizeWebview": {
+    "message": "Pas formaat aan bij verschijnen van titelbalk",
+    "description": "The text of the option to fit (resize) webview when title bar appears."
   },
 
 
   "appPlaceholderUrl": {
     "message": "Vul de volledige URL in",
-    "description": "The label of the URL field on the options page."
+    "description": "The label of the URL field on the settings page."
   },
 
 
@@ -49,15 +53,19 @@
     "message": "Er ging iets fout.",
     "description": "The text shown when something goes wrong."
   },
+  "appAlertWrongUrl": {
+    "message": "De ingevoerde waarde is niet herkend als geldige URL.",
+    "description": "The text shown when a entered URL is not valid."
+  },
 
 
   "appTxtSettings": {
     "message": "Instellingen",
-    "description": "The title of the options page."
+    "description": "The title of the settings page."
   },
   "appTxtOptions": {
     "message": "Opties",
-    "description": "The title of the options area on the options page."
+    "description": "The title of the options area on the settings page."
   },
   "appTxtCredits": {
     "message": "Credits",
