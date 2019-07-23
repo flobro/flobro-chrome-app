@@ -23,5 +23,5 @@ Go to the [Chrome Web Store](https://chrome.google.com/webstore/detail/zwevend-b
 ## Donations
 Please join me on [Patreon](https://www.patreon.com/bePatron?u=3907320) or [Buy me a coffee](https://www.buymeacoffee.com/cornips) to support this project.
 
-[![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips)](https://www.patreon.com/bePatron?u=3907320)
+[![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips&style=for-the-badge)](https://www.patreon.com/bePatron?u=3907320)
 [![Buy me a Coffee](https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png)](https://www.buymeacoffee.com/cornips)
