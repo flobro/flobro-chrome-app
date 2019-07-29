@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Flobro, floating browser window",
+    "message": "Flobro, zwevend browser venster",
     "description": "The title of the application, displayed in the web store."
   },
   "appShortName": {
@@ -40,6 +40,10 @@
   "appLabelResizeWebview": {
     "message": "Pas formaat aan bij verschijnen van titelbalk",
     "description": "The text of the option to fit (resize) webview when title bar appears."
+  },
+  "appLabelTitleBarTimout": {
+    "message": "Tijd tot het verdwijnen van de titelbalk",
+    "description": "The text of the option handling the timeout in miliseconds before title bar disappears again."
   },
 
 
