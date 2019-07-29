@@ -41,6 +41,10 @@
     "message": "Fit webview when title bar appears",
     "description": "The text of the option to fit (resize) webview when title bar appears."
   },
+  "appLabelTitleBarTimout": {
+    "message": "Timeout before title bar disappearance",
+    "description": "The text of the option handling the timeout in miliseconds before title bar disappears again."
+  },
 
 
   "appPlaceholderUrl": {

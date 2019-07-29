@@ -45,7 +45,6 @@ a {
 }
 
 .webview.background {
-    top: 1px;
     transition: top .1s cubic-bezier(0.4,0.0,1,1);
 }
 .webview.resize.movedown {
@@ -82,16 +81,22 @@ a {
 
 .position.fadeout {
     opacity: 0;
-    top: -38px;
+    top: -33px;
 }
 
 .drag-handle {
     -webkit-app-region: drag;
     position: absolute;
-    width: calc(100% - 100px);
+    width: calc(100% - 132px);
     height: 100%;
     left: 0;
     top: 0;
+}
+.position.fadein .drag-handle {
+    display: block;
+}
+.position.fadeout .drag-handle {
+    display: none;
 }
 
 #document-title {
@@ -102,7 +107,7 @@ a {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: calc(100% - 110px);
+    max-width: calc(100% - 140px);
     float: left;
 }
 #document-favicon {
@@ -155,9 +160,7 @@ a {
     cursor: pointer;
     width: 20px;
     height: 20px;
-    pointer-events: all;
     float: left;
-    -webkit-app-region: no-drag;
 }
 
 .window-button:nth-child(1n+2) {

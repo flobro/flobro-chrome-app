@@ -1,7 +1,7 @@
-let storageData;
+var storageData;
 
-const settingsBoundaries = { width: 450, height: 560, minWidth: 360, minHeight: 560 };
-const browserBoundaries = { width: 500, height: 340, minWidth: 130, minHeight: 38 };
+const settingsBoundaries = { width: 450, height: 630, minWidth: 360, minHeight: 630 };
+const browserBoundaries = { width: 500, height: 340, minWidth: 170, minHeight: 38 };
 
 chrome.storage.sync.get(function(items) {
     if (items)
@@ -10,13 +10,14 @@ chrome.storage.sync.get(function(items) {
 chrome.storage.sync.onChanged.addListener(function(items) {
     if (items)
         Object.entries(items).forEach(function(key, value) {
-            storageData[key[0]] = key[1].newValue; });
+            storageData[key[0]] = key[1].newValue;
+        });
 });
 
 function createWindow(param) {
     param.id = (typeof param.id !== 'undefined' ? param.id : 'window');
     param.frame = (typeof param.frame !== 'undefined' ? param.frame : 'none');
-    param.outerBounds = (typeof param.outerBounds !== 'undefined' ? param.outerBounds : { width: 500, height: 340, minWidth: 130, minHeight: 38 });
+    param.outerBounds = (typeof param.outerBounds !== 'undefined' ? param.outerBounds : { width: 500, height: 340, minWidth: 170, minHeight: 38 });
     chrome.app.window.create(param.url, {
         frame: param.frame,
         id: param.id,
@@ -29,16 +30,37 @@ function createWindow(param) {
 
             const bodyObj = appwindow.contentWindow.document.querySelector('body'),
                 buttonsObj = appwindow.contentWindow.document.getElementById('buttons'),
+                pinObj = appwindow.contentWindow.document.getElementById('pin-window-button'),
                 minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
                 closeObj = appwindow.contentWindow.document.getElementById('close-window-button'),
                 settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
-                webview = appwindow.contentWindow.document.getElementById('panel-container'),
-                timeout = null,
-                helpOpened = false;
+                webview = appwindow.contentWindow.document.getElementById('panel-container');
+
+                function disappearBar() {
+                    clearTimeout(appwindow.contentWindow.removeButtonsTimer);
+                    if (!window.removeButtonsForbidden && !appwindow.contentWindow.pinnedTitleBar) {
+                        appwindow.contentWindow.removeButtonsTimer = setTimeout(() => {
+                            buttonsObj.classList.remove('fadein');
+                            buttonsObj.classList.add('fadeout');
+                            if (webview)
+                                webview.classList.remove('movedown');
+                        }, (storageData && storageData.titlebartimeout !== 'undefined' && storageData.titlebartimeout > .5 ? storageData.titlebartimeout : 1.5)*1000);
+                    }
+                }
 
             closeObj.onclick = function () {
                 appwindow.contentWindow.close();
             };
+            if (pinObj){
+                pinObj.onclick = function () {
+                    if (pinObj.classList.toggle('pinned'))
+                        appwindow.contentWindow.pinnedTitleBar = true;
+                    else {
+                        appwindow.contentWindow.pinnedTitleBar = false;
+                        disappearBar();
+                    }
+                };
+            }
             if (settingsObj){
                 settingsObj.onclick = function () {
                     appwindow.contentWindow.chrome.runtime.sendMessage({'open': 'options'});
@@ -59,29 +81,32 @@ function createWindow(param) {
             buttonsObj.classList.add('fadeout');
             if (!storageData.dontresize && webview) webview.classList.add('resize');
             buttonsObj.onmousemove = function () {
-                if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
+                disappearBar();
             }
-            bodyObj.onmouseenter = function () {
-                if (window.removeButtonsTimer) clearTimeout(window.removeButtonsTimer);
+            bodyObj.onmousemove = function () {
+                clearTimeout(appwindow.contentWindow.removeButtonsTimer);
 
                 buttonsObj.classList.remove('fadeout');
                 buttonsObj.classList.add('fadein');
                 if (webview)
                     webview.classList.add('movedown');
-            }
-            buttonsObj.onmouseleave = function () {
-                if (false === helpOpened) {
-                    window.removeButtonsTimer = setTimeout(() => {
-                        buttonsObj.classList.remove('fadein');
-                        buttonsObj.classList.add('fadeout');
-                        if (webview)
-                            webview.classList.remove('movedown');
-                    }, 1000)
+
+                if (!appwindow.contentWindow.pinnedTitleBar) {
+                    disappearBar();
                 }
             }
 
+            for (let i = 0; i < buttonsObj.children.length; i++) {
+                buttonsObj.children[i].onmouseenter = function () {
+                    window.removeButtonsForbidden = true;
+                    clearTimeout(appwindow.contentWindow.removeButtonsTimer);
+                }
+                buttonsObj.children[i].onmouseleave = function () {
+                    window.removeButtonsForbidden = false;
+                    disappearBar();
+                }
+            }
         }
-
 	});
 }
 

@@ -1,6 +1,5 @@
-let service, tracker, alertEl;
-
 const window_title = document.getElementById('appTxtSettings'),
+    alertEl = document.getElementById('alert'),
     formUrl = document.getElementById('request-url-form'),
     inputUrl = document.getElementById('input-request-url'),
     buttonUrlSave = document.getElementById('request-url-form').getElementsByTagName('button')[0],
@@ -8,6 +7,8 @@ const window_title = document.getElementById('appTxtSettings'),
     checkboxImproveByTracking = document.getElementById('improve-by-tracking'),
     txtTrackingHelpText = document.getElementById('tracking-help-text'),
     resizeOption = document.getElementById('resize-option'),
+    disappearTimeoutOption = document.getElementById('titlebartimeout-option'),
+    disappearTimeoutValue = document.getElementById('titlebartimeout-option-value'),
     localeObjects = document.querySelectorAll('.locale'),
     minimizeObj = document.getElementById('minimize-window-button'),
     closeObj = document.getElementById('close-window-button'),
@@ -27,7 +28,6 @@ if (inputUrl) inputUrl.placeholder = chrome.i18n.getMessage('appPlaceholderUrl')
 // add version number
 versionNumber.innerText = chrome.runtime.getManifest().version;
 
-alertEl = document.getElementById('alert');
 window.alert = function(message, className) {
     if(typeof alertEl === 'undefined')
         var alertEl = document.getElementById('alert');
@@ -45,10 +45,19 @@ window.alert = function(message, className) {
 chrome.storage.sync.get(function(items) {
     if (items.url !== undefined && items.url !== '')
         inputUrl.value = items.url;
+
     if (items.dontresize !== undefined)
         resizeOption.checked = !items.dontresize;
     else
         resizeOption.checked = true;
+
+    if (items.titlebartimeout !== undefined){
+        disappearTimeoutOption.value = items.titlebartimeout;
+        disappearTimeoutValue.innerText = disappearTimeoutOption.value;
+    } else {
+        disappearTimeoutOption.value = 1500;
+        disappearTimeoutValue.innerText = disappearTimeoutOption.value;
+    }
 });
 
 // redirect focus
@@ -106,7 +115,7 @@ inputUrl.addEventListener('keypress', function(e) {
 formUrl.addEventListener("submit", function(e){
     e.preventDefault();
     var newUrl = inputUrl.value;
-    tracker.sendEvent('Browser', 'Set URL', newUrl);
+    window.tracker.sendEvent('Browser', 'Set URL', newUrl);
     chrome.storage.sync.set({ url: newUrl });
     chrome.storage.sync.get(function(items) {
         if (items.url === undefined || items.url === '') {
@@ -114,7 +123,7 @@ formUrl.addEventListener("submit", function(e){
                 .category('Errors')
                 .action('Alert')
                 .dimension(1, 'Something went wrong');
-            tracker.send(AlertSomethingWrong);
+            window.tracker.send(AlertSomethingWrong);
             alert(locale_appAlertSomethingWrong);
         }
         else {
@@ -139,9 +148,23 @@ resizeOption.onchange = function() {
             .dimension(2, 'off');
         option = true;
     }
-    tracker.send(trackOptionSet);
+    window.tracker.send(trackOptionSet);
     chrome.storage.sync.set({ dontresize: option });
     chrome.runtime.sendMessage({'dontresize': option});
+};
+
+disappearTimeoutOption.oninput = function() {
+    disappearTimeoutValue.innerText = this.value;
+};
+disappearTimeoutOption.onchange = function() {
+    chrome.storage.sync.set({ titlebartimeout: this.value });
+    chrome.runtime.sendMessage({'titlebartimeout': this.value});
+    disappearTimeoutValue.innerText = this.value;
+    const trackOptionSet = analytics.EventBuilder.builder()
+        .category('App')
+        .action('Set titlebar timeout')
+        .dimension(1, disappearTimeoutValue.innerText);
+    window.tracker.send(trackOptionSet);
 };
 
 // Allow opt-out
@@ -169,7 +192,7 @@ function initTrackingSettings(config) {
             txtTrackingHelpText.innerText = chrome.i18n.getMessage('appMiscConsiderTracking');
             txtTrackingHelpText.style.backgroundColor = "#fff3c6";
         }
-        tracker.send(trackOptionSet);
+        window.tracker.send(trackOptionSet);
         config.setTrackingPermitted(checkboxImproveByTracking.checked);
     };
 }
@@ -177,19 +200,31 @@ function initTrackingSettings(config) {
 // Learn and improve from app usage
 window.addEventListener('load', function() {
     // Initialize the Analytics service object with the name of your app.
-    service = analytics.getService('cornips_fbw');
+    const service = analytics.getService('cornips_fbw');
     service.getConfig().addCallback(initTrackingSettings);
 
     // Get a Tracker using your Google Analytics app Tracking ID.
-    tracker = service.getTracker('UA-84858849-3');
+    window.tracker = service.getTracker('UA-84858849-3');
 
     // Record an "appView" each time the user launches the app
-    tracker.sendAppView('OptionsView');
+    window.tracker.sendAppView('OptionsView');
 
     // Track locale
     var locale = chrome.i18n.getUILanguage();
     var InitLanguage;
     switch(locale) {
+        case 'pl':
+            InitLanguage = analytics.EventBuilder.builder()
+                .category('Language')
+                .action('OptionsView')
+                .dimension(4, 'Polish');
+            break;
+        case 'de':
+            InitLanguage = analytics.EventBuilder.builder()
+                .category('Language')
+                .action('OptionsView')
+                .dimension(3, 'German');
+            break;
         case 'nl':
             InitLanguage = analytics.EventBuilder.builder()
                 .category('Language')
@@ -202,6 +237,6 @@ window.addEventListener('load', function() {
                 .action('OptionsView')
                 .dimension(1, 'English');
     }
-    tracker.send(InitLanguage);
+    window.tracker.send(InitLanguage);
 
 });

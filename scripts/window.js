@@ -1,5 +1,3 @@
-let service, tracker;
-
 const webview = document.getElementById('panel-container'),
     window_title = document.getElementById('document-title'),
     favicon_image = document.getElementById('document-favicon'),
@@ -24,14 +22,14 @@ closeObj.title = chrome.i18n.getMessage('appLabelClose');
 window.addEventListener('load', function(e) {
     chrome.storage.sync.get(function(items) {
         if (items.url !== undefined && items.url !== ''){
-            tracker.sendEvent('Browser', 'Load URL', items.url);
+            window.tracker.sendEvent('Browser', 'Load URL', items.url);
             webview.setAttribute('src', items.url);
         } else{
             var SwitchBecauseNoUrl = analytics.EventBuilder.builder()
                 .category('App')
                 .action('Switch')
                 .dimension(2, 'Missing URL');
-            tracker.send(SwitchBecauseNoUrl).addCallback(function() {
+            window.tracker.send(SwitchBecauseNoUrl).addCallback(function() {
                 chrome.runtime.sendMessage({'open': 'options'});
             }.bind(this));
         }
@@ -39,6 +37,14 @@ window.addEventListener('load', function(e) {
 });
 
 // inset styles and scripts
+favicon_image.addEventListener('loadcommit', function(e) {
+    if (e.isTopLevel) {
+        favicon_image.insertCSS({
+            file: './styles/favicon_webview.css',
+            runAt: 'document_start'
+        });
+    }
+});
 webview.addEventListener('loadcommit', function(e) {
     if (e.isTopLevel) {
         webview.insertCSS({
@@ -62,7 +68,7 @@ webview.addEventListener('loadcommit', function(e) {
                             .category('Errors')
                             .action('Alert')
                             .dimension(3, 'No document title');
-                        tracker.send(AlertNoTitle);
+                        window.tracker.send(AlertNoTitle);
                     } else
                         titleFirstTime = false;
                 }
@@ -70,7 +76,7 @@ webview.addEventListener('loadcommit', function(e) {
         );
         webview.executeScript(
             {
-                code: 'document.URL',
+                code: 'document.location.hostname',
                 runAt: 'document_end'
             },
             function(results){
@@ -86,7 +92,7 @@ webview.addEventListener('loadcommit', function(e) {
 // send new-window-links to browser
 webview.addEventListener('newwindow', function(e) {
     e.stopImmediatePropagation();
-    tracker.sendEvent('Browser', 'New window', e.targetUrl).addCallback(function() {
+    window.tracker.sendEvent('Browser', 'New window', e.targetUrl).addCallback(function() {
         window.open(e.targetUrl);
     }.bind(this));
 });
@@ -112,20 +118,19 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
         if (request.dontresize) webview.classList.remove('resize');
         else webview.classList.add('resize');
     }
-
 });
 
 // Learn and improve from app usage
 window.addEventListener('load', function() {
     // Initialize the Analytics service object with the name of your app.
-    service = analytics.getService('cornips_fbw');
+    const service = analytics.getService('cornips_fbw');
     // service.getConfig().addCallback(initAnalyticsConfig);
 
     // Get a Tracker using your Google Analytics app Tracking ID.
-    tracker = service.getTracker('UA-84858849-3');
+    window.tracker = service.getTracker('UA-84858849-3');
 
     // Record an "appView" each time the user launches the app
-    tracker.sendAppView('WindowView');
+    window.tracker.sendAppView('WindowView');
 
     // Track locale
     var locale = chrome.i18n.getUILanguage();
@@ -149,7 +154,7 @@ window.addEventListener('load', function() {
                 .action('WindowView')
                 .dimension(1, 'English');
     }
-    tracker.send(InitLanguage);
+    window.tracker.send(InitLanguage);
 
 
 });
