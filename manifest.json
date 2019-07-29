@@ -9,8 +9,8 @@
    "name": "__MSG_appName__",
    "short_name": "__MSG_appShortName__",
    "author": "Martijn Cornips",
-   "version": "0.2.0",
-   "version_name": "0.2.0",
+   "version": "0.2.2",
+   "version_name": "0.2.2",
 
    "default_locale": "en",
    "description": "__MSG_appDesc__",
@@ -22,6 +22,6 @@
    },
 
    "minimum_chrome_version": "40",
-   "permissions": [ "webview", "storage", "contextMenus", "notifications", "alwaysOnTopWindows",  "unlimitedStorage", "\u003Call_urls>", "browser", "fullscreen", "audioCapture", "videoCapture" ]
+   "permissions": [ "webview", "storage", "contextMenus", "alwaysOnTopWindows",  "unlimitedStorage", "\u003Call_urls>", "browser", "fullscreen" ]
 }
 
