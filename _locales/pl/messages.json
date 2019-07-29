@@ -1,0 +1,101 @@
+{
+  "appName": {
+    "message": "Flobro, niezależne okno dla twojej przeglądarki",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appShortName": {
+    "message": "Flobro",
+    "description": "The short title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Chcesz pracować i jednocześnie przeglądać internet lub oglądać wideo lecz nie masz możliwości podzielenia ekranu? Flobro jest dla ciebie!",
+    "description": "The description of the application, displayed in the web store."
+  },
+
+
+  "appLabelUrl": {
+    "message": "Adres URL:",
+    "description": "The text of label-element of URL field on the settings page."
+  },
+  "appLabelImproveByTracking": {
+    "message": "Pomóż w rozwoju aplikacji udostępniając anonimowe dane",
+    "description": "The text of the tracking option on the settings page."
+  },
+  "appLabelMinimize": {
+    "message": "Zminimalizuj",
+    "description": "The text of tooltop of the minimize button."
+  },
+  "appLabelSettings": {
+    "message": "Ustawienia",
+    "description": "The text of tooltop of the settings button."
+  },
+  "appLabelClose": {
+    "message": "Zamknij",
+    "description": "The text of tooltop of the close button."
+  },
+  "appLabelSave": {
+    "message": "Zapisz",
+    "description": "The label of save button on the settings page."
+  },
+  "appLabelResizeWebview": {
+    "message": "Dopasuj rozmiar strony gdy pojawia się menu",
+    "description": "The text of the option to fit (resize) webview when title bar appears."
+  },
+
+
+  "appPlaceholderUrl": {
+    "message": "Wprowadź pełny adres URL",
+    "description": "The label of the URL field on the settings page."
+  },
+
+
+  "appAlertSomethingWrong": {
+    "message": "Coś poszło nie tak :(",
+    "description": "The text shown when something goes wrong."
+  },
+  "appAlertWrongUrl": {
+    "message": "Wprowadzony adres URL jest nieprawidłowy.",
+    "description": "The text shown when a entered URL is not valid."
+  },
+
+
+  "appTxtSettings": {
+    "message": "Ustawienia",
+    "description": "The title of the settings page."
+  },
+  "appTxtOptions": {
+    "message": "Opcje",
+    "description": "The title of the options area on the settings page."
+  },
+  "appTxtCredits": {
+    "message": "Informacje",
+    "description": "The title of credits area."
+  },
+  "appTxtVisitProjectWebsite": {
+    "message": "Odwiedź stronę projektu",
+    "description": "The text for the link to Github in credits area."
+  },
+  "appTxtIssues": {
+    "message": "Zgłoś błąd",
+    "description": "The text for the link to issues in credits area."
+  },
+  "appTxtIconsDesignedBy": {
+    "message": "Projekt ikon:",
+    "description": "The text to credit the icon designer."
+  },
+  "appTxtFrom": {
+    "message": ", zaczerpnięte z",
+    "description": "Lowercase word for 'from'."
+  },
+
+
+  "appMiscYouAreAmazing": {
+    "message": "Jesteś wspaniały! Dzięki Tobie możemy z każdym dniem ulepszać Flobro, dziękujemy!",
+    "description": "Text shown in console when user enables tracking."
+  },
+  "appMiscConsiderTracking": {
+    "message": "Rozważ włączenie udostępniania danych, pomogą one w rozwoju aplikacji i pozwolą rozwiązywać błędy nawet wtedy kiedy nie będziesz miał czasu ich zgłosić. Wszystkie zbierane dane są anonimowe. Aplikacja NIGDY nie zbiera prywatnych danych!",
+    "description": "Text shown in console when user disables tracking."
+  }
+
+}
