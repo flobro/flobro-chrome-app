@@ -14,7 +14,7 @@
 
 
   "appLabelUrl": {
-    "message": "Adres URL:",
+    "message": "Adres URL",
     "description": "The text of label-element of URL field on the settings page."
   },
   "appLabelImproveByTracking": {
@@ -40,6 +40,10 @@
   "appLabelResizeWebview": {
     "message": "Dopasuj rozmiar strony gdy pojawia się menu",
     "description": "The text of the option to fit (resize) webview when title bar appears."
+  },
+  "appLabelTitleBarTimout": {
+    "message": "Czas przed zniknięciem menu",
+    "description": "The text of the option handling the timeout in miliseconds before title bar disappears again."
   },
 
 
