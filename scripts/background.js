@@ -30,6 +30,7 @@ function createWindow(param) {
 
             const bodyObj = appwindow.contentWindow.document.querySelector('body'),
                 buttonsObj = appwindow.contentWindow.document.getElementById('buttons'),
+                aspectObj = appwindow.contentWindow.document.getElementById('aspect-window-button'),
                 pinObj = appwindow.contentWindow.document.getElementById('pin-window-button'),
                 minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
                 closeObj = appwindow.contentWindow.document.getElementById('close-window-button'),
@@ -51,6 +52,12 @@ function createWindow(param) {
             closeObj.onclick = function () {
                 appwindow.contentWindow.close();
             };
+            if (aspectObj){
+                aspectObj.onclick = function () {
+            		var width = appwindow.innerBounds.width;
+                    appwindow.innerBounds.height = Math.round(width * (9/16));
+                };
+            }
             if (pinObj){
                 pinObj.onclick = function () {
                     if (pinObj.classList.toggle('pinned'))
