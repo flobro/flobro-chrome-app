@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Compressed app media
+
+### Added
 - Added 16:9 aspect ratio option to actions
 
 ### Removed
 - Removed shadow from webstore icon
+- Removed fullscreen permission to allow fullscreen within Flobro window
 
 
 

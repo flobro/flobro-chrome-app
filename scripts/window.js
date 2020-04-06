@@ -124,7 +124,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 window.addEventListener('load', function() {
     // Initialize the Analytics service object with the name of your app.
     const service = analytics.getService('cornips_fbw');
-    // service.getConfig().addCallback(initAnalyticsConfig);
 
     // Get a Tracker using your Google Analytics app Tracking ID.
     window.tracker = service.getTracker('UA-84858849-3');
