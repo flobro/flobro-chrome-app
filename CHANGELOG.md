@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Applied compression to app media
+- Compressed app media
+- Added 16:9 aspect ratio option to actions
 
 ### Removed
 - Removed shadow from webstore icon
