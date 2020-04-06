@@ -87,7 +87,7 @@ a {
 .drag-handle {
     -webkit-app-region: drag;
     position: absolute;
-    width: calc(100% - 132px);
+    width: calc(100% - 165px);
     height: 100%;
     left: 0;
     top: 0;
@@ -107,7 +107,7 @@ a {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: calc(100% - 140px);
+    max-width: calc(100% - 173px);
     float: left;
 }
 #document-favicon {
