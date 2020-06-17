@@ -22,7 +22,7 @@ function createWindow(param) {
         frame: param.frame,
         id: param.id,
         resizable: true,
-        alwaysOnTop: true,
+        alwaysOnTop: false,
         outerBounds: param.outerBounds,
     }, function (appwindow) {
 
@@ -60,12 +60,7 @@ function createWindow(param) {
             }
             if (pinObj){
                 pinObj.onclick = function () {
-                    if (pinObj.classList.toggle('pinned'))
-                        appwindow.contentWindow.pinnedTitleBar = true;
-                    else {
-                        appwindow.contentWindow.pinnedTitleBar = false;
-                        disappearBar();
-                    }
+		    appwindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
                 };
             }
             if (settingsObj){
