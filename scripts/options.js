@@ -63,12 +63,22 @@ inputUrl.addEventListener('focus', function(e) {
 
 // Validate URL
 function validURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    // Validating scheme:[//[user:password@]host[:port]]path[?query][#fragment]
+    const pattern = new RegExp(
+        '^'+ // start
+            '(https?:\\/\\/)?'+ // scheme
+            '(\\w+:\\w+@)?'+ // user:password
+            '('+
+                '(([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                '([\\d\\w-_~][^.]+)|'+ // OR custom hosts domain
+                '((\\d{1,3}\\.){3}\\d{1,3})'+ // OR ip (v4) address
+            ')'+
+            '(\\:\\d+)?'+ // port
+            '(\\/[-a-z\\d%_.~+]*)*'+ // path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?'+ // fragment locator
+        '$' // end
+    ,'is');
   return !!pattern.test(str);
 }
 function validateEnteredUrl(elm, event) {
