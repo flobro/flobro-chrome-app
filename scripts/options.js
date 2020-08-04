@@ -10,8 +10,6 @@ const window_title = document.getElementById('appTxtSettings'),
     disappearTimeoutOption = document.getElementById('titlebartimeout-option'),
     disappearTimeoutValue = document.getElementById('titlebartimeout-option-value'),
     localeObjects = document.querySelectorAll('.locale'),
-    minimizeObj = document.getElementById('minimize-window-button'),
-    closeObj = document.getElementById('close-window-button'),
     versionNumber = document.getElementById('version-number'),
     locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong'),
     validUrlCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&\'()*+,;=';
@@ -21,8 +19,6 @@ localeObjects.forEach(function(locale){ locale.innerText = chrome.i18n.getMessag
 // Exception for element who can't use .locale
 document.title = chrome.i18n.getMessage('appLabelSettings');
 window_title.innerText = chrome.i18n.getMessage('appLabelSettings');
-if (minimizeObj) minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
-if (closeObj) closeObj.title = chrome.i18n.getMessage('appLabelClose');
 if (inputUrl) inputUrl.placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
 
 // add version number

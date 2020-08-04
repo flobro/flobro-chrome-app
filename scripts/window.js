@@ -1,22 +1,13 @@
 const webview = document.getElementById('panel-container'),
     window_title = document.getElementById('document-title'),
     favicon_image = document.getElementById('document-favicon'),
-    minimizeObj = document.getElementById('minimize-window-button'),
-    settingsObj = document.getElementById('settings-window-button'),
-    closeObj = document.getElementById('close-window-button'),
-    bodyObj = document.querySelector('body'),
-    buttonsObj = document.getElementById('buttons'),
     appID = chrome.i18n.getMessage('@@extension_id'), // this app
     NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
+var webview_zoom_level = null;
 
 // Set locale texts
 document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
 // Exception for element who can't use .locale
-document.title = chrome.i18n.getMessage('appName');
-window_title.innerText = chrome.i18n.getMessage('appName');
-minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
-settingsObj.title = chrome.i18n.getMessage('appLabelSettings');
-closeObj.title = chrome.i18n.getMessage('appLabelClose');
 
 // Get URL
 window.addEventListener('load', function(e) {
@@ -24,6 +15,7 @@ window.addEventListener('load', function(e) {
         if (items.url !== undefined && items.url !== ''){
             window.tracker.sendEvent('Browser', 'Load URL', items.url);
             webview.setAttribute('src', items.url);
+            webview.getZoom(function(zoomFactor){webview_zoom_level = zoomFactor;});
         } else{
             var SwitchBecauseNoUrl = analytics.EventBuilder.builder()
                 .category('App')
@@ -154,6 +146,4 @@ window.addEventListener('load', function() {
                 .dimension(1, 'English');
     }
     window.tracker.send(InitLanguage);
-
-
 });
