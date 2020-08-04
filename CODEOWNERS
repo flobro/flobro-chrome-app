@@ -1,0 +1,7 @@
+# Below is a list of Flobro team members' GitHub handles who are
+# suggested reviewers for contributions to this repository.
+#
+# Use git ls-files '<pattern>' without a / prefix to see the list of matching files.
+
+/CODEOWNERS @cornips
+/AUTHORS @cornips
