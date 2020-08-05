@@ -1,19 +1,20 @@
 # Flobro, floating browser window
 
+[Chrome web store]: https://chrome.google.com/webstore/detail/faaljkdndnfoagcmhedlmbgieoocemch
 [![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/faaljkdndnfoagcmhedlmbgieoocemch.svg)](https://chrome.google.com/webstore/detail/flobro-floating-browser-w/faaljkdndnfoagcmhedlmbgieoocemch)
 [![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/faaljkdndnfoagcmhedlmbgieoocemch.svg)](https://chrome.google.com/webstore/detail/flobro-floating-browser-w/faaljkdndnfoagcmhedlmbgieoocemch)
 [![BCH compliance](https://bettercodehub.com/edge/badge/cornips/flobro?branch=master)](https://bettercodehub.com/)
 [![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips)](https://www.patreon.com/bePatron?u=3907320)  
 <p align="center"><img width="550" alt="Flobro, insert a URL and view the page in a floating window" src="http://flobro.cornips.nl/assets/img/flobro-promo-github.png?"></p>
 
-Do you want to work or game and simultaneously view a video or a webpage, but 'splitting' your screen is no option?
+Do you want to work or game and simultaneously view a video or a webpage?
 Then you need **Flobro**! With Flobro you can add a browser window to your screen that floats on top, so you can work or game and watch at the same time.
 
 Flobro is distraction free, so no browser interface bugging on top.
 
 ## Installation
-[<img src="https://flobro.cornips.nl/assets/img/chrome-web-store-badge.svg" width="300" alt="Available in the Chrome Web Store">](https://chrome.google.com/webstore/detail/zwevend-browser-venster/faaljkdndnfoagcmhedlmbgieoocemch)  
-Go to the [Chrome Web Store](https://chrome.google.com/webstore/detail/zwevend-browser-venster/faaljkdndnfoagcmhedlmbgieoocemch) and install the app.
+[<img src="https://flobro.cornips.nl/assets/img/chrome-web-store-badge.svg" width="300" alt="Available in the Chrome Web Store">][Chrome web store]  
+Go to the [Chrome Web Store][Chrome web store] and install the app.
 
 ## Support the project
 Flobro is free to use and open source, so your help is greatly appreciated.  
