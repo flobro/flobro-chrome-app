@@ -1,3 +1,4 @@
+/*global chrome, analytics */
 const webview = document.getElementById('panel-container'),
     window_title = document.getElementById('document-title'),
     favicon_image = document.getElementById('document-favicon'),
@@ -73,11 +74,15 @@ webview.addEventListener('loadcommit', function(e) {
             },
             function(results){
                 if (results && results[0]) {
-                    favicon_image.src = favicon_image.dataset.src + results[0];
+                    fetch("https://favicongrabber.com/api/grab/" + results[0])
+                        .then(response => response.json())
+                        .then(({ icons }) => {
+                            if (icons[0]?.src)
+                                favicon_image.src = icons[0]?.src
+                        })
                 }
             }
         );
-
     }
 });
 
