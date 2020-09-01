@@ -23,15 +23,15 @@
   },
   "appLabelMinimize": {
     "message": "Zminimalizuj",
-    "description": "The text of tooltop of the minimize button."
+    "description": "The text of tooltip of the minimize button."
   },
   "appLabelSettings": {
     "message": "Ustawienia",
-    "description": "The text of tooltop of the settings button."
+    "description": "The text of tooltip of the settings button."
   },
   "appLabelClose": {
     "message": "Zamknij",
-    "description": "The text of tooltop of the close button."
+    "description": "The text of tooltip of the close button."
   },
   "appLabelSave": {
     "message": "Zapisz",
@@ -43,7 +43,7 @@
   },
   "appLabelTitleBarTimout": {
     "message": "Czas przed zniknięciem menu",
-    "description": "The text of the option handling the timeout in miliseconds before title bar disappears again."
+    "description": "The text of the option handling the timeout in milliseconds before title bar disappears again."
   },
 
 

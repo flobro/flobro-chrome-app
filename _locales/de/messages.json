@@ -23,15 +23,15 @@
   },
   "appLabelMinimize": {
     "message": "Minimieren",
-    "description": "The text of tooltop of the minimize button."
+    "description": "The text of tooltip of the minimize button."
   },
   "appLabelSettings": {
     "message": "Einstellungen",
-    "description": "The text of tooltop of the settings button."
+    "description": "The text of tooltip of the settings button."
   },
   "appLabelClose": {
     "message": "Schließen",
-    "description": "The text of tooltop of the close button."
+    "description": "The text of tooltip of the close button."
   },
   "appLabelSave": {
     "message": "Speichern",

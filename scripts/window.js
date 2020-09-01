@@ -111,6 +111,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     if (sender.id == appID) {
         webview.src = request;
     }
+
     if (typeof request.dontresize !== 'undefined') {
         if (request.dontresize) webview.classList.remove('resize');
         else webview.classList.add('resize');
@@ -132,17 +133,23 @@ window.addEventListener('load', function() {
     var locale = chrome.i18n.getUILanguage();
     var InitLanguage;
     switch(locale) {
-        case 'nl':
+        case 'pl':
             InitLanguage = analytics.EventBuilder.builder()
                 .category('Language')
                 .action('WindowView')
-                .dimension(2, 'Dutch');
+                .dimension(4, 'Polish');
             break;
         case 'de':
             InitLanguage = analytics.EventBuilder.builder()
                 .category('Language')
                 .action('WindowView')
-                .dimension(2, 'German');
+                .dimension(3, 'German');
+            break;
+        case 'nl':
+            InitLanguage = analytics.EventBuilder.builder()
+                .category('Language')
+                .action('WindowView')
+                .dimension(2, 'Dutch');
             break;
         default:
             InitLanguage = analytics.EventBuilder.builder()

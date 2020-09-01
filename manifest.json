@@ -7,7 +7,6 @@
 
    "manifest_version": 2,
    "name": "__MSG_appName__",
-   "short_name": "__MSG_appShortName__",
    "author": "Martijn Cornips",
    "version": "0.2.3",
 
@@ -21,6 +20,6 @@
    },
 
    "minimum_chrome_version": "40",
-   "permissions": [ "webview", "storage", "contextMenus", "alwaysOnTopWindows",  "unlimitedStorage", "browser" ]
+   "permissions": [ "webview", "storage", "contextMenus", "alwaysOnTopWindows", "unlimitedStorage", "browser" ]
 }
 

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - URL's incorrectly being marked as invalid
 - Favicon does not show anything
+- Minor typos in translation descriptions
 
 ### Changed
 - Pin icon controls stay-on-top instead of title bar
@@ -19,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Option to pin title bar
+- Short name reference
+
 
 
 ## [0.2.3] - 2020-04-07
@@ -52,7 +55,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Asking permissions for audio, video and notification
-- Support for mic and webcam use
+- Support for microphone and webcam use
 
 
 
@@ -65,11 +68,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Set drag handle back to whole title bar due to bad UX
 
 ### Added
-- Support for mic and webcam use
+- Support for microphone and webcam use
 - Minimum window dimensions
 
 ### Removed
-- Remove icon in settings window to switch to the browser since the browser is now always visible
+- Switch-to-browser icon since the browser is now always visible
 
 
 

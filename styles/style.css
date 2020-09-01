@@ -181,6 +181,9 @@ a {
 .window-button:nth-child(1n+2) {
     margin-left: 12px;
 }
+.window-button.ml-0 {
+    margin-left: 0 !important;
+}
 
 .window-button:hover {
     opacity: 1;

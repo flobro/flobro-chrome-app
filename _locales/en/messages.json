@@ -1,11 +1,7 @@
 {
   "appName": {
-    "message": "Flobro, floating browser window",
-    "description": "The title of the application, displayed in the web store."
-  },
-  "appShortName": {
     "message": "Flobro",
-    "description": "The short title of the application, displayed in the web store."
+    "description": "The title of the application, displayed in the web store."
   },
   "appDesc": {
     "message": "Do you want to work and simultaneously view a video or a webpage, but splitting your screen is no option? Then you need Flobro!",
@@ -13,6 +9,18 @@
   },
 
 
+  "appLabelMinimize": {
+    "message": "Minimize",
+    "description": "The text of tooltip of the minimize button."
+  },
+  "appLabelSettings": {
+    "message": "Settings",
+    "description": "The text of tooltip of the settings button."
+  },
+  "appLabelClose": {
+    "message": "Close",
+    "description": "The text of tooltip of the close button."
+  },
   "appLabelUrl": {
     "message": "URL",
     "description": "The text of label-element of URL field on the settings page."
@@ -21,29 +29,21 @@
     "message": "Improve app with anonymous data",
     "description": "The text of the tracking option on the settings page."
   },
-  "appLabelMinimize": {
-    "message": "Minimize",
-    "description": "The text of tooltop of the minimize button."
-  },
-  "appLabelSettings": {
-    "message": "Settings",
-    "description": "The text of tooltop of the settings button."
-  },
-  "appLabelClose": {
-    "message": "Close",
-    "description": "The text of tooltop of the close button."
-  },
-  "appLabelSave": {
-    "message": "Save",
-    "description": "The label of save button on the settings page."
-  },
   "appLabelResizeWebview": {
     "message": "Fit webview when title bar appears",
     "description": "The text of the option to fit (resize) webview when title bar appears."
   },
+  "appLabelStayOnTop": {
+    "message": "Default stay-on-top",
+    "description": "The text of the option to fit (resize) webview when title bar appears."
+  },
   "appLabelTitleBarTimout": {
     "message": "Timeout before title bar disappearance",
-    "description": "The text of the option handling the timeout in miliseconds before title bar disappears again."
+    "description": "The text of the option handling the timeout in milliseconds before title bar disappears again."
+  },
+  "appLabelSave": {
+    "message": "Save",
+    "description": "The label of save button on the settings page."
   },
 
 
