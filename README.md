@@ -13,7 +13,8 @@ _Floating browser window_
 [![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/faaljkdndnfoagcmhedlmbgieoocemch.svg)][chrome-web-store-url]
 [![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/faaljkdndnfoagcmhedlmbgieoocemch.svg)][chrome-web-store-url]
 [![BCH compliance](https://bettercodehub.com/edge/badge/flobro/flobro-chrome-app?branch=develop)](https://bettercodehub.com/)
-[![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips)][patreon-url]  
+[![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips)][patreon-url]
+[![Become a Sponsor!](https://img.shields.io/badge/Github-Become%20a%20sponsor-ea4aaa?style=flat-square&logo=github)][github-sponsor-url]
 
 [//]: # "Intro"
 <p align="center"><img width="550" alt="Logo of Flobro followed by the text: Add an on-top browser to your workspace and watch your favorite online videos while working, gaming or studying" src="https://flobro.app/assets/images/flobro-promo-github.png"></p>
@@ -48,6 +49,6 @@ Flobro is free to use and open source, so your help is greatly appreciated.
 ### Become a sponsor  
 I like working on this project for you guys, but unfortunately my time is limited. If you like my work, please become a [Github Sponsor][github-sponsor-url], join me on [Patreon][patreon-url] or [buy me a coffee][buy-me-a-coffee-url] so I can invest more time in this project.
 
-[![Become a Sponsor!](https://img.shields.io/badge/Github-Become%20a%20sponsor-ea4aaa?style=flat-square&logo=github)][github-sponsor-url]  
-[![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips&style=flat-square)][patreon-url]  
+[![Become a Sponsor!](https://img.shields.io/badge/Github-Become%20a%20sponsor-ea4aaa?style=flat-square&logo=github)][github-sponsor-url] 
+[![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips&style=flat-square)][patreon-url] 
 [![Buy me a coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-orange?style=flat-square)][buy-me-a-coffee-url]
