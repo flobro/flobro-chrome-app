@@ -8,7 +8,7 @@
    "manifest_version": 2,
    "name": "__MSG_appName__",
    "author": "Martijn Cornips",
-   "version": "0.2.3",
+   "version": "0.2.4",
 
    "default_locale": "en",
    "description": "__MSG_appDesc__",
