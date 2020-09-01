@@ -15,6 +15,7 @@ Flobro is made and maintained by the following great people.
 
 ## [Contributors](https://github.com/flobro/flobro-chrome-app/graphs/contributors)
 
+* [Brad Marsden](https://github.com/SilentBot1)
 * [John Harvey](https://github.com/john681611)
 * [koostamas](https://github.com/koostamas)
 * [Ricardo Boss](https://github.com/ricardoboss)
