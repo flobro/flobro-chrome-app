@@ -9,8 +9,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - URL's incorrectly being marked as invalid
 - Favicon does not show anything
 
+### Changed
+- Pin icon controls stay-on-top instead of title bar
+- Title bar will now appear on every mouse enter
+
 ### Added
 - Zoom controls
+- Option to disable stay-on-top feature
+
+### Removed
+- Option to pin title bar
 
 
 ## [0.2.3] - 2020-04-07

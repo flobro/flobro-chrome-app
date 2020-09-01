@@ -1,3 +1,4 @@
+/* global chrome, analytics */
 const window_title = document.getElementById('appTxtSettings'),
     alertEl = document.getElementById('alert'),
     formUrl = document.getElementById('request-url-form'),
@@ -7,6 +8,7 @@ const window_title = document.getElementById('appTxtSettings'),
     checkboxImproveByTracking = document.getElementById('improve-by-tracking'),
     txtTrackingHelpText = document.getElementById('tracking-help-text'),
     resizeOption = document.getElementById('resize-option'),
+    stayOnTopOption = document.getElementById('stay-on-top-option'),
     disappearTimeoutOption = document.getElementById('titlebartimeout-option'),
     disappearTimeoutValue = document.getElementById('titlebartimeout-option-value'),
     localeObjects = document.querySelectorAll('.locale'),
@@ -46,6 +48,11 @@ chrome.storage.sync.get(function(items) {
         resizeOption.checked = !items.dontresize;
     else
         resizeOption.checked = true;
+
+    if (items.stayontop !== undefined)
+        stayOnTopOption.checked = items.stayontop;
+    else
+        stayOnTopOption.checked = true;
 
     if (items.titlebartimeout !== undefined){
         disappearTimeoutOption.value = items.titlebartimeout;
@@ -140,23 +147,42 @@ formUrl.addEventListener("submit", function(e){
 });
 
 resizeOption.onchange = function() {
-    let trackOptionSet, option;
+    let resizeOptionSet, option;
     if(resizeOption.checked) {
-        trackOptionSet = analytics.EventBuilder.builder()
+        resizeOptionSet = analytics.EventBuilder.builder()
             .category('App')
             .action('Switch resize webview')
             .dimension(1, 'on');
         option = false;
     } else {
-        trackOptionSet = analytics.EventBuilder.builder()
+        resizeOptionSet = analytics.EventBuilder.builder()
             .category('App')
             .action('Switch resize webview')
             .dimension(2, 'off');
         option = true;
     }
-    window.tracker.send(trackOptionSet);
+    window.tracker.send(resizeOptionSet);
     chrome.storage.sync.set({ dontresize: option });
     chrome.runtime.sendMessage({'dontresize': option});
+};
+
+stayOnTopOption.onchange = function() {
+    let stayOnTopOptionSet, option;
+    if(stayOnTopOption.checked) {
+        stayOnTopOptionSet = analytics.EventBuilder.builder()
+            .category('App')
+            .action('Switch stay on top')
+            .dimension(1, 'on');
+        option = true;
+    } else {
+        stayOnTopOptionSet = analytics.EventBuilder.builder()
+            .category('App')
+            .action('Switch stay on top')
+            .dimension(2, 'off');
+        option = false;
+    }
+    window.tracker.send(stayOnTopOptionSet);
+    chrome.storage.sync.set({ stayontop: option });
 };
 
 disappearTimeoutOption.oninput = function() {

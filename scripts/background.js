@@ -1,5 +1,5 @@
-var storageData;
-
+/* global chrome */
+let storageData;
 const settingsBoundaries = { width: 450, height: 630, minWidth: 360, minHeight: 630 };
 const browserBoundaries = { width: 500, height: 340, minWidth: 170, minHeight: 38 };
 
@@ -22,7 +22,7 @@ function createWindow(param) {
         frame: param.frame,
         id: param.id,
         resizable: true,
-        alwaysOnTop: false,
+        alwaysOnTop: storageData?.stayontop ?? true,
         outerBounds: param.outerBounds,
     }, function (appwindow) {
 
@@ -57,13 +57,14 @@ function createWindow(param) {
 
             function disappearBar() {
                 clearTimeout(appwindow.contentWindow.removeButtonsTimer);
-                if (!window.removeButtonsForbidden && !appwindow.contentWindow.pinnedTitleBar) {
+                if (!window.removeButtonsForbidden) {
+                    const storageTitleBarTimeOut = storageData?.titlebartimeout ?? 1.5;
                     appwindow.contentWindow.removeButtonsTimer = setTimeout(() => {
                         buttonsObj.classList.remove('fadein');
                         buttonsObj.classList.add('fadeout');
                         if (webview)
                             webview.classList.remove('movedown');
-                    }, (storageData && storageData.titlebartimeout !== 'undefined' && storageData.titlebartimeout > .5 ? storageData.titlebartimeout : 1.5)*1000);
+                    }, (storageTitleBarTimeOut > .5 ? storageTitleBarTimeOut : 1.5)*1000);
                 }
             }
 
@@ -94,8 +95,13 @@ function createWindow(param) {
                 };
             }
             if (pinObj){
+                if (storageData?.stayontop)
+                    pinObj.classList.add('pinned');
+                else
+                    pinObj.classList.remove('pinned');
+
                 pinObj.onclick = function () {
-		    appwindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
+                    appwindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
                 };
             }
             if (settingsObj){
@@ -116,6 +122,7 @@ function createWindow(param) {
                     appwindow.contentWindow.close();
                 };
             }
+
             toggleFullscreen = function () {
                 if (appwindow.isFullscreen()) {
                     appwindow.restore();
@@ -126,21 +133,17 @@ function createWindow(param) {
 
             // Move title bar in and out
             buttonsObj.classList.add('fadeout');
-            if (!storageData.dontresize && webview) webview.classList.add('resize');
+            if (!storageData?.dontresize && webview) webview.classList.add('resize');
             buttonsObj.onmousemove = function () {
                 disappearBar();
             }
             bodyObj.onmousemove = function () {
-                clearTimeout(appwindow.contentWindow.removeButtonsTimer);
-
                 buttonsObj.classList.remove('fadeout');
                 buttonsObj.classList.add('fadein');
                 if (webview)
                     webview.classList.add('movedown');
 
-                if (!appwindow.contentWindow.pinnedTitleBar) {
-                    disappearBar();
-                }
+                disappearBar();
             }
 
             for (let i = 0; i < buttonsObj.children.length; i++) {
@@ -156,27 +159,6 @@ function createWindow(param) {
         }
 	});
 }
-
-
-window.addEventListener('keydown', function(e) {
-    console.log(e.key);
-
-    // // Define Windows CTRL of Mac Meta key
-    // const actionKey = window.navigator.platform === 'MacIntel' ? e.metaKey : e.ctrlKey;
-
-    // // Zoom out
-    // if (actionKey && e.key === "PageDown") {
-    //     webview.setZoom( webview_zoom_level -= .1 );
-    // }
-    // // Zoom in
-    // if (actionKey && e.key === "PageUp") {
-    //     webview.setZoom( webview_zoom_level += .1 );
-    // }
-    // // Reset zoom
-    // if (actionKey && e.key === "0") {
-    //     webview.setZoom( webview_zoom_level = 1 );
-    // }
-});
 
 chrome.runtime.onMessageExternal.addListener(function (request, sender) {
     if (typeof request.launch === 'undefined') {
@@ -200,7 +182,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender) {
 // Open appropriate window on app launch
 chrome.app.runtime.onLaunched.addListener(function () {
     let launchOpen = { url: 'options.html', id: 'options', outerBounds: settingsBoundaries };
-    if (storageData && storageData.url !== 'undefined' && storageData.url !== '')
+    if (storageData?.url ?? false)
         launchOpen = { url: 'window.html', id: 'window', outerBounds: browserBoundaries };
     createWindow(launchOpen);
 });

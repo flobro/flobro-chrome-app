@@ -85,7 +85,15 @@ a {
 
 .position.fadeout {
     opacity: 0;
-    top: -33px;
+    top: -38px;
+}
+.position.fadeout::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
 }
 
 .drag-handle {
@@ -141,6 +149,9 @@ a {
     color: white;
 }
 
+#pin-window-button.pinned {
+    height: 23px !important;
+}
 #pin-window-button.pinned .icon {
     transform: rotate(45deg) translate(2px, 2px);
     fill: darkturquoise;
