@@ -1,4 +1,6 @@
-# Flobro, floating browser window
+# Flobro
+
+_Floating browser window_
 
 [Chrome web store]: https://chrome.google.com/webstore/detail/faaljkdndnfoagcmhedlmbgieoocemch
 [![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/faaljkdndnfoagcmhedlmbgieoocemch.svg)](https://chrome.google.com/webstore/detail/flobro-floating-browser-w/faaljkdndnfoagcmhedlmbgieoocemch)
