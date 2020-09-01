@@ -3,5 +3,9 @@
 #
 # Use git ls-files '<pattern>' without a / prefix to see the list of matching files.
 
-/CODEOWNERS @cornips
-/AUTHORS @cornips
+/.github/CODEOWNERS @cornips
+/AUTHORS.md @cornips
+/CODE_OF_CONDUCT.md @cornips
+/CONTRIBUTING.md @cornips
+/FUNDING.yml @cornips
+/LICENSE @cornips
