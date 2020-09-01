@@ -128,7 +128,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/cornips/flobro/compare/0.2.3...develop
+[Unreleased]: https://github.com/cornips/flobro/compare/0.2.4...develop
+[0.2.4]: https://github.com/cornips/flobro/compare/0.2.3...0.2.4
 [0.2.3]: https://github.com/cornips/flobro/compare/0.2.2...0.2.3
 [0.2.2]: https://github.com/cornips/flobro/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/cornips/flobro/compare/0.2.0...0.2.1
