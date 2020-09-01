@@ -1,22 +1,14 @@
+/*global chrome, analytics */
 const webview = document.getElementById('panel-container'),
     window_title = document.getElementById('document-title'),
     favicon_image = document.getElementById('document-favicon'),
-    minimizeObj = document.getElementById('minimize-window-button'),
-    settingsObj = document.getElementById('settings-window-button'),
-    closeObj = document.getElementById('close-window-button'),
-    bodyObj = document.querySelector('body'),
-    buttonsObj = document.getElementById('buttons'),
     appID = chrome.i18n.getMessage('@@extension_id'), // this app
     NODE_TLS_REJECT_UNAUTHORIZED = '0';// allow self-signed certificates
+var webview_zoom_level = null;
 
 // Set locale texts
 document.querySelectorAll('.locale').forEach(function(locale){ locale.innerText = chrome.i18n.getMessage(locale.id); });
 // Exception for element who can't use .locale
-document.title = chrome.i18n.getMessage('appName');
-window_title.innerText = chrome.i18n.getMessage('appName');
-minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
-settingsObj.title = chrome.i18n.getMessage('appLabelSettings');
-closeObj.title = chrome.i18n.getMessage('appLabelClose');
 
 // Get URL
 window.addEventListener('load', function(e) {
@@ -24,6 +16,7 @@ window.addEventListener('load', function(e) {
         if (items.url !== undefined && items.url !== ''){
             window.tracker.sendEvent('Browser', 'Load URL', items.url);
             webview.setAttribute('src', items.url);
+            webview.getZoom(function(zoomFactor){webview_zoom_level = zoomFactor;});
         } else{
             var SwitchBecauseNoUrl = analytics.EventBuilder.builder()
                 .category('App')
@@ -81,11 +74,15 @@ webview.addEventListener('loadcommit', function(e) {
             },
             function(results){
                 if (results && results[0]) {
-                    favicon_image.src = favicon_image.dataset.src + results[0];
+                    fetch("https://favicongrabber.com/api/grab/" + results[0])
+                        .then(response => response.json())
+                        .then(({ icons }) => {
+                            if (icons[0]?.src)
+                                favicon_image.src = icons[0]?.src
+                        })
                 }
             }
         );
-
     }
 });
 
@@ -114,6 +111,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     if (sender.id == appID) {
         webview.src = request;
     }
+
     if (typeof request.dontresize !== 'undefined') {
         if (request.dontresize) webview.classList.remove('resize');
         else webview.classList.add('resize');
@@ -135,17 +133,23 @@ window.addEventListener('load', function() {
     var locale = chrome.i18n.getUILanguage();
     var InitLanguage;
     switch(locale) {
-        case 'nl':
+        case 'pl':
             InitLanguage = analytics.EventBuilder.builder()
                 .category('Language')
                 .action('WindowView')
-                .dimension(2, 'Dutch');
+                .dimension(4, 'Polish');
             break;
         case 'de':
             InitLanguage = analytics.EventBuilder.builder()
                 .category('Language')
                 .action('WindowView')
-                .dimension(2, 'German');
+                .dimension(3, 'German');
+            break;
+        case 'nl':
+            InitLanguage = analytics.EventBuilder.builder()
+                .category('Language')
+                .action('WindowView')
+                .dimension(2, 'Dutch');
             break;
         default:
             InitLanguage = analytics.EventBuilder.builder()
@@ -154,6 +158,4 @@ window.addEventListener('load', function() {
                 .dimension(1, 'English');
     }
     window.tracker.send(InitLanguage);
-
-
 });

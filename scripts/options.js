@@ -1,3 +1,4 @@
+/* global chrome, analytics */
 const window_title = document.getElementById('appTxtSettings'),
     alertEl = document.getElementById('alert'),
     formUrl = document.getElementById('request-url-form'),
@@ -7,11 +8,10 @@ const window_title = document.getElementById('appTxtSettings'),
     checkboxImproveByTracking = document.getElementById('improve-by-tracking'),
     txtTrackingHelpText = document.getElementById('tracking-help-text'),
     resizeOption = document.getElementById('resize-option'),
+    stayOnTopOption = document.getElementById('stay-on-top-option'),
     disappearTimeoutOption = document.getElementById('titlebartimeout-option'),
     disappearTimeoutValue = document.getElementById('titlebartimeout-option-value'),
     localeObjects = document.querySelectorAll('.locale'),
-    minimizeObj = document.getElementById('minimize-window-button'),
-    closeObj = document.getElementById('close-window-button'),
     versionNumber = document.getElementById('version-number'),
     locale_appAlertSomethingWrong = chrome.i18n.getMessage('appAlertSomethingWrong'),
     validUrlCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&\'()*+,;=';
@@ -21,8 +21,6 @@ localeObjects.forEach(function(locale){ locale.innerText = chrome.i18n.getMessag
 // Exception for element who can't use .locale
 document.title = chrome.i18n.getMessage('appLabelSettings');
 window_title.innerText = chrome.i18n.getMessage('appLabelSettings');
-if (minimizeObj) minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
-if (closeObj) closeObj.title = chrome.i18n.getMessage('appLabelClose');
 if (inputUrl) inputUrl.placeholder = chrome.i18n.getMessage('appPlaceholderUrl');
 
 // add version number
@@ -51,6 +49,11 @@ chrome.storage.sync.get(function(items) {
     else
         resizeOption.checked = true;
 
+    if (items.stayontop !== undefined)
+        stayOnTopOption.checked = items.stayontop;
+    else
+        stayOnTopOption.checked = true;
+
     if (items.titlebartimeout !== undefined){
         disappearTimeoutOption.value = items.titlebartimeout;
         disappearTimeoutValue.innerText = disappearTimeoutOption.value;
@@ -67,12 +70,22 @@ inputUrl.addEventListener('focus', function(e) {
 
 // Validate URL
 function validURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    // Validating scheme:[//[user:password@]host[:port]]path[?query][#fragment]
+    const pattern = new RegExp(
+        '^'+ // start
+            '(https?:\\/\\/)?'+ // scheme
+            '(\\w+:\\w+@)?'+ // user:password
+            '('+
+                '(([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                '([\\d\\w-_~][^.]+)|'+ // OR custom hosts domain
+                '((\\d{1,3}\\.){3}\\d{1,3})'+ // OR ip (v4) address
+            ')'+
+            '(\\:\\d+)?'+ // port
+            '(\\/[-a-z\\d%_.~+]*)*'+ // path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?'+ // fragment locator
+        '$' // end
+    ,'is');
   return !!pattern.test(str);
 }
 function validateEnteredUrl(elm, event) {
@@ -134,23 +147,42 @@ formUrl.addEventListener("submit", function(e){
 });
 
 resizeOption.onchange = function() {
-    let trackOptionSet, option;
+    let resizeOptionSet, option;
     if(resizeOption.checked) {
-        trackOptionSet = analytics.EventBuilder.builder()
+        resizeOptionSet = analytics.EventBuilder.builder()
             .category('App')
             .action('Switch resize webview')
             .dimension(1, 'on');
         option = false;
     } else {
-        trackOptionSet = analytics.EventBuilder.builder()
+        resizeOptionSet = analytics.EventBuilder.builder()
             .category('App')
             .action('Switch resize webview')
             .dimension(2, 'off');
         option = true;
     }
-    window.tracker.send(trackOptionSet);
+    window.tracker.send(resizeOptionSet);
     chrome.storage.sync.set({ dontresize: option });
     chrome.runtime.sendMessage({'dontresize': option});
+};
+
+stayOnTopOption.onchange = function() {
+    let stayOnTopOptionSet, option;
+    if(stayOnTopOption.checked) {
+        stayOnTopOptionSet = analytics.EventBuilder.builder()
+            .category('App')
+            .action('Switch stay on top')
+            .dimension(1, 'on');
+        option = true;
+    } else {
+        stayOnTopOptionSet = analytics.EventBuilder.builder()
+            .category('App')
+            .action('Switch stay on top')
+            .dimension(2, 'off');
+        option = false;
+    }
+    window.tracker.send(stayOnTopOptionSet);
+    chrome.storage.sync.set({ stayontop: option });
 };
 
 disappearTimeoutOption.oninput = function() {

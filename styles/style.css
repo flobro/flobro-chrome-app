@@ -1,3 +1,7 @@
+:root {
+    --action-bar-items: 8;
+}
+
 html {
     height: 100%;
 }
@@ -81,13 +85,21 @@ a {
 
 .position.fadeout {
     opacity: 0;
-    top: -33px;
+    top: -38px;
+}
+.position.fadeout::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
 }
 
 .drag-handle {
     -webkit-app-region: drag;
     position: absolute;
-    width: calc(100% - 165px);
+    width: calc(100% - (var(--action-bar-items) * 33px));
     height: 100%;
     left: 0;
     top: 0;
@@ -107,7 +119,7 @@ a {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: calc(100% - 173px);
+    max-width: calc(100% - (var(--action-bar-items) * 33px) - 8px);
     float: left;
 }
 #document-favicon {
@@ -137,6 +149,9 @@ a {
     color: white;
 }
 
+#pin-window-button.pinned {
+    height: 23px !important;
+}
 #pin-window-button.pinned .icon {
     transform: rotate(45deg) translate(2px, 2px);
     fill: darkturquoise;
@@ -165,6 +180,9 @@ a {
 
 .window-button:nth-child(1n+2) {
     margin-left: 12px;
+}
+.window-button.ml-0 {
+    margin-left: 0 !important;
 }
 
 .window-button:hover {

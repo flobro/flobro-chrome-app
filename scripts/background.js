@@ -1,5 +1,5 @@
-var storageData;
-
+/* global chrome */
+let storageData;
 const settingsBoundaries = { width: 450, height: 630, minWidth: 360, minHeight: 630 };
 const browserBoundaries = { width: 500, height: 340, minWidth: 170, minHeight: 38 };
 
@@ -22,14 +22,25 @@ function createWindow(param) {
         frame: param.frame,
         id: param.id,
         resizable: true,
-        alwaysOnTop: true,
+        alwaysOnTop: storageData?.stayontop ?? true,
         outerBounds: param.outerBounds,
     }, function (appwindow) {
+
+        const addStyle = function (styleString) {
+          const style = appwindow.contentWindow.document.createElement('style');
+          style.textContent = styleString;
+          appwindow.contentWindow.document.head.append(style);
+        }
 
         appwindow.contentWindow.onload = function () {
 
             const bodyObj = appwindow.contentWindow.document.querySelector('body'),
                 buttonsObj = appwindow.contentWindow.document.getElementById('buttons'),
+                window_title = appwindow.contentWindow.document.getElementById('document-title'),
+                actionBar = appwindow.contentWindow.document.getElementsByClassName('actions')[0],
+                zoomInObj = appwindow.contentWindow.document.getElementById('zoom-in-window-button'),
+                zoomResetObj = appwindow.contentWindow.document.getElementById('zoom-reset-window-button'),
+                zoomOutObj = appwindow.contentWindow.document.getElementById('zoom-out-window-button'),
                 aspectObj = appwindow.contentWindow.document.getElementById('aspect-window-button'),
                 pinObj = appwindow.contentWindow.document.getElementById('pin-window-button'),
                 minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
@@ -37,45 +48,81 @@ function createWindow(param) {
                 settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
                 webview = appwindow.contentWindow.document.getElementById('panel-container');
 
-                function disappearBar() {
-                    clearTimeout(appwindow.contentWindow.removeButtonsTimer);
-                    if (!window.removeButtonsForbidden && !appwindow.contentWindow.pinnedTitleBar) {
-                        appwindow.contentWindow.removeButtonsTimer = setTimeout(() => {
-                            buttonsObj.classList.remove('fadein');
-                            buttonsObj.classList.add('fadeout');
-                            if (webview)
-                                webview.classList.remove('movedown');
-                        }, (storageData && storageData.titlebartimeout !== 'undefined' && storageData.titlebartimeout > .5 ? storageData.titlebartimeout : 1.5)*1000);
-                    }
-                }
+            // Set action bar items count
+            addStyle(`
+              :root {
+                --action-bar-items: ${actionBar.children.length};
+              }
+            `);
 
-            closeObj.onclick = function () {
-                appwindow.contentWindow.close();
-            };
+            function disappearBar() {
+                clearTimeout(appwindow.contentWindow.removeButtonsTimer);
+                if (!window.removeButtonsForbidden) {
+                    const storageTitleBarTimeOut = storageData?.titlebartimeout ?? 1.5;
+                    appwindow.contentWindow.removeButtonsTimer = setTimeout(() => {
+                        buttonsObj.classList.remove('fadein');
+                        buttonsObj.classList.add('fadeout');
+                        if (webview)
+                            webview.classList.remove('movedown');
+                    }, (storageTitleBarTimeOut > .5 ? storageTitleBarTimeOut : 1.5)*1000);
+                }
+            }
+
+            appwindow.contentWindow.document.title = chrome.i18n.getMessage('appName');
+
+            if (window_title) {
+                window_title.innerText = chrome.i18n.getMessage('appName');
+            }
+            if (zoomInObj){
+                zoomInObj.onclick = function () {
+            		webview.setZoom( appwindow.contentWindow.webview_zoom_level += .1 );
+                };
+            }
+            if (zoomResetObj){
+                zoomResetObj.onclick = function () {
+                    webview.setZoom( appwindow.contentWindow.webview_zoom_level = 1 );
+                };
+            }
+            if (zoomOutObj){
+                zoomOutObj.onclick = function () {
+                    webview.setZoom( appwindow.contentWindow.webview_zoom_level -= .1 );
+                };
+            }
             if (aspectObj){
                 aspectObj.onclick = function () {
-            		var width = appwindow.innerBounds.width;
+                    var width = appwindow.innerBounds.width;
                     appwindow.innerBounds.height = Math.round(width * (9/16));
                 };
             }
             if (pinObj){
+                if (storageData?.stayontop)
+                    pinObj.classList.add('pinned');
+                else
+                    pinObj.classList.remove('pinned');
+
                 pinObj.onclick = function () {
-                    if (pinObj.classList.toggle('pinned'))
-                        appwindow.contentWindow.pinnedTitleBar = true;
-                    else {
-                        appwindow.contentWindow.pinnedTitleBar = false;
-                        disappearBar();
-                    }
+                    appwindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
                 };
             }
             if (settingsObj){
+                settingsObj.title = chrome.i18n.getMessage('appLabelSettings');
                 settingsObj.onclick = function () {
                     appwindow.contentWindow.chrome.runtime.sendMessage({'open': 'options'});
                 };
             }
-            minimizeObj.onclick = function () {
-                appwindow.minimize();
-            };
+            if (minimizeObj){
+                minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
+                minimizeObj.onclick = function () {
+                    appwindow.minimize();
+                };
+            }
+            if (closeObj){
+                closeObj.title = chrome.i18n.getMessage('appLabelClose');
+                closeObj.onclick = function () {
+                    appwindow.contentWindow.close();
+                };
+            }
+
             toggleFullscreen = function () {
                 if (appwindow.isFullscreen()) {
                     appwindow.restore();
@@ -86,21 +133,17 @@ function createWindow(param) {
 
             // Move title bar in and out
             buttonsObj.classList.add('fadeout');
-            if (!storageData.dontresize && webview) webview.classList.add('resize');
+            if (!storageData?.dontresize && webview) webview.classList.add('resize');
             buttonsObj.onmousemove = function () {
                 disappearBar();
             }
             bodyObj.onmousemove = function () {
-                clearTimeout(appwindow.contentWindow.removeButtonsTimer);
-
                 buttonsObj.classList.remove('fadeout');
                 buttonsObj.classList.add('fadein');
                 if (webview)
                     webview.classList.add('movedown');
 
-                if (!appwindow.contentWindow.pinnedTitleBar) {
-                    disappearBar();
-                }
+                disappearBar();
             }
 
             for (let i = 0; i < buttonsObj.children.length; i++) {
@@ -139,7 +182,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender) {
 // Open appropriate window on app launch
 chrome.app.runtime.onLaunched.addListener(function () {
     let launchOpen = { url: 'options.html', id: 'options', outerBounds: settingsBoundaries };
-    if (storageData && storageData.url !== 'undefined' && storageData.url !== '')
+    if (storageData?.url ?? false)
         launchOpen = { url: 'window.html', id: 'window', outerBounds: browserBoundaries };
     createWindow(launchOpen);
 });

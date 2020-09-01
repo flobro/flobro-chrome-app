@@ -1,11 +1,7 @@
 {
   "appName": {
-    "message": "Flobro, zwevend browser venster",
-    "description": "The title of the application, displayed in the web store."
-  },
-  "appShortName": {
     "message": "Flobro",
-    "description": "The short title of the application, displayed in the web store."
+    "description": "The title of the application, displayed in the web store."
   },
   "appDesc": {
     "message": "Wil je werken and tegelijk een video of webpagina bekijken, maar je scherm splitsen is geen optie? Dan is Flobro wat je nodig hebt!",
@@ -13,6 +9,18 @@
   },
 
 
+  "appLabelMinimize": {
+    "message": "Minimaliseren",
+    "description": "The text of tooltip of the minimize button."
+  },
+  "appLabelSettings": {
+    "message": "Instellingen",
+    "description": "The text of tooltip of the settings button."
+  },
+  "appLabelClose": {
+    "message": "Sluiten",
+    "description": "The text of tooltip of the close button."
+  },
   "appLabelUrl": {
     "message": "URL",
     "description": "The text of label-element of URL field on the settings page."
@@ -21,29 +29,21 @@
     "message": "Verbeter app met anonieme data",
     "description": "The text of the tracking option on the settings page."
   },
-  "appLabelMinimize": {
-    "message": "Minimaliseren",
-    "description": "The text of tooltop of the minimize button."
-  },
-  "appLabelSettings": {
-    "message": "Instellingen",
-    "description": "The text of tooltop of the settings button."
-  },
-  "appLabelClose": {
-    "message": "Sluiten",
-    "description": "The text of tooltop of the close button."
-  },
-  "appLabelSave": {
-    "message": "Opslaan",
-    "description": "The label of save button on the settings page."
-  },
   "appLabelResizeWebview": {
     "message": "Pas formaat aan bij verschijnen van titelbalk",
     "description": "The text of the option to fit (resize) webview when title bar appears."
   },
+  "appLabelStayOnTop": {
+    "message": "Blijf standaard het bovenste venster",
+    "description": "The text of the option to fit (resize) webview when title bar appears."
+  },
   "appLabelTitleBarTimout": {
     "message": "Tijd tot het verdwijnen van de titelbalk",
-    "description": "The text of the option handling the timeout in miliseconds before title bar disappears again."
+    "description": "The text of the option handling the timeout in milliseconds before title bar disappears again."
+  },
+  "appLabelSave": {
+    "message": "Opslaan",
+    "description": "The label of save button on the settings page."
   },
 
 
