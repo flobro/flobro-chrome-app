@@ -20,7 +20,7 @@ If you are eager to start contributing code right away, we have a list of [good 
 There are other ways you can contribute without writing a single line of code. Here are a few things you can do to help out:
 
 1. **Replying and handling open issues.** Some of the issues we get may lack necessary information. You can help out by guiding people through the process of filling out the issue template, asking for clarifying information, or pointing them to existing issues that match their description of the problem.
-2. **Reviewing pull requests for the docs.** Reviewing [documentation updates](https://github.com/flobro/flobro.app/pulls) can be as simple as checking for spelling and grammar. If you encounter situations that can be explained better in the docs, click **Edit** at the top of most docs pages to get started with your own contribution.
+2. **Reviewing pull requests for the docs.** Reviewing [documentation updates](https://github.com/flobro/flobro-website/pulls) can be as simple as checking for spelling and grammar. If you encounter situations that can be explained better in the docs, click **Edit** at the top of most docs pages to get started with your own contribution.
 3. **Help people write test plans.** Some pull requests sent to the main repository may lack a proper test plan. These help reviewers understand how the change was tested, and can speed up the time it takes for a contribution to be accepted.
 
 Each of these tasks is highly impactful, and maintainers will greatly appreciate your help.
@@ -35,13 +35,13 @@ The main repository, <https://github.com/flobro/flobro-chrome-app>, contains the
 
 There are a few other repositories you might want to familiarize yourself with:
 
-* **Flobro.app website** which contains the source code for the website, including the documentation, located at <https://github.com/flobro/flobro.app>
+* **Flobro website** which contains the source code for the website, including the documentation, located at <https://github.com/flobro/flobro-website>
 
 Browsing through these repositories should provide some insight into how the Flobro open source project is managed.
 
 ## Helping with Documentation
 
-The Flobro documentation is hosted as part of the Flobro website repository at <https://github.com/flobro/flobro.app>. The website itself is located at <https://flobro.app/> and it is built using [Docusaurus](https://docusaurus.io/). If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the upper right of most pages in the website.
+The Flobro documentation is hosted as part of the Flobro website repository at <https://github.com/flobro/flobro-website>. The website itself is located at <https://flobro.app/> and it is built using [Docusaurus](https://docusaurus.io/). If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the upper right of most pages in the website.
 
 If you are adding new functionality or introducing a change in behavior, we will ask you to update the documentation to reflect your changes.
 
@@ -54,7 +54,7 @@ The process of proposing a change to Flobro can be summarized as follows:
 1. Fork the Flobro repository and create your branch from `develop`.
 2. Make the desired changes to Flobro sources. Test with Chrome [running in Developer mode](https://developer.chrome.com/extensions/faq#:~:text=You%20can%20start%20by%20turning,a%20packaged%20extension%2C%20and%20more.).
 3. If you've added code that should be tested, add tests.
-4. If applicable, update the documentation, which lives in [another repo](https://github.com/flobro/flobro.app).
+4. If applicable, update the documentation, which lives in [another repo](https://github.com/flobro/flobro-website).
 5. Ensure the test suite passes, either locally or on CI once you opened a pull request.
 6. Make sure your code lints (for example via `yarn lint --fix`).
 7. Push the changes to your fork.
