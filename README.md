@@ -46,6 +46,9 @@ You can also support the project by translating. Please [join the project on ![T
 ## Support the project
 Flobro is free to use and open source, so your help is greatly appreciated.
 
+### Give a 5-star review on Chrome Web Store
+If you like the app, please give it a 5-star review on the [Chrome Web Store][chrome-web-store-url] 🤩. 
+
 ### Become a sponsor  
 I like working on this project for you guys, but unfortunately my time is limited. If you like my work, please become a [Github Sponsor][github-sponsor-url], join me on [Patreon][patreon-url] or [buy me a coffee][buy-me-a-coffee-url] so I can invest more time in this project.
 
