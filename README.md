@@ -25,7 +25,7 @@ Then you need **Flobro**! With Flobro you can add a browser window to your scree
 Flobro is distraction free, so no browser interface bugging on top.
 
 ## Installation
-[<img src="https://flobro.cornips.nl/assets/img/chrome-web-store-badge.svg" width="300" alt="Available in the Chrome Web Store">][chrome-web-store-url]  
+[<img src="https://flobro.app/assets/images/chrome-web-store-badge.svg" width="300" alt="Available in the Chrome Web Store">][chrome-web-store-url]  
 Go to the [Chrome Web Store][chrome-web-store-url] and install the app.
 
 ## Contribute to the project
