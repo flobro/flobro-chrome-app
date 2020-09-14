@@ -31,7 +31,6 @@ function createWindow(param) {
           appWindow.contentWindow.document.head.append(style);
         }
 
-                pinObj = appwindow.contentWindow.document.getElementById('pin-window-button'),
         appWindow.contentWindow.onload = function () {
 
             const bodyObj = appWindow.contentWindow.document.querySelector('body'),
@@ -44,6 +43,7 @@ function createWindow(param) {
                 zoomResetObj = appWindow.contentWindow.document.getElementById('zoom-reset-window-button'),
                 zoomOutObj = appWindow.contentWindow.document.getElementById('zoom-out-window-button'),
                 aspectObj = appWindow.contentWindow.document.getElementById('aspect-window-button'),
+                alwaysOnTopObj = appWindow.contentWindow.document.getElementById('panel-always-on-top-option'),
                 minimizeObj = appWindow.contentWindow.document.getElementById('minimize-window-button'),
                 closeObj = appWindow.contentWindow.document.getElementById('close-window-button'),
                 settingsObj = appWindow.contentWindow.document.getElementById('settings-window-button'),
@@ -95,14 +95,14 @@ function createWindow(param) {
                     appWindow.innerBounds.height = Math.round(width * (9/16));
                 };
             }
-            if (pinObj){
-                if (storageData?.stayontop)
-                    pinObj.classList.add('pinned');
+            if (alwaysOnTopObj){
+                if (appWindow.alwaysOnTop)
+                    alwaysOnTopObj.checked = true;
                 else
-                    pinObj.classList.remove('pinned');
+                    alwaysOnTopObj.checked = false;
 
-                pinObj.onclick = function () {
-                    appwindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
+                alwaysOnTopObj.onclick = function () {
+                    appWindow.setAlwaysOnTop( alwaysOnTopObj.checked );
                 };
             }
             if (settingsObj){

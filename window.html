@@ -4,6 +4,7 @@
     <title>appName</title>
     <link rel="stylesheet" href="styles/flaticon.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/options-panel.css">
 </head>
 <body id="WindowView">
     <webview class="background webview" id="panel-container" src="about:blank" partition="persist:framelessapps" frameborder="0"></webview>
@@ -30,11 +31,6 @@
                     <use href="assets/icons.svg#aspect" />
                 </svg>
             </button>
-            <button class="window-button pinned" title="Toggle window stay-on-top" id="pin-window-button">
-                <svg class="icon">
-                    <use href="assets/icons.svg#push-pin" />
-                </svg>
-            </button>
             <button class="window-button" title="Minimize" id="minimize-window-button">
                 <svg class="icon">
                     <use href="assets/icons.svg#line" />
@@ -50,6 +46,52 @@
                     <use href="assets/icons.svg#close" />
                 </svg>
             </button>
+            <div class="options-panel">
+                <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="panel-always-on-top-option" class="toggleBox" checked />
+                            <span class="toggle" title="Toggle window on-top"><span></span></span>
+                            <span class="locale" id="appLabelAlwaysOnTop"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <button class="window-button" title="Set aspect ratio to 16:9" id="panel-aspect-window-option">
+                                <svg class="icon">
+                                    <use href="assets/icons.svg#aspect" />
+                                </svg>
+                            </button>
+                            <span class="locale" id="appLabelAspectRatioTo169"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <span>Zoom:</span>
+                        <div class="zoom-controls">
+                            <button class="zoom-control window-button ml-0" title="Zoom in" id="zoom-in-window-button">
+                                +
+                            </button>
+                            <button class="zoom-control window-button ml-0" title="Reset zoom" id="zoom-reset-window-button">
+                                0
+                            </button>
+                            <button class="zoom-control window-button ml-0" title="Zoom out" id="zoom-out-window-button">
+                                -
+                            </button>
+                        </div>
+                    </li>
+                    <li><hr></li>
+                    <li>
+                        <label>
+                            <button class="window-button" title="Open settings" id="panel-settings-window-button">
+                                <svg class="icon">
+                                    <use href="assets/icons.svg#cogwheel" />
+                                </svg>
+                            </button>
+                            <span class="locale" id="appLabelOpenSettings"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="drag-handle"></div>
     </div>
