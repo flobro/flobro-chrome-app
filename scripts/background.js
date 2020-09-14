@@ -24,29 +24,30 @@ function createWindow(param) {
         resizable: true,
         alwaysOnTop: storageData?.stayontop ?? true,
         outerBounds: param.outerBounds,
-    }, function (appwindow) {
-
+    }, function (appWindow) {
         const addStyle = function (styleString) {
-          const style = appwindow.contentWindow.document.createElement('style');
+          const style = appWindow.contentWindow.document.createElement('style');
           style.textContent = styleString;
-          appwindow.contentWindow.document.head.append(style);
+          appWindow.contentWindow.document.head.append(style);
         }
 
-        appwindow.contentWindow.onload = function () {
-
-            const bodyObj = appwindow.contentWindow.document.querySelector('body'),
-                buttonsObj = appwindow.contentWindow.document.getElementById('buttons'),
-                window_title = appwindow.contentWindow.document.getElementById('document-title'),
-                actionBar = appwindow.contentWindow.document.getElementsByClassName('actions')[0],
-                zoomInObj = appwindow.contentWindow.document.getElementById('zoom-in-window-button'),
-                zoomResetObj = appwindow.contentWindow.document.getElementById('zoom-reset-window-button'),
-                zoomOutObj = appwindow.contentWindow.document.getElementById('zoom-out-window-button'),
-                aspectObj = appwindow.contentWindow.document.getElementById('aspect-window-button'),
                 pinObj = appwindow.contentWindow.document.getElementById('pin-window-button'),
-                minimizeObj = appwindow.contentWindow.document.getElementById('minimize-window-button'),
-                closeObj = appwindow.contentWindow.document.getElementById('close-window-button'),
-                settingsObj = appwindow.contentWindow.document.getElementById('settings-window-button'),
-                webview = appwindow.contentWindow.document.getElementById('panel-container');
+        appWindow.contentWindow.onload = function () {
+
+            const bodyObj = appWindow.contentWindow.document.querySelector('body'),
+                window_title = appWindow.contentWindow.document.getElementById('document-title'),
+                showToolbarObj = appWindow.contentWindow.document.getElementById('show-toolbar-button'),
+                hideToolbarObj = appWindow.contentWindow.document.getElementById('hide-toolbar-button'),
+                toolbarObj = appWindow.contentWindow.document.getElementById('toolbar'),
+                actionBar = appWindow.contentWindow.document.getElementsByClassName('actions')[0],
+                zoomInObj = appWindow.contentWindow.document.getElementById('zoom-in-window-button'),
+                zoomResetObj = appWindow.contentWindow.document.getElementById('zoom-reset-window-button'),
+                zoomOutObj = appWindow.contentWindow.document.getElementById('zoom-out-window-button'),
+                aspectObj = appWindow.contentWindow.document.getElementById('aspect-window-button'),
+                minimizeObj = appWindow.contentWindow.document.getElementById('minimize-window-button'),
+                closeObj = appWindow.contentWindow.document.getElementById('close-window-button'),
+                settingsObj = appWindow.contentWindow.document.getElementById('settings-window-button'),
+                webview = appWindow.contentWindow.document.getElementById('panel-container');
 
             // Set action bar items count
             addStyle(`
@@ -56,42 +57,42 @@ function createWindow(param) {
             `);
 
             function disappearBar() {
-                clearTimeout(appwindow.contentWindow.removeButtonsTimer);
-                if (!window.removeButtonsForbidden) {
+                clearTimeout(appWindow.contentWindow.removeToolbarTimer);
+                if (!window.removeToolbarForbidden) {
                     const storageTitleBarTimeOut = storageData?.titlebartimeout ?? 1.5;
-                    appwindow.contentWindow.removeButtonsTimer = setTimeout(() => {
-                        buttonsObj.classList.remove('fadein');
-                        buttonsObj.classList.add('fadeout');
+                    appWindow.contentWindow.removeToolbarTimer = setTimeout(() => {
+                        toolbarObj.classList.remove('fadein');
+                        toolbarObj.classList.add('fadeout');
                         if (webview)
                             webview.classList.remove('movedown');
                     }, (storageTitleBarTimeOut > .5 ? storageTitleBarTimeOut : 1.5)*1000);
                 }
             }
 
-            appwindow.contentWindow.document.title = chrome.i18n.getMessage('appName');
+            appWindow.contentWindow.document.title = chrome.i18n.getMessage('appName');
 
             if (window_title) {
                 window_title.innerText = chrome.i18n.getMessage('appName');
             }
             if (zoomInObj){
                 zoomInObj.onclick = function () {
-            		webview.setZoom( appwindow.contentWindow.webview_zoom_level += .1 );
+            		webview.setZoom( appWindow.contentWindow.webview_zoom_level += .1 );
                 };
             }
             if (zoomResetObj){
                 zoomResetObj.onclick = function () {
-                    webview.setZoom( appwindow.contentWindow.webview_zoom_level = 1 );
+                    webview.setZoom( appWindow.contentWindow.webview_zoom_level = 1 );
                 };
             }
             if (zoomOutObj){
                 zoomOutObj.onclick = function () {
-                    webview.setZoom( appwindow.contentWindow.webview_zoom_level -= .1 );
+                    webview.setZoom( appWindow.contentWindow.webview_zoom_level -= .1 );
                 };
             }
             if (aspectObj){
                 aspectObj.onclick = function () {
-                    var width = appwindow.innerBounds.width;
-                    appwindow.innerBounds.height = Math.round(width * (9/16));
+                    var width = appWindow.innerBounds.width;
+                    appWindow.innerBounds.height = Math.round(width * (9/16));
                 };
             }
             if (pinObj){
@@ -107,54 +108,44 @@ function createWindow(param) {
             if (settingsObj){
                 settingsObj.title = chrome.i18n.getMessage('appLabelSettings');
                 settingsObj.onclick = function () {
-                    appwindow.contentWindow.chrome.runtime.sendMessage({'open': 'options'});
+                    appWindow.contentWindow.chrome.runtime.sendMessage({'open': 'options'});
                 };
             }
             if (minimizeObj){
                 minimizeObj.title = chrome.i18n.getMessage('appLabelMinimize');
                 minimizeObj.onclick = function () {
-                    appwindow.minimize();
+                    appWindow.minimize();
                 };
             }
             if (closeObj){
                 closeObj.title = chrome.i18n.getMessage('appLabelClose');
                 closeObj.onclick = function () {
-                    appwindow.contentWindow.close();
+                    appWindow.contentWindow.close();
                 };
             }
 
             toggleFullscreen = function () {
-                if (appwindow.isFullscreen()) {
-                    appwindow.restore();
+                if (appWindow.isFullscreen()) {
+                    appWindow.restore();
                 } else {
-                    appwindow.fullscreen();
+                    appWindow.fullscreen();
                 }
             };
 
             // Move title bar in and out
-            buttonsObj.classList.add('fadeout');
+            toolbarObj.classList.add('fadeout');
             if (!storageData?.dontresize && webview) webview.classList.add('resize');
-            buttonsObj.onmousemove = function () {
-                disappearBar();
-            }
-            bodyObj.onmousemove = function () {
-                buttonsObj.classList.remove('fadeout');
-                buttonsObj.classList.add('fadein');
+            showToolbarObj.onclick = function () {
+                toolbarObj.classList.remove('fadeout');
+                toolbarObj.classList.add('fadein');
                 if (webview)
                     webview.classList.add('movedown');
-
-                disappearBar();
             }
-
-            for (let i = 0; i < buttonsObj.children.length; i++) {
-                buttonsObj.children[i].onmouseenter = function () {
-                    window.removeButtonsForbidden = true;
-                    clearTimeout(appwindow.contentWindow.removeButtonsTimer);
-                }
-                buttonsObj.children[i].onmouseleave = function () {
-                    window.removeButtonsForbidden = false;
-                    disappearBar();
-                }
+            hideToolbarObj.onclick = function () {
+                toolbarObj.classList.add('fadeout');
+                toolbarObj.classList.remove('fadein');
+                if (webview)
+                    webview.classList.remove('movedown');
             }
         }
 	});

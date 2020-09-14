@@ -87,21 +87,13 @@ a {
     opacity: 0;
     top: -38px;
 }
-.position.fadeout::after {
-    content: "";
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    right: 0;
-}
 
 .drag-handle {
     -webkit-app-region: drag;
     position: absolute;
     width: calc(100% - (var(--action-bar-items) * 33px));
     height: 100%;
-    left: 0;
+    left: 30px;
     top: 0;
 }
 .position.fadein .drag-handle {
@@ -192,3 +184,19 @@ a {
     transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 /* END TITLE BAR */
+
+/* BEGIN TOGGLE TOOLBAR BUTTON */
+#hide-toolbar-button {
+    margin-right: 5px;
+    color: white;
+}
+#show-toolbar-button {
+    position: fixed;
+    background: #e4e4e4;
+    margin: 0;
+    padding: 4px;
+    width: 22px;
+    border-radius: 5px 0px;
+    z-index: 99999998;
+}
+/* END TOGGLE TOOLBAR BUTTON */

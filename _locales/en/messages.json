@@ -35,7 +35,7 @@
   },
   "appLabelStayOnTop": {
     "message": "Default stay-on-top",
-    "description": "The text of the option to fit (resize) webview when title bar appears."
+    "description": "The text of the option to set the on-top default."
   },
   "appLabelTitleBarTimout": {
     "message": "Timeout before title bar disappearance",
@@ -44,6 +44,20 @@
   "appLabelSave": {
     "message": "Save",
     "description": "The label of save button on the settings page."
+  },
+
+
+  "appLabelAlwaysOnTop": {
+    "message": "Always on-top",
+    "description": "The text of the on-top option in the options panel."
+  },
+  "appLabelAspectRatioTo169": {
+    "message": "Set aspect ratio to 16:9",
+    "description": "The text of the ratio option in the options panel."
+  },
+  "appLabelOpenSettings": {
+    "message": "Open settings",
+    "description": "The text of the settings option in the options panel."
   },
 
 

@@ -7,7 +7,13 @@
 </head>
 <body id="WindowView">
     <webview class="background webview" id="panel-container" src="about:blank" partition="persist:framelessapps" frameborder="0"></webview>
-    <div id="buttons" class="position">
+    <button class="window-button" title="Show toolbar" id="show-toolbar-button">
+        &#9660;
+    </button>
+    <div id="toolbar" class="position">
+        <button class="window-button" title="Hide toolbar" id="hide-toolbar-button">
+            &#9650;
+        </button>
         <webview id="document-favicon" partition="persist:framelessapps" frameborder="0" allowtransparency></webview><span id="document-title">appName</span>
         <div class="actions">
             <button class="window-button ml-0" title="Zoom in" id="zoom-in-window-button">

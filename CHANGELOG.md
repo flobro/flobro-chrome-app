@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - URL's with query string in hash marked as invalid
 
+### Changed
+- Manual toggle of toolbar
+
 ## [0.2.4] - 2020-09-01
 ### Fixed
 - URL's incorrectly being marked as invalid
@@ -15,15 +18,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Minor typos in translation descriptions
 
 ### Changed
-- Pin icon controls stay-on-top instead of title bar
-- Title bar will now appear on every mouse enter
+- Pin icon controls stay-on-top instead of toolbar
+- Toolbar will now appear on every mouse enter
 
 ### Added
 - Zoom controls
 - Option to disable stay-on-top feature
 
 ### Removed
-- Option to pin title bar
+- Option to pin toolbar
 - Short name reference
 
 
@@ -45,17 +48,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.2.2] - 2019-07-30
 ### Fixed
 - Favicon has a black background
-- Title bar not disappearing
+- Toolbar not disappearing
 
 ### Changed
-- Title bar appearance will no longer push webview down
+- Toolbar appearance will no longer push webview down
 - Changed separate icons to SVG sprite
-- Improved behaviour of title bar
+- Improved behaviour of toolbar
 
 ### Added
-- Option to fit webview when title bar appears
-- Option to pin title bar
-- Option to set the timeout of title bar disappearance
+- Option to fit webview when toolbar appears
+- Option to pin toolbar
+- Option to set the timeout of toolbar disappearance
 
 ### Removed
 - Asking permissions for audio, video and notification
@@ -69,7 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - ENTER key not working when saving the URL
 
 #### Changed
-- Set drag handle back to whole title bar due to bad UX
+- Set drag handle back to whole toolbar due to bad UX
 
 ### Added
 - Support for microphone and webcam use
@@ -82,7 +85,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.2.0] - 2019-07-19
 ### Fixed
-- Weird behaviour of title bar
+- Weird behaviour of toolbar
 
 ### Changed
 - Default locale is now English instead of Dutch
@@ -91,7 +94,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Browser window stays open when settings window is opened
 
 ### Added
-- Auto hide title bar
+- Auto hide toolbar
 - URL validation
 
 ### Removed
