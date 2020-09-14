@@ -83,7 +83,7 @@ function validURL(str) {
             '(\\:\\d+)?'+ // port
             '(\\/[-a-z\\d%_.~+]*)*'+ // path
             '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-            '(\\#[-a-z\\d_]*)?'+ // fragment locator
+            '(\\#[-a-z\\d&%_.~+=]*)?'+ // fragment locator
         '$' // end
     ,'is');
   return !!pattern.test(str);
