@@ -31,9 +31,7 @@ function createWindow(param) {
           appWindow.contentWindow.document.head.append(style);
         }
 
-                pinObj = appwindow.contentWindow.document.getElementById('pin-window-button'),
         appWindow.contentWindow.onload = function () {
-
             const bodyObj = appWindow.contentWindow.document.querySelector('body'),
                 window_title = appWindow.contentWindow.document.getElementById('document-title'),
                 showToolbarObj = appWindow.contentWindow.document.getElementById('show-toolbar-button'),
@@ -44,6 +42,7 @@ function createWindow(param) {
                 zoomResetObj = appWindow.contentWindow.document.getElementById('zoom-reset-window-button'),
                 zoomOutObj = appWindow.contentWindow.document.getElementById('zoom-out-window-button'),
                 aspectObj = appWindow.contentWindow.document.getElementById('aspect-window-button'),
+                pinObj = appWindow.contentWindow.document.getElementById('pin-window-button'),
                 minimizeObj = appWindow.contentWindow.document.getElementById('minimize-window-button'),
                 closeObj = appWindow.contentWindow.document.getElementById('close-window-button'),
                 settingsObj = appWindow.contentWindow.document.getElementById('settings-window-button'),
@@ -102,7 +101,7 @@ function createWindow(param) {
                     pinObj.classList.remove('pinned');
 
                 pinObj.onclick = function () {
-                    appwindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
+                    appWindow.setAlwaysOnTop( pinObj.classList.toggle('pinned') );
                 };
             }
             if (settingsObj){
@@ -164,8 +163,8 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender) {
     if (0 === chrome.app.window.getAll().length) {
         createWindow(request);
     } else {
-        const appwindow = chrome.app.window.getAll()[0];
-        appwindow.close();
+        const appWindow = chrome.app.window.getAll()[0];
+        appWindow.close();
         createWindow(request);
     }
 });
