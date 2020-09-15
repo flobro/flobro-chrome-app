@@ -11,7 +11,7 @@ _Floating browser window_
 
 [//]: # "Badges"
 [![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/faaljkdndnfoagcmhedlmbgieoocemch.svg)][chrome-web-store-url]
-[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/faaljkdndnfoagcmhedlmbgieoocemch.svg)][chrome-web-store-url]
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=flobro_flobro-chrome-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=flobro_flobro-chrome-app)
 [![BCH compliance](https://bettercodehub.com/edge/badge/flobro/flobro-chrome-app?branch=develop)](https://bettercodehub.com/)
 [![Become a Patron!](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fcornips)][patreon-url]
 [![Become a Sponsor!](https://img.shields.io/badge/Github-Become%20a%20sponsor-ea4aaa?style=flat-square&logo=github)][github-sponsor-url]
