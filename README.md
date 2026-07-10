@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+>  This Chrome App is discontinued and no longer runs in modern Chrome. Flobro lives on as a native desktop app for Mac and Windows, plus a new Chrome extension. Get them at [flobro.app](https://flobro.app), [flobro-app](https://github.com/flobro/flobro-app) and [flobro-extension](https://github.com/flobro/flobro-extension). This repository is archived and kept for reference.
+
 # Flobro
 
 _Floating browser window_
